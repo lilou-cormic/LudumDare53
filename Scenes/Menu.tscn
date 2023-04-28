@@ -1,0 +1,72 @@
+[gd_scene load_steps=5 format=3 uid="uid://dmeyu787t5bog"]
+
+[ext_resource type="Theme" uid="uid://f1ss2majff58" path="res://Theme.tres" id="1"]
+[ext_resource type="Script" path="res://PurpleCable/Core/Scripts/MainMenu.cs" id="3"]
+[ext_resource type="FontFile" path="res://Fonts/Bauhaus 93 Normal.tres" id="3_3erjh"]
+[ext_resource type="Script" path="res://Scripts/MusicPlayer.cs" id="6"]
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1")
+script = ExtResource("3")
+
+[node name="GameNameLabel" type="Label" parent="."]
+layout_mode = 0
+anchor_top = 0.079
+anchor_right = 1.0
+anchor_bottom = 0.249
+theme_override_fonts/font = ExtResource("3_3erjh")
+theme_override_font_sizes/font_size = 90
+text = "Ludum Dare 53"
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+
+[node name="GameByLabel" type="Label" parent="."]
+layout_mode = 0
+anchor_top = 0.249
+anchor_right = 1.0
+anchor_bottom = 0.349
+text = "by lilou_cormic and Pixel Prophecy"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 0
+anchor_left = 0.25
+anchor_top = 0.35
+anchor_right = 0.75
+anchor_bottom = 1.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="PlayButton" type="Button" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Play"
+
+[node name="OptionsButton" type="Button" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Options"
+
+[node name="CreditsButton" type="Button" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Credits"
+
+[node name="QuitButton" type="Button" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Quit"
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+autoplay = true
+script = ExtResource("6")
+
+[connection signal="pressed" from="CenterContainer/VBoxContainer/PlayButton" to="." method="StartGame"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/OptionsButton" to="." method="ShowOptions"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/CreditsButton" to="." method="ShowCredits"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/QuitButton" to="." method="QuitGame"]

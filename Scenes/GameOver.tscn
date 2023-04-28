@@ -1,0 +1,92 @@
+[gd_scene load_steps=5 format=3 uid="uid://dkv3hg02427hx"]
+
+[ext_resource type="Theme" uid="uid://f1ss2majff58" path="res://Theme.tres" id="1"]
+[ext_resource type="FontFile" path="res://Fonts/Kenney Bold Large.tres" id="2"]
+[ext_resource type="Script" path="res://Scripts/GameOver.cs" id="3"]
+[ext_resource type="Script" path="res://PurpleCable/Core/Scripts/ScoreDisplay.cs" id="4"]
+
+[node name="GameOver" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1")
+script = ExtResource("3")
+
+[node name="GameOverLabel" type="Label" parent="."]
+layout_mode = 0
+anchor_top = 0.079
+anchor_right = 1.0
+anchor_bottom = 0.249
+theme_override_fonts/font = ExtResource("2")
+theme_override_font_sizes/font_size = 40
+text = "Game Over"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScoreLabel" type="Label" parent="."]
+layout_mode = 0
+anchor_top = 0.35
+anchor_right = 0.5
+anchor_bottom = 0.475
+text = "Score "
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="ScoreText" type="Label" parent="."]
+layout_mode = 0
+anchor_left = 0.5
+anchor_top = 0.35
+anchor_right = 1.0
+anchor_bottom = 0.475
+text = "000"
+vertical_alignment = 2
+script = ExtResource("4")
+IsHighScore = null
+
+[node name="HiScoreLabel" type="Label" parent="."]
+layout_mode = 0
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.675
+text = "Best "
+horizontal_alignment = 2
+
+[node name="HiScoreText" type="Label" parent="."]
+layout_mode = 0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.675
+text = "000"
+script = ExtResource("4")
+IsHighScore = true
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 0
+anchor_top = 0.675
+anchor_right = 0.5
+anchor_bottom = 1.0
+
+[node name="RetryButton" type="Button" parent="CenterContainer"]
+layout_mode = 2
+text = "Retry"
+
+[node name="CenterContainer2" type="CenterContainer" parent="."]
+layout_mode = 0
+anchor_left = 0.5
+anchor_top = 0.675
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="QuitButton" type="Button" parent="CenterContainer2"]
+layout_mode = 2
+text = "Quit"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+autoplay = true
+
+[connection signal="pressed" from="CenterContainer/RetryButton" to="." method="OnRetryButtonPressed"]
+[connection signal="pressed" from="CenterContainer2/QuitButton" to="." method="OnQuitButtonPressed"]
