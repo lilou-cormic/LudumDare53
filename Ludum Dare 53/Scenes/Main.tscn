@@ -1,6 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://bg4tnbic1mwki"]
+[gd_scene load_steps=9 format=3 uid="uid://bg4tnbic1mwki"]
 
 [ext_resource type="PackedScene" uid="uid://cxbtaj2sem1ca" path="res://Prefabs/HQ.tscn" id="2_p2rb2"]
+[ext_resource type="Script" path="res://Scripts/TileFactory.cs" id="2_psckb"]
+[ext_resource type="PackedScene" uid="uid://dtjli4w6xywgg" path="res://Prefabs/Tile.tscn" id="3_cky3d"]
 [ext_resource type="Script" path="res://Scripts/Warehouses.cs" id="3_qpb6p"]
 [ext_resource type="PackedScene" uid="uid://c6trhdlx7klpm" path="res://Prefabs/Destination.tscn" id="4_eawbt"]
 [ext_resource type="Script" path="res://Scripts/Destinations.cs" id="5_4dy1h"]
@@ -8,7 +10,6 @@
 [ext_resource type="Script" path="res://Scripts/GameManager.cs" id="7"]
 
 [node name="Main" type="Node2D"]
-position = Vector2(-13, 0)
 
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
 autoplay = true
@@ -16,24 +17,26 @@ autoplay = true
 [node name="GameManager" type="Node2D" parent="."]
 script = ExtResource("7")
 
+[node name="TileFactory" type="Node2D" parent="GameManager"]
+script = ExtResource("2_psckb")
+Prefab = ExtResource("3_cky3d")
+
 [node name="Warehouses" type="Node2D" parent="GameManager"]
 script = ExtResource("3_qpb6p")
 
 [node name="Warehouse" parent="GameManager/Warehouses" instance=ExtResource("5_6sixh")]
-position = Vector2(188, 523)
+position = Vector2(200, 500)
 
 [node name="Destinations" type="Node2D" parent="GameManager"]
 script = ExtResource("5_4dy1h")
 
 [node name="Destination1" parent="GameManager/Destinations" instance=ExtResource("4_eawbt")]
-position = Vector2(534, 106)
+position = Vector2(700, 100)
 
 [node name="Destination2" parent="GameManager/Destinations" instance=ExtResource("4_eawbt")]
-position = Vector2(1339, 163)
+position = Vector2(1400, 300)
 
 [node name="HQ" parent="GameManager" instance=ExtResource("2_p2rb2")]
-position = Vector2(976, 540)
-
-[node name="Tile" type="Node2D" parent="."]
+position = Vector2(1000, 800)
 
 [editable path="GameManager/HQ"]

@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://dtjli4w6xywgg"]
+
+[ext_resource type="Script" path="res://Scripts/Tile.cs" id="1_54s6c"]
+[ext_resource type="Texture2D" uid="uid://rndsa03qa6vq" path="res://Sprites/stand-ins/box.png" id="1_txva0"]
+
+[node name="Tile" type="Sprite2D"]
+texture = ExtResource("1_txva0")
+script = ExtResource("1_54s6c")
