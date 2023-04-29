@@ -2,6 +2,10 @@ using Godot;
 
 public partial class Agent : Area2D
 {
+    public const float BaseSpeed = 100f;
+
+    public float CurrentSpeed = BaseSpeed;
+
     public Warehouse Warehouse { get; set; }
 
     public Destination Destination { get; set; }
@@ -35,13 +39,14 @@ public partial class Agent : Area2D
                 return;
         }
 
-        GlobalPosition = VectorEx.SmoothDamp(GlobalPosition, destination, ref _positionVelocity, 0.5f, delta, 300f);
+        Vector2 dir = GlobalPosition.DirectionTo(destination);
+        GlobalRotation = -Mathf.Atan2(dir.X, dir.Y);
+
+        GlobalPosition = VectorEx.SmoothDamp(GlobalPosition, destination, ref _positionVelocity, 1f, delta, CurrentSpeed);
 
         if (GlobalPosition.DistanceTo(destination) < 1f)
         {
             DeliveryState = (DeliveryState)(((int)DeliveryState + 1) % 4);
-
-            GD.Print("DeliveryState:" + DeliveryState);
         }
     }
 

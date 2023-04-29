@@ -22,9 +22,6 @@ public partial class HQ : Area2D
 	public override void _Ready()
 	{
 		AgentFactory = GetNode<AgentFactory>("AgentFactory");
-
-		GD.Print("HQ_READY _agents:" + _agents);
-		GD.Print("HQ_READY AgentFactory:" + AgentFactory);
 	}
 
 	public void NewDelivery()
@@ -49,9 +46,6 @@ public partial class HQ : Area2D
 
 	public void HireAgent()
 	{
-		GD.Print("HireAgent _agents:" + _agents);
-		GD.Print("HireAgent AgentFactory:" + AgentFactory);
-
 		_agents.Add(AgentFactory.GetAgent());
 	}
 }
