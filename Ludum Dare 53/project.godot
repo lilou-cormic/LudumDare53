@@ -13,6 +13,7 @@ config_version=5
 config/name="Ludum Dare 53"
 run/main_scene="res://Scenes/Main.tscn"
 config/features=PackedStringArray("4.0", "C#", "GL Compatibility")
+boot_splash/image="res://Images/SplashScreen/splash-screen-purple-cable-pixel-prophecy.png"
 config/icon="res://icon.svg"
 
 [display]
@@ -29,6 +30,13 @@ project/assembly_name="Ludum Dare 53"
 
 [layer_names]
 
+2d_render/layer_1="Ground"
+2d_render/layer_2="Foliage"
+2d_render/layer_3="Building"
+2d_render/layer_4="Agent"
+2d_render/layer_5="GroudObstacle"
+2d_render/layer_6="FlyingObstacle"
+2d_render/layer_7="Projectile"
 2d_physics/layer_1="HQ"
 2d_physics/layer_2="Agent"
 2d_physics/layer_3="Warehouse"

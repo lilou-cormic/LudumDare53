@@ -1,22 +1,23 @@
 using Godot;
+using PurpleCable;
 
 public partial class Agent : Area2D
 {
-    public const float BaseSpeed = 100f;
+    public const float BaseSpeed = 1f;
 
     public float CurrentSpeed = BaseSpeed;
 
-    public Warehouse Warehouse { get; set; }
+    public Warehouse Warehouse { get; private set; }
 
-    public Destination Destination { get; set; }
+    public Destination Destination { get; private set; }
 
     public DeliveryState DeliveryState { get; private set; }
 
-    private Vector2 _positionVelocity = Vector2.Zero;
+    private MoveAnimation MoveAnimation;
 
     public override void _Process(double delta)
     {
-        Vector2 destination;
+        Node2D destination;
 
         switch (DeliveryState)
         {
@@ -24,29 +25,55 @@ public partial class Agent : Area2D
                 return;
 
             case DeliveryState.HeadingToWarehouse:
-                destination = Warehouse.GlobalPosition;
+                destination = Warehouse;
                 break;
 
             case DeliveryState.HeadingToDestination:
-                destination = Destination.GlobalPosition;
+                destination = Destination;
                 break;
 
             case DeliveryState.HeadingToHQ:
-                destination = GameManager.HQ.GlobalPosition;
+                destination = GameManager.HQ;
                 break;
 
             default:
                 return;
         }
 
-        Vector2 dir = GlobalPosition.DirectionTo(destination);
-        GlobalRotation = -Mathf.Atan2(dir.X, dir.Y);
-
-        GlobalPosition = VectorEx.SmoothDamp(GlobalPosition, destination, ref _positionVelocity, 1f, delta, CurrentSpeed);
-
-        if (GlobalPosition.DistanceTo(destination) < 1f)
+        if (MoveAnimation == null || MoveAnimation.IsDoneAnimating)
         {
-            DeliveryState = (DeliveryState)(((int)DeliveryState + 1) % 4);
+            if (MoveAnimation?.IsDoneAnimating == true && GlobalPosition.DistanceTo(destination.GlobalPosition) <= 0.01f)
+            {
+                GD.Print($"{DeliveryState} DONE");
+
+                MoveAnimation = null;
+
+                DeliveryState = (DeliveryState)(((int)DeliveryState + 1) % 4);
+
+                return;
+            }
+
+            Vector2? nextPosition = GameManager.GetNextPosition(this, destination);
+
+            if (nextPosition.HasValue)
+            {
+                Vector2 dir = GlobalPosition.DirectionTo(nextPosition.Value);
+                GlobalRotation = -Mathf.Atan2(dir.X, dir.Y);
+
+                MoveAnimation = new MoveAnimation(this) { EndGlobalPosition = nextPosition.Value, IsLine = true, Duration = 1 / CurrentSpeed };
+                MoveAnimation.Start();
+            }
+        }
+    }
+
+    public override void _PhysicsProcess(double delta)
+    {
+        if (MoveAnimation != null)
+        {
+            if (GlobalPosition.DistanceTo(MoveAnimation.EndGlobalPosition) <= 0.01f)
+                MoveAnimation.End();
+
+            MoveAnimation.PhysicsProcess(delta);
         }
     }
 
@@ -54,6 +81,7 @@ public partial class Agent : Area2D
     {
         Warehouse = warehouse;
         Destination = destination;
+
         DeliveryState = DeliveryState.HeadingToWarehouse;
     }
 }

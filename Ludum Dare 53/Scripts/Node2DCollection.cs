@@ -5,14 +5,9 @@ using System.Collections.Generic;
 public partial class Node2DCollection<TNode2D> : Node2D, IEnumerable<TNode2D>
     where TNode2D : Node2D
 {
-    protected static Node2DCollection<TNode2D> Instance { get; private set; }
-
     protected List<TNode2D> List { get; private set; }
 
-    public Node2DCollection()
-    {
-        Instance = this;
-    }
+    public int Count => List.Count;
 
     public override void _Ready()
     {
@@ -25,6 +20,8 @@ public partial class Node2DCollection<TNode2D> : Node2D, IEnumerable<TNode2D>
             List.Add(GetChild<TNode2D>(i));
         }
     }
+
+    public TNode2D Get(int index) => List[index];
 
     public TNode2D GetRandom() => List.ToArray().GetRandom();
 
