@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://c6trhdlx7klpm"]
+
+[ext_resource type="Script" path="res://Scripts/Destination.cs" id="1_1d877"]
+[ext_resource type="Texture2D" uid="uid://c3cm7s8s4kfgn" path="res://Sprites/stand-ins/planet.png" id="2_ruk7q"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nh520"]
+
+[node name="DeliveryLocation" type="Area2D"]
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_1d877")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_nh520")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_ruk7q")

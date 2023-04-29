@@ -1,0 +1,21 @@
+[gd_scene load_steps=6 format=3 uid="uid://cxbtaj2sem1ca"]
+
+[ext_resource type="Script" path="res://Scripts/HQ.cs" id="1_oriai"]
+[ext_resource type="Texture2D" uid="uid://xa5kbfwu6sd6" path="res://Sprites/stand-ins/hq.png" id="2_upnvn"]
+[ext_resource type="PackedScene" uid="uid://bhcrc732hqqin" path="res://Prefabs/AgentFactory.tscn" id="3_rgn8p"]
+[ext_resource type="PackedScene" uid="uid://rl15xcg4e41u" path="res://Prefabs/Agent.tscn" id="4_fs85p"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j6get"]
+
+[node name="HQ" type="Area2D"]
+script = ExtResource("1_oriai")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_j6get")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_upnvn")
+
+[node name="AgentFactory" parent="." instance=ExtResource("3_rgn8p")]
+Prefab = ExtResource("4_fs85p")

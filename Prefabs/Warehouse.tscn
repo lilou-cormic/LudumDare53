@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://d23tkieuerlq1"]
+
+[ext_resource type="Script" path="res://Scripts/Warehouse.cs" id="1_hbb8s"]
+[ext_resource type="Texture2D" uid="uid://c222uoy7vtyax" path="res://Sprites/stand-ins/warehouse.png" id="2_jtqqe"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3kaf2"]
+
+[node name="Warehouse" type="Area2D"]
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_hbb8s")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_3kaf2")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_jtqqe")

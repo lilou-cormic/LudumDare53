@@ -1,5 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://bb1dxbpt0e3x1"]
+[gd_scene load_steps=6 format=3 uid="uid://bg4tnbic1mwki"]
 
+[ext_resource type="PackedScene" uid="uid://cxbtaj2sem1ca" path="res://Prefabs/HQ.tscn" id="2_p2rb2"]
+[ext_resource type="PackedScene" uid="uid://rl15xcg4e41u" path="res://Prefabs/Agent.tscn" id="3_5ft8q"]
+[ext_resource type="PackedScene" uid="uid://c6trhdlx7klpm" path="res://Prefabs/Destination.tscn" id="4_eawbt"]
+[ext_resource type="PackedScene" uid="uid://d23tkieuerlq1" path="res://Prefabs/Warehouse.tscn" id="5_6sixh"]
 [ext_resource type="Script" path="res://Scripts/GameManager.cs" id="7"]
 
 [node name="Main" type="Node2D"]
@@ -10,3 +14,16 @@ script = ExtResource("7")
 
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
 autoplay = true
+
+[node name="HQ" parent="." instance=ExtResource("2_p2rb2")]
+position = Vector2(976, 540)
+
+[node name="Agent" parent="." instance=ExtResource("3_5ft8q")]
+position = Vector2(535, 550)
+rotation = -1.37353
+
+[node name="Destination" parent="." instance=ExtResource("4_eawbt")]
+position = Vector2(534, 106)
+
+[node name="Warehouse" parent="." instance=ExtResource("5_6sixh")]
+position = Vector2(188, 523)
