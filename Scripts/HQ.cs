@@ -4,41 +4,54 @@ using System.Linq;
 
 public partial class HQ : Area2D
 {
-    public static HQ Instance { get; private set; }
+	public static HQ Instance { get; private set; }
 
-    private AgentFactory AgentFactory { get; }
+	private List<Agent> _agents;
 
-    public int MaxAgents { get; private set; } = 10;
+	private AgentFactory AgentFactory { get; set; }
 
-    private List<Agent> _agents = new List<Agent>();
+	public int MaxAgents { get; private set; } = 10;
 
-    public HQ()
-    {
-        Instance = this;
+	public HQ()
+	{
+		Instance = this;
+		
+		_agents = new List<Agent>();
+	}
 
-        AgentFactory = GetChild<AgentFactory>(2);
-    }
+	public override void _Ready()
+	{
+		AgentFactory = GetNode<AgentFactory>("AgentFactory");
 
-    private void NewDelivery()
-    {
-        Destination destination = GameManager.GetDestination();
-        Warehouse warehouse = GameManager.GetWarehouse(destination);
+		GD.Print("HQ_READY _agents:" + _agents);
+		GD.Print("HQ_READY AgentFactory:" + AgentFactory);
+	}
 
-        _agents.FirstOrDefault(agent => agent.DeliveryState == DeliveryState.StandBy)?.SendOut(warehouse, destination);
-    }
+	public void NewDelivery()
+	{
+		Destination destination = Destinations.GetRandomDestination();
+		Warehouse warehouse = Warehouses.GetClosestWarehouse(destination);
+
+		_agents.FirstOrDefault(agent => agent.DeliveryState == DeliveryState.StandBy)?.SendOut(warehouse, destination);
+
+		GetTree().CreateTimer(5f).Timeout += () => NewDelivery();
+	}
 
     public void IncreaseHiringCapacity()
-    {
-        MaxAgents += 5;
-    }
+	{
+		MaxAgents += 5;
+	}
 
-    public bool CanHireAgent()
-    {
-        return _agents.Count < MaxAgents;
-    }
+	public bool CanHireAgent()
+	{
+		return _agents.Count < MaxAgents;
+	}
 
-    public void HireAgent()
-    {
-        _agents.Add(AgentFactory.GetAgent());
-    }
+	public void HireAgent()
+	{
+		GD.Print("HireAgent _agents:" + _agents);
+		GD.Print("HireAgent AgentFactory:" + AgentFactory);
+
+		_agents.Add(AgentFactory.GetAgent());
+	}
 }

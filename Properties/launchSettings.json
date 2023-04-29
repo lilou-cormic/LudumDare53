@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Ludum Dare 53": {
+      "commandName": "Project",
+      "commandLineArgs": "-e --path \"C:\\Docs\\ProgLudi\\Godot\\LudumDare53\""
+    }
+  }
+}
