@@ -34,4 +34,6 @@ position = Vector2(1339, 163)
 [node name="HQ" parent="GameManager" instance=ExtResource("2_p2rb2")]
 position = Vector2(976, 540)
 
+[node name="Tile" type="Node2D" parent="."]
+
 [editable path="GameManager/HQ"]
