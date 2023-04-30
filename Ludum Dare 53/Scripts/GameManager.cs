@@ -4,98 +4,102 @@ using System.Collections.Generic;
 
 public partial class GameManager : Node2D
 {
-	private const int GridColCount = 25;
+    private const int GridColCount = 25;
 
-	private const int GridRowCount = 17;
+    private const int GridRowCount = 17;
 
-	public static float MusicVolume = 0;
+    public static float MusicVolume = 0;
 
-	public static float SfxVolume = 0;
+    public static float SfxVolume = 0;
 
-	private static GameManager _instance;
+    private static GameManager _instance;
 
-	public static HQ HQ => HQ.Instance;
+    public static HQ HQ => HQ.Instance;
 
-	private Warehouses _Warehouses;
-	public static Warehouses Warehouses => _instance._Warehouses;
+    private Warehouses _Warehouses;
+    public static Warehouses Warehouses => _instance._Warehouses;
 
-	private Destinations _Destinations;
-	public static Destinations Destinations => _instance._Destinations;
+    private Destinations _Destinations;
+    public static Destinations Destinations => _instance._Destinations;
 
-	private Paths _Paths;
-	public static Paths Paths => _instance._Paths;
+    private Paths _Paths;
+    public static Paths Paths => _instance._Paths;
 
-	private AStar _aStar;
+    private ProjectileFactory _ProjectileFactory;
+    public static ProjectileFactory ProjectileFactory => _instance._ProjectileFactory;
 
-	private double _deliveryTimer = 2f;
+    private AStar _aStar;
 
-	public GameManager()
-	{
-		_instance = this;
+    private double _deliveryTimer = 2f;
 
-		GameUI.TileSize = 64;
-	}
+    public GameManager()
+    {
+        _instance = this;
 
-	public override void _Ready()
-	{
-		_Warehouses = GetNode<Warehouses>("Warehouses");
-		_Destinations = GetNode<Destinations>("Destinations");
-		_Paths = GetNode<Paths>("Paths");
+        GameUI.TileSize = 64;
+    }
 
-		ScoreManager.ResetScore();
+    public override void _Ready()
+    {
+        _Warehouses = GetNode<Warehouses>("Warehouses");
+        _Destinations = GetNode<Destinations>("Destinations");
+        _Paths = GetNode<Paths>("Paths");
+        _ProjectileFactory = GetNode<ProjectileFactory>("ProjectileFactory");
 
-		CreateTileGrid();
+        ScoreManager.ResetScore();
 
-		HQ.HireAgent();
-		HQ.NewDelivery();
-	}
+        CreateTileGrid();
 
-	public override void _PhysicsProcess(double delta)
-	{
-		_deliveryTimer -= delta;
+        HQ.HireAgent();
+        HQ.NewDelivery();
+    }
 
-		if (_deliveryTimer <= 0)
-		{
-			HQ.NewDelivery();
+    public override void _PhysicsProcess(double delta)
+    {
+        _deliveryTimer -= delta;
 
-			_deliveryTimer = 2f;
-		}
-	}
+        if (_deliveryTimer <= 0)
+        {
+            HQ.NewDelivery();
 
-	private void CreateTileGrid()
-	{
-		TileFactory tileFactory = GetNode<TileFactory>("TileFactory");
+            _deliveryTimer = 2f;
+        }
+    }
 
-		List<List<AStarTile>> grid = new List<List<AStarTile>>();
+    private void CreateTileGrid()
+    {
+        TileFactory tileFactory = GetNode<TileFactory>("TileFactory");
 
-		for (int colIndex = 0; colIndex < GridColCount; colIndex++)
-		{
-			List<AStarTile> column = new List<AStarTile>();
+        List<List<AStarTile>> grid = new List<List<AStarTile>>();
 
-			for (int rowIndex = 0; rowIndex < GridRowCount; rowIndex++)
-			{
-				Tile tile = tileFactory.GetTile(colIndex, rowIndex);
-				column.Add(tile.AStarTile);
-			}
+        for (int colIndex = 0; colIndex < GridColCount; colIndex++)
+        {
+            List<AStarTile> column = new List<AStarTile>();
 
-			grid.Add(column);
-		}
+            for (int rowIndex = 0; rowIndex < GridRowCount; rowIndex++)
+            {
+                Tile tile = tileFactory.GetTile(colIndex, rowIndex);
+                column.Add(tile.AStarTile);
+            }
 
-		_aStar = new AStar(grid);
-	}
+            grid.Add(column);
+        }
 
-	public static int GetDistance(Node2D start, Node2D end)
-	{
-		return _instance._aStar.FindPath(start.GlobalPosition, end.GlobalPosition)?.Count ?? -1;
-	}
+        _aStar = new AStar(grid);
+    }
 
-	public static Vector2? GetNextPosition(Node2D start, Node2D end)
-	{
-		return _instance._aStar.FindPath(start.GlobalPosition, end.GlobalPosition)?.Pop().Position * GameUI.TileSize;
-	}
+    public static int GetDistance(Node2D start, Node2D end)
+    {
+        return _instance._aStar.FindPath(start.GlobalPosition, end.GlobalPosition)?.Count ?? -1;
+    }
 
-	public static void GameOver()
-	{
-		_instance.GetTree().ChangeSceneToFile(@"res://Scenes/GameOver.tscn");
-	}
+    public static Vector2? GetNextPosition(Node2D start, Node2D end)
+    {
+        return _instance._aStar.FindPath(start.GlobalPosition, end.GlobalPosition)?.Pop().Position * GameUI.TileSize;
+    }
+
+    public static void GameOver()
+    {
+        _instance.GetTree().ChangeSceneToFile(@"res://Scenes/GameOver.tscn");
+    }
 }

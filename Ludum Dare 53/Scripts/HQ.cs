@@ -71,4 +71,9 @@ public partial class HQ : Area2D
             tile.IsOnPath = true;
         }
     }
+
+    public void Shoot(Vector2 target)
+    {
+        GameManager.ProjectileFactory.ShootProjectile(target);
+    }
 }
