@@ -1,7 +1,6 @@
 using Godot;
-using System;
 
-public partial class Warehouse : Area2D
+public partial class Path : Area2D
 {
     public void OnAreaEntered(Area2D area)
     {

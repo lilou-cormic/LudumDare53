@@ -1,22 +1,32 @@
-[gd_scene load_steps=6 format=3 uid="uid://cxbtaj2sem1ca"]
+[gd_scene load_steps=7 format=3 uid="uid://cxbtaj2sem1ca"]
 
 [ext_resource type="Script" path="res://Scripts/HQ.cs" id="1_oriai"]
-[ext_resource type="Texture2D" uid="uid://xa5kbfwu6sd6" path="res://Sprites/stand-ins/hq.png" id="2_upnvn"]
+[ext_resource type="Texture2D" uid="uid://b5sxp6iunjlp4" path="res://Images/HQ/headquarter-layer-bg.png" id="2_14t8o"]
+[ext_resource type="Texture2D" uid="uid://bvfmd324yxxvx" path="res://Images/HQ/headquarter-layer-fg.png" id="2_d6i06"]
 [ext_resource type="PackedScene" uid="uid://bhcrc732hqqin" path="res://Prefabs/AgentFactory.tscn" id="3_rgn8p"]
 [ext_resource type="PackedScene" uid="uid://rl15xcg4e41u" path="res://Prefabs/Agent.tscn" id="4_fs85p"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_j6get"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2morg"]
 
 [node name="HQ" type="Area2D"]
 script = ExtResource("1_oriai")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_j6get")
+position = Vector2(32, 32)
+shape = SubResource("RectangleShape2D_2morg")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-visibility_layer = 4
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("2_upnvn")
+z_index = 3
+position = Vector2(32, 16)
+texture = ExtResource("2_14t8o")
+
+[node name="Headquarter-layer-fg" type="Sprite2D" parent="."]
+visibility_layer = 64
+z_index = 20
+position = Vector2(32, 16)
+texture = ExtResource("2_d6i06")
 
 [node name="AgentFactory" parent="." instance=ExtResource("3_rgn8p")]
 Prefab = ExtResource("4_fs85p")
+
+[connection signal="area_entered" from="." to="." method="OnAreaEntered"]

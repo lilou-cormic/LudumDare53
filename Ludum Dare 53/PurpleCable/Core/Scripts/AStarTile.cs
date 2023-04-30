@@ -18,6 +18,8 @@ namespace PurpleCable
 
         public float F => DistanceToTarget != -1 && Cost != -1 ? DistanceToTarget + Cost : -1;
 
+        public Vector2 Center => new Vector2(Position.X * GameUI.TileSize + GameUI.TileSize / 2, Position.Y * GameUI.TileSize + GameUI.TileSize / 2);
+
         public AStarTile(int x, int y, bool isWalkable, float weight = 1)
         {
             Parent = null;

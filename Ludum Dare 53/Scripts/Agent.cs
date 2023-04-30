@@ -44,8 +44,6 @@ public partial class Agent : Area2D
         {
             if (MoveAnimation?.IsDoneAnimating == true && GlobalPosition.DistanceTo(destination.GlobalPosition) <= 0.01f)
             {
-                GD.Print($"{DeliveryState} DONE");
-
                 MoveAnimation = null;
 
                 DeliveryState = (DeliveryState)(((int)DeliveryState + 1) % 4);

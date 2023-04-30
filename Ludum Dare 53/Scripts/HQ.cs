@@ -1,5 +1,4 @@
 using Godot;
-using PurpleCable;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -63,5 +62,15 @@ public partial class HQ : Area2D
     public void HireAgent()
     {
         _agents.Add(AgentFactory.GetAgent());
+    }
+
+    public void OnAreaEntered(Area2D area)
+    {
+        Node parent = area.GetParent();
+
+        if (parent is Tile tile)
+        {
+            tile.SetIsWalkable(true);
+        }
     }
 }

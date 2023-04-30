@@ -1,12 +1,13 @@
 ﻿using Godot;
 using PurpleCable;
 using System.Collections.Generic;
+using System.Linq;
 
 public partial class GameManager : Node2D
 {
-    private const int GridColCount = 20;
+    private const int GridColCount = 25;
 
-    private const int GridRowCount = 10;
+    private const int GridRowCount = 17;
 
     public static float MusicVolume = 0;
 
@@ -22,19 +23,23 @@ public partial class GameManager : Node2D
     private Destinations _Destinations;
     public static Destinations Destinations => _instance._Destinations;
 
+    private Paths _Paths;
+    public static Paths Paths => _instance._Paths;
+
     private AStar _aStar;
 
     public GameManager()
     {
         _instance = this;
 
-        GameUI.TileSize = 100;
+        GameUI.TileSize = 64;
     }
 
     public override void _Ready()
     {
         _Warehouses = GetNode<Warehouses>("Warehouses");
         _Destinations = GetNode<Destinations>("Destinations");
+        _Paths = GetNode<Paths>("Paths");
 
         ScoreManager.ResetScore();
 
@@ -52,17 +57,15 @@ public partial class GameManager : Node2D
 
         for (int colIndex = 0; colIndex < GridColCount; colIndex++)
         {
-            List<AStarTile> row = new List<AStarTile>();
+            List<AStarTile> column = new List<AStarTile>();
 
             for (int rowIndex = 0; rowIndex < GridRowCount; rowIndex++)
             {
                 Tile tile = tileFactory.GetTile(colIndex, rowIndex);
-                row.Add(tile.AStarTile);
-
-                tile.SetIsWalkable(colIndex == 10 || (colIndex == 7 || colIndex == 14 || rowIndex == 5 || rowIndex == 3) && rowIndex <= 5);
+                column.Add(tile.AStarTile);
             }
 
-            grid.Add(row);
+            grid.Add(column);
         }
 
         _aStar = new AStar(grid);

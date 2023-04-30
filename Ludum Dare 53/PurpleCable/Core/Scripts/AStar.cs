@@ -22,8 +22,6 @@ namespace PurpleCable
             AStarTile start = new AStarTile((int)(Start.X / GameUI.TileSize), (int)(Start.Y / GameUI.TileSize), true);
             AStarTile end = new AStarTile((int)(End.X / GameUI.TileSize), (int)(End.Y / GameUI.TileSize), true);
 
-            GD.Print($"FindPath({start} - {end}");
-
             Stack<AStarTile> path = new Stack<AStarTile>();
             PriorityQueue<AStarTile, float> openList = new PriorityQueue<AStarTile, float>();
             List<AStarTile> closedList = new List<AStarTile>();
@@ -76,8 +74,6 @@ namespace PurpleCable
                 path.Push(temp);
                 temp = temp.Parent;
             } while (temp != start && temp != null);
-
-            GD.Print(path.Peek());
 
             return path;
         }

@@ -9,16 +9,21 @@ public partial class Tile : Sprite2D
         get
         {
             if (_AStarTile == null)
-                _AStarTile = new AStarTile((int)(GlobalPosition.X / GameUI.TileSize), (int)(GlobalPosition.Y / GameUI.TileSize), true);
+                _AStarTile = new AStarTile((int)(GlobalPosition.X / GameUI.TileSize), (int)(GlobalPosition.Y / GameUI.TileSize), false);
 
             return _AStarTile;
         }
+    }
+
+    public Tile()
+    {
+        Modulate = Colors.Transparent;
     }
 
     public void SetIsWalkable(bool isWalkable)
     {
         AStarTile.IsWalkable = isWalkable;
 
-        Modulate = isWalkable ? Colors.White : Colors.Transparent;
+        //Modulate = isWalkable ? Colors.White : Colors.Transparent;
     }
 }
