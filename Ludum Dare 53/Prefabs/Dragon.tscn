@@ -1,0 +1,84 @@
+[gd_scene load_steps=14 format=3 uid="uid://t2g0hatnufgu"]
+
+[ext_resource type="Script" path="res://Scripts/Dragon.cs" id="1_3nxda"]
+[ext_resource type="Texture2D" uid="uid://b4cxh3hj623ho" path="res://Images/Dragon/enemy-dragon-01.png" id="1_sfbty"]
+[ext_resource type="Texture2D" uid="uid://dspyimysc3mvm" path="res://Images/Dragon/enemy-dragon-shadow.png" id="2_4rf8x"]
+[ext_resource type="Texture2D" uid="uid://dap1cgb0r7vxd" path="res://Images/Dragon/enemy-dragon-02.png" id="2_go03p"]
+[ext_resource type="Texture2D" uid="uid://d1k8s22qc8qk1" path="res://Images/Dragon/enemy-dragon-03.png" id="3_nwkwu"]
+[ext_resource type="Texture2D" uid="uid://ddij2qohk08f0" path="res://Images/Dragon/enemy-dragon-04.png" id="4_6iyph"]
+[ext_resource type="Texture2D" uid="uid://bw3rfg808bef7" path="res://Images/Dragon/enemy-dragon-05.png" id="5_f8jmk"]
+[ext_resource type="Texture2D" uid="uid://yebsc683akqn" path="res://Images/Dragon/enemy-dragon-06.png" id="6_wwppu"]
+[ext_resource type="Texture2D" uid="uid://bwffbf4ndle3n" path="res://Images/Dragon/enemy-dragon-07.png" id="7_nur7s"]
+[ext_resource type="Texture2D" uid="uid://dnb0e8kkgxf" path="res://Images/Dragon/enemy-dragon-08.png" id="8_g82n2"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_73tqs"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_sfbty")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_go03p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_nwkwu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_6iyph")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_f8jmk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_wwppu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_nur7s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_g82n2")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0x1xb"]
+height = 52.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tfias"]
+size = Vector2(326, 157)
+
+[node name="Dragon" type="Node2D"]
+script = ExtResource("1_3nxda")
+
+[node name="Enemy-dragon-shadow" type="Sprite2D" parent="."]
+z_index = 10
+y_sort_enabled = true
+texture = ExtResource("2_4rf8x")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 11
+y_sort_enabled = true
+sprite_frames = SubResource("SpriteFrames_73tqs")
+autoplay = "default"
+
+[node name="DamagingArea2D" type="Area2D" parent="."]
+collision_layer = 256
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamagingArea2D"]
+position = Vector2(140, 106)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_0x1xb")
+
+[node name="BodyArea2D" type="Area2D" parent="."]
+collision_layer = 256
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BodyArea2D"]
+position = Vector2(-56, 50.5)
+shape = SubResource("RectangleShape2D_tfias")
+
+[connection signal="area_entered" from="DamagingArea2D" to="." method="OnDamagingAreaEntered"]
+[connection signal="area_entered" from="BodyArea2D" to="." method="OnBodyAreaEntered"]

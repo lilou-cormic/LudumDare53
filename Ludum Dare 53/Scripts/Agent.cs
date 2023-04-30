@@ -1,7 +1,7 @@
 using Godot;
 using PurpleCable;
 
-public partial class Agent : Area2D
+public partial class Agent : Node2D
 {
     public const float BaseSpeed = 1f;
 
@@ -15,11 +15,11 @@ public partial class Agent : Area2D
 
     private MoveAnimation MoveAnimation;
 
-    private Sprite2D Sprite;
+    private AnimatedSprite2D _graphic;
 
     public override void _Ready()
     {
-        Sprite = GetChild<Sprite2D>(1);
+        _graphic = GetNode<AnimatedSprite2D>("Graphic");
     }
 
     public override void _Process(double delta)
@@ -67,7 +67,7 @@ public partial class Agent : Area2D
             {
                 Vector2 dir = GlobalPosition.DirectionTo(nextPosition.Value);
                 if (dir.X != 0)
-                    Sprite.FlipH = dir.X < 0;
+                    _graphic.FlipH = dir.X < 0;
 
                 MoveAnimation = new MoveAnimation(this) { EndGlobalPosition = nextPosition.Value, IsLine = true, Duration = 1 / CurrentSpeed };
                 MoveAnimation.Start();
@@ -92,5 +92,11 @@ public partial class Agent : Area2D
         Destination = destination;
 
         DeliveryState = DeliveryState.HeadingToWarehouse;
+    }
+
+    public void Damage()
+    {
+        GameManager.HQ.OnAgentDied(this);
+        QueueFree();
     }
 }

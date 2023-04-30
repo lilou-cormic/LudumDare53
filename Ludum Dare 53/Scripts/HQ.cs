@@ -1,4 +1,5 @@
 using Godot;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -75,5 +76,13 @@ public partial class HQ : Area2D
     public void Shoot(Vector2 target)
     {
         GameManager.ProjectileFactory.ShootProjectile(target);
+    }
+
+    public void OnAgentDied(Agent agent)
+    {
+        _agents.Remove(agent);
+
+        if (_agents.Count == 0)
+            GameManager.GameOver();
     }
 }

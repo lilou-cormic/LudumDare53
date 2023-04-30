@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://bg4tnbic1mwki"]
+[gd_scene load_steps=29 format=3 uid="uid://bg4tnbic1mwki"]
 
 [ext_resource type="Script" path="res://Scripts/Map.cs" id="1_ygkfg"]
 [ext_resource type="Texture2D" uid="uid://cgmckhskbnmpu" path="res://Images/Map/path-network.png" id="2_icw2k"]
@@ -23,6 +23,8 @@
 [ext_resource type="Texture2D" uid="uid://dfjo6d084uw7l" path="res://Images/Obstacle/rockface-1.png" id="18_dfeyx"]
 [ext_resource type="Script" path="res://Scripts/ProjectileFactory.cs" id="19_ss65q"]
 [ext_resource type="PackedScene" uid="uid://b8bxjqomf83vv" path="res://Prefabs/Projectile.tscn" id="20_p5tle"]
+[ext_resource type="PackedScene" uid="uid://t2g0hatnufgu" path="res://Prefabs/Dragon.tscn" id="21_18ahh"]
+[ext_resource type="Script" path="res://Scripts/DragonFactory.cs" id="21_etc72"]
 [ext_resource type="Theme" uid="uid://f1ss2majff58" path="res://Theme.tres" id="24_4cgvg"]
 [ext_resource type="Script" path="res://PurpleCable/Core/Scripts/ScoreDisplay.cs" id="25_01pja"]
 
@@ -301,6 +303,33 @@ position = Vector2(768, 512)
 position = Vector2(798, 482)
 script = ExtResource("19_ss65q")
 Prefab = ExtResource("20_p5tle")
+
+[node name="LeftDragonFactory" type="Node2D" parent="GameManager"]
+script = ExtResource("21_etc72")
+Prefab = ExtResource("21_18ahh")
+
+[node name="SpawnPoint01" type="Node2D" parent="GameManager/LeftDragonFactory"]
+position = Vector2(-180, 119)
+
+[node name="SpawnPoint02" type="Node2D" parent="GameManager/LeftDragonFactory"]
+position = Vector2(-180, 570)
+
+[node name="SpawnPoint03" type="Node2D" parent="GameManager/LeftDragonFactory"]
+position = Vector2(-180, 764)
+
+[node name="RightDragonFactory" type="Node2D" parent="GameManager"]
+script = ExtResource("21_etc72")
+GoingLeft = true
+Prefab = ExtResource("21_18ahh")
+
+[node name="SpawnPoint01" type="Node2D" parent="GameManager/RightDragonFactory"]
+position = Vector2(1800, 184)
+
+[node name="SpawnPoint02" type="Node2D" parent="GameManager/RightDragonFactory"]
+position = Vector2(1800, 368)
+
+[node name="SpawnPoint03" type="Node2D" parent="GameManager/RightDragonFactory"]
+position = Vector2(1800, 629)
 
 [node name="Foliages" type="Node2D" parent="."]
 
