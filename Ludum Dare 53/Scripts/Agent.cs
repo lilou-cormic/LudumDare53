@@ -55,6 +55,9 @@ public partial class Agent : Area2D
 
                 DeliveryState = (DeliveryState)(((int)DeliveryState + 1) % 4);
 
+                if (DeliveryState == DeliveryState.StandBy)
+                    ScoreManager.AddPoints(100);
+
                 return;
             }
 
