@@ -6,6 +6,8 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_csqer"]
 
 [node name="Warehouse" type="Area2D"]
+collision_layer = 4
+collision_mask = 128
 script = ExtResource("1_hbb8s")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

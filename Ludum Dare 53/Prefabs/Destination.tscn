@@ -5,6 +5,8 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o30qk"]
 
 [node name="Destination" type="Area2D"]
+collision_layer = 8
+collision_mask = 128
 script = ExtResource("1_1d877")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

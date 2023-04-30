@@ -1,5 +1,6 @@
-[gd_scene load_steps=21 format=3 uid="uid://bg4tnbic1mwki"]
+[gd_scene load_steps=25 format=3 uid="uid://bg4tnbic1mwki"]
 
+[ext_resource type="Script" path="res://Scripts/Map.cs" id="1_ygkfg"]
 [ext_resource type="Texture2D" uid="uid://cgmckhskbnmpu" path="res://Images/Map/path-network.png" id="2_icw2k"]
 [ext_resource type="PackedScene" uid="uid://cxbtaj2sem1ca" path="res://Prefabs/HQ.tscn" id="2_p2rb2"]
 [ext_resource type="Script" path="res://Scripts/TileFactory.cs" id="2_psckb"]
@@ -20,23 +21,36 @@
 [ext_resource type="PackedScene" uid="uid://dbcbud8lj7mrw" path="res://Prefabs/Foliage.tscn" id="17_dtmw5"]
 [ext_resource type="Texture2D" uid="uid://bqgilulf5makk" path="res://Images/Obstacle/trees-1.png" id="17_hthee"]
 [ext_resource type="Texture2D" uid="uid://dfjo6d084uw7l" path="res://Images/Obstacle/rockface-1.png" id="18_dfeyx"]
+[ext_resource type="Script" path="res://Scripts/ProjectileFactory.cs" id="19_ss65q"]
+[ext_resource type="PackedScene" uid="uid://b8bxjqomf83vv" path="res://Prefabs/Projectile.tscn" id="20_p5tle"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s5a6x"]
+size = Vector2(1600, 1080)
 
 [node name="Main" type="Node2D"]
 
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
 autoplay = true
 
-[node name="Ground" type="Node2D" parent="."]
+[node name="Map" type="Node2D" parent="."]
+script = ExtResource("1_ygkfg")
 
-[node name="Background-meadow" type="Sprite2D" parent="Ground"]
+[node name="Background-meadow" type="Sprite2D" parent="Map"]
 z_index = -10
 texture = ExtResource("10_rrg00")
 centered = false
 
-[node name="Path-network" type="Sprite2D" parent="Ground"]
+[node name="Path-network" type="Sprite2D" parent="Map"]
 z_index = -5
 texture = ExtResource("2_icw2k")
 centered = false
+
+[node name="Area2D" type="Area2D" parent="Map"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Area2D"]
+visible = false
+position = Vector2(800, 540)
+shape = SubResource("RectangleShape2D_s5a6x")
 
 [node name="GameManager" type="Node2D" parent="."]
 script = ExtResource("7")
@@ -281,6 +295,11 @@ texture = ExtResource("16_cxjv2")
 [node name="HQ" parent="GameManager" instance=ExtResource("2_p2rb2")]
 position = Vector2(768, 512)
 
+[node name="ProjectileFactory" type="Node2D" parent="GameManager"]
+position = Vector2(798, 482)
+script = ExtResource("19_ss65q")
+Prefab = ExtResource("20_p5tle")
+
 [node name="Foliages" type="Node2D" parent="."]
 
 [node name="Foliage02" parent="Foliages" instance=ExtResource("17_dtmw5")]
@@ -317,6 +336,8 @@ texture = ExtResource("18_dfeyx")
 [node name="Brambles" type="Sprite2D" parent="."]
 position = Vector2(1022, 320)
 texture = ExtResource("16_cxjv2")
+
+[connection signal="input_event" from="Map/Area2D" to="Map" method="OnInputEvent"]
 
 [editable path="GameManager/Warehouses/Warehouse"]
 [editable path="GameManager/Destinations/Destination01"]
