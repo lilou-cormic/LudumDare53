@@ -1,6 +1,6 @@
 using Godot;
 
-public partial class Path : Area2D
+public partial class Obstacle : Area2D
 {
     public void OnAreaEntered(Area2D area)
     {
@@ -8,7 +8,7 @@ public partial class Path : Area2D
 
         if (parent is Tile tile)
         {
-            tile.IsOnPath = true;
+            tile.HasObstacle = true;
         }
     }
 }

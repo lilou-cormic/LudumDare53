@@ -22,7 +22,7 @@ texture = ExtResource("2_14t8o")
 
 [node name="Headquarter-layer-fg" type="Sprite2D" parent="."]
 visibility_layer = 64
-z_index = 20
+z_index = 3
 position = Vector2(32, 16)
 texture = ExtResource("2_d6i06")
 

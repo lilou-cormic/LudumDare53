@@ -1,5 +1,4 @@
 using Godot;
-using System;
 
 public partial class Destination : Area2D
 {
@@ -9,7 +8,7 @@ public partial class Destination : Area2D
 
         if (parent is Tile tile)
         {
-            tile.SetIsWalkable(true);
+            tile.IsOnPath = true;
         }
     }
 }

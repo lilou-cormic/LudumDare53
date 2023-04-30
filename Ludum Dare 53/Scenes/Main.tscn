@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bg4tnbic1mwki"]
+[gd_scene load_steps=21 format=3 uid="uid://bg4tnbic1mwki"]
 
 [ext_resource type="Texture2D" uid="uid://cgmckhskbnmpu" path="res://Images/Map/path-network.png" id="2_icw2k"]
 [ext_resource type="PackedScene" uid="uid://cxbtaj2sem1ca" path="res://Prefabs/HQ.tscn" id="2_p2rb2"]
@@ -11,9 +11,15 @@
 [ext_resource type="Script" path="res://Scripts/Destinations.cs" id="5_4dy1h"]
 [ext_resource type="PackedScene" uid="uid://d23tkieuerlq1" path="res://Prefabs/Warehouse.tscn" id="5_6sixh"]
 [ext_resource type="Script" path="res://Scripts/GameManager.cs" id="7"]
+[ext_resource type="PackedScene" uid="uid://c8lpwi8w6qkq4" path="res://Prefabs/Obstacle.tscn" id="8_8kvoi"]
 [ext_resource type="Texture2D" uid="uid://0v10s33bi2gt" path="res://Images/Destination/destination-windmill.png" id="8_jiok6"]
 [ext_resource type="Texture2D" uid="uid://b22y58uo8prmn" path="res://Images/Map/background-meadow.png" id="10_rrg00"]
 [ext_resource type="Texture2D" uid="uid://da0ohp8asgc5q" path="res://Images/Destination/destination-house-1.png" id="10_yhf70"]
+[ext_resource type="Texture2D" uid="uid://b5scdowl2in73" path="res://Images/Destination/destination-tower.png" id="14_ttfuv"]
+[ext_resource type="Texture2D" uid="uid://cqbplcaerdcu" path="res://Images/Obstacle/brambles.png" id="16_cxjv2"]
+[ext_resource type="PackedScene" uid="uid://dbcbud8lj7mrw" path="res://Prefabs/Foliage.tscn" id="17_dtmw5"]
+[ext_resource type="Texture2D" uid="uid://bqgilulf5makk" path="res://Images/Obstacle/trees-1.png" id="17_hthee"]
+[ext_resource type="Texture2D" uid="uid://dfjo6d084uw7l" path="res://Images/Obstacle/rockface-1.png" id="18_dfeyx"]
 
 [node name="Main" type="Node2D"]
 
@@ -234,23 +240,87 @@ position = Vector2(34.04, 10)
 [node name="Destinations" type="Node2D" parent="GameManager"]
 script = ExtResource("5_4dy1h")
 
-[node name="Destination1" parent="GameManager/Destinations" instance=ExtResource("4_eawbt")]
+[node name="Destination01" parent="GameManager/Destinations" instance=ExtResource("4_eawbt")]
 position = Vector2(256, 384)
 
-[node name="Sprite2D" parent="GameManager/Destinations/Destination1" index="1"]
+[node name="Sprite2D" parent="GameManager/Destinations/Destination01" index="1"]
 position = Vector2(37, 14)
 texture = ExtResource("10_yhf70")
 
-[node name="Destination2" parent="GameManager/Destinations" instance=ExtResource("4_eawbt")]
+[node name="Destination02" parent="GameManager/Destinations" instance=ExtResource("4_eawbt")]
 position = Vector2(1472, 960)
 
-[node name="Sprite2D" parent="GameManager/Destinations/Destination2" index="1"]
+[node name="Sprite2D" parent="GameManager/Destinations/Destination02" index="1"]
 position = Vector2(26, -1)
 texture = ExtResource("8_jiok6")
+
+[node name="Destination03" parent="GameManager/Destinations" instance=ExtResource("4_eawbt")]
+position = Vector2(192, 768)
+
+[node name="Sprite2D" parent="GameManager/Destinations/Destination03" index="1"]
+position = Vector2(42, 9)
+texture = ExtResource("14_ttfuv")
+
+[node name="Obstacles" type="Node2D" parent="GameManager"]
+
+[node name="Obstacle01" parent="GameManager/Obstacles" instance=ExtResource("8_8kvoi")]
+position = Vector2(608, 683)
+
+[node name="Obstacle02" parent="GameManager/Obstacles" instance=ExtResource("8_8kvoi")]
+position = Vector2(1056, 288)
+
+[node name="Sprite2D" parent="GameManager/Obstacles/Obstacle02" index="1"]
+texture = ExtResource("16_cxjv2")
+
+[node name="Obstacle03" parent="GameManager/Obstacles" instance=ExtResource("8_8kvoi")]
+position = Vector2(992, 288)
+
+[node name="Sprite2D" parent="GameManager/Obstacles/Obstacle03" index="1"]
+texture = ExtResource("16_cxjv2")
 
 [node name="HQ" parent="GameManager" instance=ExtResource("2_p2rb2")]
 position = Vector2(768, 512)
 
+[node name="Foliages" type="Node2D" parent="."]
+
+[node name="Foliage02" parent="Foliages" instance=ExtResource("17_dtmw5")]
+position = Vector2(364, -64)
+
+[node name="Foliage01" parent="Foliages" instance=ExtResource("17_dtmw5")]
+position = Vector2(-64, 0)
+
+[node name="Foliage03" parent="Foliages" instance=ExtResource("17_dtmw5")]
+position = Vector2(780, -64)
+
+[node name="Foliage04" parent="Foliages" instance=ExtResource("17_dtmw5")]
+position = Vector2(1137, -64)
+
+[node name="Trees-1" type="Sprite2D" parent="."]
+z_index = 2
+position = Vector2(512, 368)
+texture = ExtResource("17_hthee")
+
+[node name="Trees-2" type="Sprite2D" parent="."]
+z_index = 2
+position = Vector2(1277, 763)
+texture = ExtResource("17_hthee")
+
+[node name="Trees-3" type="Sprite2D" parent="."]
+z_index = 2
+position = Vector2(437, 892)
+texture = ExtResource("17_hthee")
+
+[node name="Rockface-1" type="Sprite2D" parent="."]
+position = Vector2(575, 635)
+texture = ExtResource("18_dfeyx")
+
+[node name="Brambles" type="Sprite2D" parent="."]
+position = Vector2(1022, 320)
+texture = ExtResource("16_cxjv2")
+
 [editable path="GameManager/Warehouses/Warehouse"]
-[editable path="GameManager/Destinations/Destination1"]
-[editable path="GameManager/Destinations/Destination2"]
+[editable path="GameManager/Destinations/Destination01"]
+[editable path="GameManager/Destinations/Destination02"]
+[editable path="GameManager/Destinations/Destination03"]
+[editable path="GameManager/Obstacles/Obstacle02"]
+[editable path="GameManager/Obstacles/Obstacle03"]
