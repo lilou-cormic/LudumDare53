@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://dmeyu787t5bog"]
+[gd_scene load_steps=6 format=3 uid="uid://dmeyu787t5bog"]
 
 [ext_resource type="Theme" uid="uid://f1ss2majff58" path="res://Theme.tres" id="1"]
 [ext_resource type="Script" path="res://PurpleCable/Core/Scripts/MainMenu.cs" id="3"]
 [ext_resource type="FontFile" path="res://Fonts/Bauhaus 93 Normal.tres" id="3_3erjh"]
+[ext_resource type="Texture2D" uid="uid://dqbv1isy1eomr" path="res://Images/UI/Buttons/button-wide-default.png" id="4_4jpwh"]
 [ext_resource type="Script" path="res://Scripts/MusicPlayer.cs" id="6"]
 
 [node name="Menu" type="Control"]
@@ -49,18 +50,46 @@ layout_mode = 2
 [node name="PlayButton" type="Button" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
 text = "Play"
+flat = true
+
+[node name="Button-wide-default" type="Sprite2D" parent="CenterContainer/VBoxContainer/PlayButton"]
+z_index = -1
+position = Vector2(56, 20)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("4_4jpwh")
 
 [node name="OptionsButton" type="Button" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
 text = "Options"
+flat = true
+
+[node name="Button-wide-default2" type="Sprite2D" parent="CenterContainer/VBoxContainer/OptionsButton"]
+z_index = -1
+position = Vector2(56, 20)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("4_4jpwh")
 
 [node name="CreditsButton" type="Button" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
 text = "Credits"
+flat = true
+
+[node name="Button-wide-default3" type="Sprite2D" parent="CenterContainer/VBoxContainer/CreditsButton"]
+z_index = -1
+position = Vector2(56, 20)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("4_4jpwh")
 
 [node name="QuitButton" type="Button" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
 text = "Quit"
+flat = true
+
+[node name="Button-wide-default4" type="Sprite2D" parent="CenterContainer/VBoxContainer/QuitButton"]
+z_index = -1
+position = Vector2(56, 20)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("4_4jpwh")
 
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
 autoplay = true

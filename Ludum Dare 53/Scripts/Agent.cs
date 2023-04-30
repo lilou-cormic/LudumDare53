@@ -15,6 +15,13 @@ public partial class Agent : Area2D
 
     private MoveAnimation MoveAnimation;
 
+    private Sprite2D Sprite;
+
+    public override void _Ready()
+    {
+        Sprite = GetChild<Sprite2D>(1);
+    }
+
     public override void _Process(double delta)
     {
         Node2D destination;
@@ -56,7 +63,8 @@ public partial class Agent : Area2D
             if (nextPosition.HasValue)
             {
                 Vector2 dir = GlobalPosition.DirectionTo(nextPosition.Value);
-                GlobalRotation = -Mathf.Atan2(dir.X, dir.Y);
+                if (dir.X != 0)
+                    Sprite.FlipH = dir.X < 0;
 
                 MoveAnimation = new MoveAnimation(this) { EndGlobalPosition = nextPosition.Value, IsLine = true, Duration = 1 / CurrentSpeed };
                 MoveAnimation.Start();

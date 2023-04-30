@@ -45,8 +45,6 @@ public partial class HQ : Area2D
 
         if (optimalWarehouse != null)
             _agents.FirstOrDefault(agent => agent.DeliveryState == DeliveryState.StandBy)?.SendOut(optimalWarehouse, destination);
-
-        GetTree().CreateTimer(5f).Timeout += () => NewDelivery();
     }
 
     public void IncreaseHiringCapacity()
@@ -70,7 +68,7 @@ public partial class HQ : Area2D
 
         if (parent is Tile tile)
         {
-            tile.SetIsWalkable(true);
+            tile.IsOnPath = true;
         }
     }
 }

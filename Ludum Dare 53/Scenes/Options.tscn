@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://ccpbkkfhx6xm7"]
+[gd_scene load_steps=6 format=3 uid="uid://ccpbkkfhx6xm7"]
 
 [ext_resource type="Theme" uid="uid://f1ss2majff58" path="res://Theme.tres" id="1"]
 [ext_resource type="FontFile" path="res://Fonts/Kenney Bold Large.tres" id="2"]
 [ext_resource type="Script" path="res://Scripts/Credits.cs" id="3"]
 [ext_resource type="PackedScene" uid="uid://ctyebakbikhuh" path="res://Prefabs/VolumeControl.tscn" id="4"]
+[ext_resource type="Texture2D" uid="uid://dqbv1isy1eomr" path="res://Images/UI/Buttons/button-wide-default.png" id="5_ma4xo"]
 
 [node name="Options" type="Control"]
 layout_mode = 3
@@ -44,5 +45,12 @@ anchor_bottom = 1.0
 [node name="BackButton" type="Button" parent="CenterContainer"]
 layout_mode = 2
 text = "Back"
+flat = true
+
+[node name="Button-wide-default" type="Sprite2D" parent="CenterContainer/BackButton"]
+z_index = -1
+position = Vector2(38, 20)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("5_ma4xo")
 
 [connection signal="pressed" from="CenterContainer/BackButton" to="." method="OnBackButtonPressed"]

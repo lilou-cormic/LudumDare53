@@ -3,27 +3,57 @@ using PurpleCable;
 
 public partial class Tile : Sprite2D
 {
-    private AStarTile _AStarTile = null;
-    public AStarTile AStarTile
-    {
-        get
-        {
-            if (_AStarTile == null)
-                _AStarTile = new AStarTile((int)(GlobalPosition.X / GameUI.TileSize), (int)(GlobalPosition.Y / GameUI.TileSize), false);
+	private bool _IsOnPath = false;
+	public bool IsOnPath
+	{
+		get => _IsOnPath;
 
-            return _AStarTile;
-        }
-    }
+		set
+		{
+			if (_IsOnPath != value)
+			{
+				_IsOnPath = value;
+				SetIsWalkable();
+			}
+		}
+	}
 
-    public Tile()
-    {
-        Modulate = Colors.Transparent;
-    }
+	private bool _HasObstacle = false;
+	public bool HasObstacle
+	{
+		get => _HasObstacle;
 
-    public void SetIsWalkable(bool isWalkable)
-    {
-        AStarTile.IsWalkable = isWalkable;
+		set
+		{
+			if (_HasObstacle != value)
+			{
+				_HasObstacle = value;
+				SetIsWalkable();
+			}
+		}
+	}
 
-        //Modulate = isWalkable ? Colors.White : Colors.Transparent;
-    }
+	private AStarTile _AStarTile = null;
+	public AStarTile AStarTile
+	{
+		get
+		{
+			if (_AStarTile == null)
+				_AStarTile = new AStarTile((int)(GlobalPosition.X / GameUI.TileSize), (int)(GlobalPosition.Y / GameUI.TileSize), false);
+
+			return _AStarTile;
+		}
+	}
+
+	public Tile()
+	{
+		Modulate = Colors.Transparent;
+	}
+
+	private void SetIsWalkable()
+	{
+		AStarTile.IsWalkable = IsOnPath && !HasObstacle;
+
+		//Modulate = AStarTile.IsWalkable ? Colors.White : Colors.Transparent;
+	}
 }
