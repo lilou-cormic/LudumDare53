@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://dkv3hg02427hx"]
+[gd_scene load_steps=6 format=3 uid="uid://dkv3hg02427hx"]
 
 [ext_resource type="Theme" uid="uid://f1ss2majff58" path="res://Theme.tres" id="1"]
 [ext_resource type="FontFile" path="res://Fonts/Kenney Bold Large.tres" id="2"]
 [ext_resource type="Script" path="res://Scripts/GameOver.cs" id="3"]
 [ext_resource type="Script" path="res://PurpleCable/Core/Scripts/ScoreDisplay.cs" id="4"]
+[ext_resource type="Texture2D" uid="uid://dqbv1isy1eomr" path="res://Images/UI/Buttons/button-wide-default.png" id="5_aim3a"]
 
 [node name="GameOver" type="Control"]
 layout_mode = 3
@@ -73,6 +74,13 @@ anchor_bottom = 1.0
 [node name="RetryButton" type="Button" parent="CenterContainer"]
 layout_mode = 2
 text = "Retry"
+flat = true
+
+[node name="Button-wide-default" type="Sprite2D" parent="CenterContainer/RetryButton"]
+z_index = -1
+position = Vector2(40, 20)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("5_aim3a")
 
 [node name="CenterContainer2" type="CenterContainer" parent="."]
 layout_mode = 0
@@ -84,6 +92,13 @@ anchor_bottom = 1.0
 [node name="QuitButton" type="Button" parent="CenterContainer2"]
 layout_mode = 2
 text = "Quit"
+flat = true
+
+[node name="Button-wide-default" type="Sprite2D" parent="CenterContainer2/QuitButton"]
+z_index = -1
+position = Vector2(34, 20)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("5_aim3a")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 autoplay = true

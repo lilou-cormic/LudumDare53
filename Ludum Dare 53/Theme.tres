@@ -1,6 +1,6 @@
 [gd_resource type="Theme" load_steps=2 format=3 uid="uid://f1ss2majff58"]
 
-[ext_resource type="FontFile" path="res://Fonts/Sanidana.tres" id="1"]
+[ext_resource type="FontFile" uid="uid://bvsduvri7wkuh" path="res://Fonts/Sanidana.tres" id="1"]
 
 [resource]
 Button/colors/font_focus_color = Color(1, 1, 0, 1)
