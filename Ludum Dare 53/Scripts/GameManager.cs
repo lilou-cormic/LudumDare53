@@ -38,6 +38,8 @@ public partial class GameManager : Node2D
     private AnimationFactory _ExplosionFactory;
     public static AnimationFactory ExplosionFactory => _instance._ExplosionFactory;
 
+    private Node2D _LockedWarehouse;
+
     private int _Currency = 0;
     public static int Currency => _instance._Currency;
 
@@ -69,6 +71,7 @@ public partial class GameManager : Node2D
         _LeftDragonFactory = GetNode<DragonFactory>("LeftDragonFactory");
         _RightDragonFactory = GetNode<DragonFactory>("RightDragonFactory");
         _ExplosionFactory = GetNode<AnimationFactory>("ExplosionFactory");
+        _LockedWarehouse = GetNode<Node2D>("LockedWarehouse");
 
         SoundPlayer.SetAudioSource(GetNode<AudioStreamPlayer2D>("SoundPlayer"));
 
@@ -179,6 +182,13 @@ public partial class GameManager : Node2D
             _instance._Currency = 0;
 
         CurrencyChanged?.Invoke();
+    }
+
+    public void UnlockWarehouse()
+    {
+        Warehouses.NewWarehouse(_LockedWarehouse.GlobalPosition);
+
+        _LockedWarehouse.QueueFree();
     }
 
     public static void GameOver()
