@@ -17,9 +17,12 @@ public partial class Agent : Node2D
 
     private AnimatedSprite2D _graphic;
 
+    private Sprite2D _bubble;
+
     public override void _Ready()
     {
         _graphic = GetNode<AnimatedSprite2D>("Graphic");
+        _bubble = GetNode<Sprite2D>("Bubble");
     }
 
     public override void _Process(double delta)
@@ -29,6 +32,7 @@ public partial class Agent : Node2D
         switch (DeliveryState)
         {
             case DeliveryState.StandBy:
+                _bubble.Texture = null;
                 return;
 
             case DeliveryState.HeadingToWarehouse:
@@ -46,6 +50,9 @@ public partial class Agent : Node2D
             default:
                 return;
         }
+
+
+        _bubble.Texture = ((IDestination)destination).BubbleImage;
 
         if (MoveAnimation == null || MoveAnimation.IsDoneAnimating)
         {
@@ -96,6 +103,9 @@ public partial class Agent : Node2D
 
     public void Damage()
     {
+        if (DebugHelper.GodMode)
+            return;
+
         GameManager.HQ.OnAgentDied(this);
         QueueFree();
     }

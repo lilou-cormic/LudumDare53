@@ -4,6 +4,8 @@ public partial class Obstacle : Area2D
 {
     private Tile _tile;
 
+    public ObstacleFactory Factory { get; set; }
+
     public void OnAreaEntered(Area2D area)
     {
         Node parent = area.GetParent();
@@ -18,6 +20,9 @@ public partial class Obstacle : Area2D
             case Projectile:
                 if (_tile != null)
                     _tile.HasObstacle = false;
+
+                Factory?.OnObstacleDestroyed(this);
+
                 QueueFree();
                 break;
         }

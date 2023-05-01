@@ -1,7 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://c8lpwi8w6qkq4"]
+[gd_scene load_steps=3 format=3 uid="uid://c8lpwi8w6qkq4"]
 
 [ext_resource type="Script" path="res://Scripts/Obstacle.cs" id="1_5p78k"]
-[ext_resource type="Texture2D" uid="uid://d001tthhkak0h" path="res://Images/Obstacle/rockslide-1.png" id="2_mcjuu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ksl0p"]
 
@@ -14,6 +13,5 @@ script = ExtResource("1_5p78k")
 shape = SubResource("RectangleShape2D_ksl0p")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_mcjuu")
 
 [connection signal="area_entered" from="." to="." method="OnAreaEntered"]

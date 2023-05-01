@@ -38,7 +38,7 @@ public partial class GameManager : Node2D
 
     private double _deliveryTimer = 2f;
 
-    private double _dragonTimer = 7f;
+    private double _dragonTimer = 20f;
 
     public GameManager()
     {
@@ -94,7 +94,7 @@ public partial class GameManager : Node2D
             else
                 RightDragonFactory.SendOffDragon();
 
-            _dragonTimer = 2f;
+            _dragonTimer = 20f;
         }
     }
 

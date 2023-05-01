@@ -16,4 +16,7 @@ shape = SubResource("RectangleShape2D_o30qk")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = 3
 
+[node name="BubbleSprite" type="Sprite2D" parent="."]
+visible = false
+
 [connection signal="area_entered" from="." to="." method="OnAreaEntered"]

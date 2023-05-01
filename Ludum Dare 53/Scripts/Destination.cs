@@ -1,7 +1,14 @@
 using Godot;
 
-public partial class Destination : Area2D
+public partial class Destination : Area2D, IDestination
 {
+    public Texture2D BubbleImage { get; private set; }
+
+    public override void _Ready()
+    {
+        BubbleImage = GetNode<Sprite2D>("BubbleSprite").Texture;
+    }
+
     public void OnAreaEntered(Area2D area)
     {
         Node parent = area.GetParent();

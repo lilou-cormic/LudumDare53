@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://rl15xcg4e41u"]
+[gd_scene load_steps=8 format=3 uid="uid://rl15xcg4e41u"]
 
 [ext_resource type="Script" path="res://Scripts/Agent.cs" id="1_qudb1"]
 [ext_resource type="Texture2D" uid="uid://inm1lo8ibj8c" path="res://Images/Agent/agent-walk-right-02.png" id="2_q6ahv"]
 [ext_resource type="Texture2D" uid="uid://jvnt1eh7yyld" path="res://Images/Agent/agent-walk-right-01.png" id="2_q06jl"]
 [ext_resource type="Texture2D" uid="uid://cwlc3ptxup5ba" path="res://Images/Agent/agent-walk-right-03.png" id="4_gx4ya"]
+[ext_resource type="Texture2D" uid="uid://b20bkeealx87t" path="res://Images/UI/AgentBubbles/agent-bubble-blank.png" id="5_h6pp5"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_da8cf"]
 radius = 12.0
@@ -43,3 +44,8 @@ scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_x7fly")
 autoplay = "default"
 frame_progress = 0.612796
+
+[node name="Bubble" type="Sprite2D" parent="."]
+z_index = 6
+position = Vector2(39, -53)
+texture = ExtResource("5_h6pp5")
