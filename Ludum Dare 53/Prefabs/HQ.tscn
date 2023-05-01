@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://cxbtaj2sem1ca"]
+[gd_scene load_steps=8 format=3 uid="uid://cxbtaj2sem1ca"]
 
 [ext_resource type="Script" path="res://Scripts/HQ.cs" id="1_oriai"]
 [ext_resource type="Texture2D" uid="uid://b5sxp6iunjlp4" path="res://Images/HQ/headquarter-layer-bg.png" id="2_14t8o"]
 [ext_resource type="Texture2D" uid="uid://bvfmd324yxxvx" path="res://Images/HQ/headquarter-layer-fg.png" id="2_d6i06"]
 [ext_resource type="PackedScene" uid="uid://bhcrc732hqqin" path="res://Prefabs/AgentFactory.tscn" id="3_rgn8p"]
 [ext_resource type="PackedScene" uid="uid://rl15xcg4e41u" path="res://Prefabs/Agent.tscn" id="4_fs85p"]
+[ext_resource type="Texture2D" uid="uid://7lumu4outfyu" path="res://Images/UI/AgentBubbles/agent-bubble-dest-hq.png" id="6_q3aug"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2morg"]
 
@@ -29,5 +30,9 @@ texture = ExtResource("2_d6i06")
 
 [node name="AgentFactory" parent="." instance=ExtResource("3_rgn8p")]
 Prefab = ExtResource("4_fs85p")
+
+[node name="BubbleSprite" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("6_q3aug")
 
 [connection signal="area_entered" from="." to="." method="OnAreaEntered"]

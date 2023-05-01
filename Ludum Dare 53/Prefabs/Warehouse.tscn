@@ -18,4 +18,7 @@ shape = SubResource("RectangleShape2D_csqer")
 z_index = 3
 texture = ExtResource("2_neqno")
 
+[node name="BubbleSprite" type="Sprite2D" parent="."]
+visible = false
+
 [connection signal="area_entered" from="." to="." method="OnAreaEntered"]

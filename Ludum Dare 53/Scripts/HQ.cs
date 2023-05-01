@@ -1,9 +1,8 @@
 using Godot;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
-public partial class HQ : Area2D
+public partial class HQ : Area2D, IDestination
 {
     public static HQ Instance { get; private set; }
 
@@ -12,6 +11,8 @@ public partial class HQ : Area2D
     private AgentFactory AgentFactory { get; set; }
 
     public int MaxAgents { get; private set; } = 10;
+
+    public Texture2D BubbleImage { get; private set; }
 
     public HQ()
     {
@@ -23,6 +24,7 @@ public partial class HQ : Area2D
     public override void _Ready()
     {
         AgentFactory = GetNode<AgentFactory>("AgentFactory");
+        BubbleImage = GetNode<Sprite2D>("BubbleSprite").Texture;
     }
 
     public void NewDelivery()

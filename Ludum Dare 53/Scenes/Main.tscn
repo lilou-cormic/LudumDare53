@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://bg4tnbic1mwki"]
+[gd_scene load_steps=34 format=3 uid="uid://bg4tnbic1mwki"]
 
 [ext_resource type="Script" path="res://Scripts/Map.cs" id="1_ygkfg"]
 [ext_resource type="Texture2D" uid="uid://cgmckhskbnmpu" path="res://Images/Map/path-network.png" id="2_icw2k"]
@@ -15,15 +15,20 @@
 [ext_resource type="Texture2D" uid="uid://0v10s33bi2gt" path="res://Images/Destination/destination-windmill.png" id="8_jiok6"]
 [ext_resource type="Texture2D" uid="uid://b22y58uo8prmn" path="res://Images/Map/background-meadow.png" id="10_rrg00"]
 [ext_resource type="Texture2D" uid="uid://da0ohp8asgc5q" path="res://Images/Destination/destination-house-1.png" id="10_yhf70"]
+[ext_resource type="Texture2D" uid="uid://ddl3xvu1h3d8k" path="res://Images/UI/AgentBubbles/agent-bubble-dest-warehouse.png" id="11_k08o4"]
 [ext_resource type="Texture2D" uid="uid://b5scdowl2in73" path="res://Images/Destination/destination-tower.png" id="14_ttfuv"]
+[ext_resource type="Texture2D" uid="uid://8m60n1xgwv2e" path="res://Images/UI/AgentBubbles/agent-bubble-dest-house.png" id="15_w8esa"]
 [ext_resource type="PackedScene" uid="uid://csep56cjpi8vy" path="res://Prefabs/RockFormation.tscn" id="16_2ihmk"]
 [ext_resource type="Texture2D" uid="uid://qnb6vbvrtowu" path="res://Images/Destination/destination-church-1.png" id="16_mhjfl"]
+[ext_resource type="Texture2D" uid="uid://dejriggidpjtw" path="res://Images/UI/AgentBubbles/agent-bubble-dest-tower.png" id="17_8vfxr"]
 [ext_resource type="PackedScene" uid="uid://dbcbud8lj7mrw" path="res://Prefabs/Foliage.tscn" id="17_dtmw5"]
 [ext_resource type="Texture2D" uid="uid://bqgilulf5makk" path="res://Images/Obstacle/trees-1.png" id="17_hthee"]
+[ext_resource type="Texture2D" uid="uid://cp8uxwvavqlsq" path="res://Images/UI/AgentBubbles/agent-bubble-dest-mill.png" id="17_mbocx"]
 [ext_resource type="PackedScene" uid="uid://fi5lrdfcjmp2" path="res://Prefabs/BramblesRoot.tscn" id="18_rd4t1"]
 [ext_resource type="Script" path="res://Scripts/ProjectileFactory.cs" id="19_ss65q"]
 [ext_resource type="PackedScene" uid="uid://b8bxjqomf83vv" path="res://Prefabs/Projectile.tscn" id="20_p5tle"]
 [ext_resource type="PackedScene" uid="uid://t2g0hatnufgu" path="res://Prefabs/Dragon.tscn" id="21_18ahh"]
+[ext_resource type="Texture2D" uid="uid://bx3lbus8hv153" path="res://Images/UI/AgentBubbles/agent-bubble-dest-church.png" id="21_auets"]
 [ext_resource type="Script" path="res://Scripts/DragonFactory.cs" id="21_etc72"]
 [ext_resource type="Theme" uid="uid://f1ss2majff58" path="res://Theme.tres" id="24_4cgvg"]
 [ext_resource type="Script" path="res://PurpleCable/Core/Scripts/ScoreDisplay.cs" id="25_01pja"]
@@ -255,38 +260,51 @@ position = Vector2(1088, 192)
 [node name="Sprite2D" parent="GameManager/Warehouses/Warehouse" index="1"]
 position = Vector2(34.04, 10)
 
+[node name="BubbleSprite" parent="GameManager/Warehouses/Warehouse" index="2"]
+texture = ExtResource("11_k08o4")
+
 [node name="Destinations" type="Node2D" parent="GameManager"]
 script = ExtResource("5_4dy1h")
 
-[node name="Destination01" parent="GameManager/Destinations" instance=ExtResource("4_eawbt")]
+[node name="House" parent="GameManager/Destinations" instance=ExtResource("4_eawbt")]
 position = Vector2(256, 384)
 
-[node name="Sprite2D" parent="GameManager/Destinations/Destination01" index="1"]
+[node name="Sprite2D" parent="GameManager/Destinations/House" index="1"]
 position = Vector2(37, 14)
 texture = ExtResource("10_yhf70")
 
-[node name="Destination02" parent="GameManager/Destinations" instance=ExtResource("4_eawbt")]
+[node name="BubbleSprite" parent="GameManager/Destinations/House" index="2"]
+texture = ExtResource("15_w8esa")
+
+[node name="Windmill" parent="GameManager/Destinations" instance=ExtResource("4_eawbt")]
 position = Vector2(1472, 960)
 
-[node name="Sprite2D" parent="GameManager/Destinations/Destination02" index="1"]
+[node name="Sprite2D" parent="GameManager/Destinations/Windmill" index="1"]
 position = Vector2(26, -1)
 texture = ExtResource("8_jiok6")
 
-[node name="Destination03" parent="GameManager/Destinations" instance=ExtResource("4_eawbt")]
+[node name="BubbleSprite" parent="GameManager/Destinations/Windmill" index="2"]
+texture = ExtResource("17_mbocx")
+
+[node name="Tower" parent="GameManager/Destinations" instance=ExtResource("4_eawbt")]
 position = Vector2(1408, 64)
 
-[node name="Sprite2D" parent="GameManager/Destinations/Destination03" index="1"]
+[node name="Sprite2D" parent="GameManager/Destinations/Tower" index="1"]
 position = Vector2(36, 19)
 texture = ExtResource("14_ttfuv")
 
-[node name="Tile" parent="GameManager/Destinations/Destination03" instance=ExtResource("3_cky3d")]
+[node name="BubbleSprite" parent="GameManager/Destinations/Tower" index="2"]
+texture = ExtResource("17_8vfxr")
 
-[node name="Destination04" parent="GameManager/Destinations" instance=ExtResource("4_eawbt")]
+[node name="Church" parent="GameManager/Destinations" instance=ExtResource("4_eawbt")]
 position = Vector2(192, 768)
 
-[node name="Sprite2D" parent="GameManager/Destinations/Destination04" index="1"]
+[node name="Sprite2D" parent="GameManager/Destinations/Church" index="1"]
 position = Vector2(42, 9)
 texture = ExtResource("16_mhjfl")
+
+[node name="BubbleSprite" parent="GameManager/Destinations/Church" index="2"]
+texture = ExtResource("21_auets")
 
 [node name="Obstacles" type="Node2D" parent="GameManager"]
 
@@ -450,8 +468,8 @@ IsHighScore = true
 [connection signal="input_event" from="Map/Area2D" to="Map" method="OnInputEvent"]
 
 [editable path="GameManager/Warehouses/Warehouse"]
-[editable path="GameManager/Destinations/Destination01"]
-[editable path="GameManager/Destinations/Destination02"]
-[editable path="GameManager/Destinations/Destination03"]
-[editable path="GameManager/Destinations/Destination04"]
+[editable path="GameManager/Destinations/House"]
+[editable path="GameManager/Destinations/Windmill"]
+[editable path="GameManager/Destinations/Tower"]
+[editable path="GameManager/Destinations/Church"]
 [editable path="GameManager/Obstacles/RockFormation02"]
