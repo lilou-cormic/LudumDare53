@@ -7,11 +7,11 @@ public partial class ObstacleFactory : PrefabFactory<Obstacle>
 
     private Obstacle _obstacle;
 
-    private double _timer = 0f;
+    private double _timer = 15f;
 
     public override void _Ready()
     {
-        Spawn();
+        _timer = SpawnDelay;
     }
 
     public override void _Process(double delta)

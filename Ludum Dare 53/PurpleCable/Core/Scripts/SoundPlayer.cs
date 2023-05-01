@@ -13,7 +13,7 @@ namespace PurpleCable
         /// <summary>
         /// Audio source
         /// </summary>
-        private static AudioStreamPlayer _audioSource;
+        private static AudioStreamPlayer2D _audioSource;
 
         #endregion
 
@@ -26,13 +26,7 @@ namespace PurpleCable
         {
             get => PlayerPrefs.GetFloat("SoundVolume", 0.5f);
 
-            set
-            {
-                PlayerPrefs.SetFloat("SoundVolume", value);
-
-                //TODO Godot - if (_audioSource != null && _audioSource.outputAudioMixerGroup == null)
-                //TODO Godot -     _audioSource.volume = value;
-            }
+            set => PlayerPrefs.SetFloat("SoundVolume", value);
         }
 
         #endregion
@@ -46,15 +40,12 @@ namespace PurpleCable
 
         #region Functions
 
-        public static void SetAudioSource(AudioStreamPlayer audioSource)
+        public static void SetAudioSource(AudioStreamPlayer2D audioSource)
         {
             _audioSource = audioSource;
 
-            //TODO Godot - if (_audioSource.outputAudioMixerGroup == null)
-            {
-                // Get saved sfx volume
-                _audioSource.VolumeDb = Volume;
-            }
+            // Get saved sfx volume
+            _audioSource.VolumeDb = Volume;
         }
 
         /// <summary>
@@ -66,12 +57,14 @@ namespace PurpleCable
         {
             if (clip != null && _audioSource != null)
             {
+                _audioSource.Stream = clip;
+
                 if (pitch.HasValue)
                     _audioSource.PitchScale = 1 + (pitch.Value / 10f);
                 else
                     _audioSource.PitchScale = 1;
 
-                //TODO Godot - _audioSource.PlayOneShot(clip);
+                _audioSource.Play();
             }
         }
 

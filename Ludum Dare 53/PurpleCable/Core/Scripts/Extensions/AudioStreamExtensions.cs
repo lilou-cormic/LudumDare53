@@ -13,6 +13,12 @@ public static class AudioStreamExtensions
     /// <param name="pitch">The change in pitch (can be null or from 1 to 10) [null by default]</param>
     public static void Play(this AudioStream audioClip, int? pitch = null)
         => PurpleCable.SoundPlayer.Play(audioClip, pitch);
+
+    public static void Play(this AudioStreamPlayer2D soundPlayer, AudioStream clip)
+    {
+        soundPlayer.Stream = clip;
+        soundPlayer.Play();
+    }
     #endregion
 
     #region PlayRandomPitch

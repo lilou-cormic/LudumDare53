@@ -3,6 +3,14 @@ using PurpleCable;
 
 public partial class Agent : Node2D
 {
+    [Export] AudioStream GetPackageSound;
+
+    [Export] AudioStream DeliverySound;
+
+    [Export] AudioStream BackToHQSound;
+
+    [Export] AudioStream DeathSound;
+
     private const float BaseSpeed = 1f;
 
     public const float SpeedBump = 1f;
@@ -23,10 +31,13 @@ public partial class Agent : Node2D
 
     private Sprite2D _bubble;
 
+    private SoundPlayerBehaviour _soundPlayer;
+
     public override void _Ready()
     {
         _graphic = GetNode<AnimatedSprite2D>("Graphic");
         _bubble = GetNode<Sprite2D>("Bubble");
+        _soundPlayer = GetNode<SoundPlayerBehaviour>("SoundPlayer");
     }
 
     public override void _Process(double delta)
@@ -62,6 +73,23 @@ public partial class Agent : Node2D
             if (MoveAnimation?.IsDoneAnimating == true && GlobalPosition.DistanceTo(destination.GlobalPosition) <= 0.01f)
             {
                 MoveAnimation = null;
+
+                switch (DeliveryState)
+                {
+                    case DeliveryState.StandBy:
+                        break;
+                    case DeliveryState.HeadingToWarehouse:
+                        _soundPlayer.Play(GetPackageSound);
+                        break;
+                    case DeliveryState.HeadingToDestination:
+                        _soundPlayer.Play(DeliverySound);
+                        break;
+                    case DeliveryState.HeadingToHQ:
+                        _soundPlayer.Play(BackToHQSound);
+                        break;
+                    default:
+                        break;
+                }
 
                 DeliveryState = (DeliveryState)(((int)DeliveryState + 1) % 4);
 
@@ -108,6 +136,8 @@ public partial class Agent : Node2D
     {
         if (DebugHelper.GodMode)
             return;
+
+        SoundPlayer.Play(DeathSound);
 
         GameManager.HQ.OnAgentDied(this);
         QueueFree();

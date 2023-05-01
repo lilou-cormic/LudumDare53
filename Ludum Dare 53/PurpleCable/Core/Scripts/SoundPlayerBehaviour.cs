@@ -2,26 +2,18 @@ using Godot;
 
 namespace PurpleCable
 {
-    /// <summary>
-    /// Sound player [MonoBehaviour] - Requires AudioSource
-    /// </summary>
-    //[RequireComponent(typeof(AudioSource))]
-    public partial class SoundPlayerBehaviour : Node2D
+    public partial class SoundPlayerBehaviour : AudioStreamPlayer2D
     {
-        #region Components
-
-        ///// <summary>
-        ///// Audio source
-        ///// </summary>
-        //private AudioStreamPlayer _audioSource;
-
-        #endregion
-
         #region Initialization
+
+        public SoundPlayerBehaviour()
+        {
+            VolumeDb = SoundPlayer.Volume;
+        }
 
         public override void _Ready()
         {
-            SoundPlayer.SetAudioSource(GetChild<AudioStreamPlayer>(0));
+            VolumeDb = SoundPlayer.Volume;
         }
 
         #endregion

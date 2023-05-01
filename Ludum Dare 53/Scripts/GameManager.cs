@@ -9,9 +9,9 @@ public partial class GameManager : Node2D
 
     private const int GridRowCount = 17;
 
-    public static float MusicVolume = 0;
+    public static float MusicVolume = 0.2f;
 
-    public static float SfxVolume = 0;
+    public static float SfxVolume { get => SoundPlayer.Volume; set => SoundPlayer.Volume = value; }
 
     private static GameManager _instance;
 
@@ -47,7 +47,7 @@ public partial class GameManager : Node2D
     private double _deliveryDelay = 0.5f;
 
     private double _dragonTimer = 2f;
-    private double _dragonDelay = 20f;
+    private double _dragonDelay = 2f;
 
     public static event Action CurrencyChanged;
 
@@ -67,6 +67,8 @@ public partial class GameManager : Node2D
         _LeftDragonFactory = GetNode<DragonFactory>("LeftDragonFactory");
         _RightDragonFactory = GetNode<DragonFactory>("RightDragonFactory");
         _ExplosionFactory = GetNode<AnimationFactory>("ExplosionFactory");
+
+        SoundPlayer.SetAudioSource(GetNode<AudioStreamPlayer2D>("SoundPlayer"));
 
         ScoreManager.ResetScore();
 

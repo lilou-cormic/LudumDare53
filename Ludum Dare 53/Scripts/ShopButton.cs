@@ -47,6 +47,8 @@ public partial class ShopButton : TextureButton
                 GetNode<Label>("PriceText").Text = "---";
         }
 
+        GetNode<AudioStreamPlayer2D>("SoundPlayer").Play();
+
         SetActive();
 
         GameManager.ChangeCurrency(-Price);

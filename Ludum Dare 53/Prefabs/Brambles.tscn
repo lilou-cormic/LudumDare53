@@ -1,9 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://vu1q7u3dud42"]
+[gd_scene load_steps=6 format=3 uid="uid://vu1q7u3dud42"]
 
 [ext_resource type="PackedScene" uid="uid://c8lpwi8w6qkq4" path="res://Prefabs/Obstacle.tscn" id="1_hpny7"]
 [ext_resource type="Texture2D" uid="uid://cqbplcaerdcu" path="res://Images/Obstacle/brambles.png" id="2_1a05r"]
+[ext_resource type="AudioStream" uid="uid://dvmq52kqyjn1j" path="res://Sounds/Gameplay/brambles-destroy.ogg" id="2_mp3j6"]
+[ext_resource type="PackedScene" uid="uid://b182txn4ve0o1" path="res://Prefabs/SoundPlayer.tscn" id="3_ier2j"]
+[ext_resource type="AudioStream" uid="uid://xwm60hpcn7ba" path="res://Sounds/Gameplay/brambles-appear.ogg" id="4_kgqu5"]
 
 [node name="Brambles" instance=ExtResource("1_hpny7")]
+DestroyedSound = ExtResource("2_mp3j6")
 
 [node name="Sprite2D" parent="." index="1"]
 texture = ExtResource("2_1a05r")
+
+[node name="SoundPlayer" parent="." index="2" instance=ExtResource("3_ier2j")]
+stream = ExtResource("4_kgqu5")

@@ -1,9 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://d0ihcyx7lmexb"]
+[gd_scene load_steps=8 format=3 uid="uid://d0ihcyx7lmexb"]
 
 [ext_resource type="Script" path="res://Scripts/Explosion.cs" id="1_61xdc"]
 [ext_resource type="Texture2D" uid="uid://bybg3ybaw8sfw" path="res://Images/Effects/impact-fx-plume.png" id="1_pn86a"]
 [ext_resource type="Texture2D" uid="uid://bpynqdlq8r7lr" path="res://Images/Effects/impact-fx-fragments.png" id="2_yjhvl"]
 [ext_resource type="Texture2D" uid="uid://de1lc7ic8x5ej" path="res://Images/Effects/impact-fx-debris.png" id="3_bs3lt"]
+[ext_resource type="PackedScene" uid="uid://b182txn4ve0o1" path="res://Prefabs/SoundPlayer.tscn" id="5_x3ctd"]
+[ext_resource type="AudioStream" uid="uid://c5fmvfxmvtgn3" path="res://Sounds/Gameplay/projectile-impact.ogg" id="6_ov2v6"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_altyd"]
 radius = 49.5025
@@ -31,3 +33,7 @@ texture = ExtResource("2_yjhvl")
 [node name="Impact-fx-debris" type="Sprite2D" parent="."]
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("3_bs3lt")
+
+[node name="SoundPlayer" parent="." instance=ExtResource("5_x3ctd")]
+stream = ExtResource("6_ov2v6")
+autoplay = true

@@ -1,7 +1,10 @@
 using Godot;
+using PurpleCable;
 
 public partial class Obstacle : Area2D
 {
+    [Export] AudioStream DestroyedSound;
+
     private Tile _tile;
 
     public ObstacleFactory Factory { get; set; }
@@ -20,6 +23,8 @@ public partial class Obstacle : Area2D
             case Explosion:
                 if (_tile != null)
                     _tile.HasObstacle = false;
+
+                SoundPlayer.Play(DestroyedSound);
 
                 Factory?.OnObstacleDestroyed(this);
 
