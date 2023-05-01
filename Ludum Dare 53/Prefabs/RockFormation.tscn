@@ -10,7 +10,8 @@ position = Vector2(575, 635)
 [node name="Rockface-1" type="Sprite2D" parent="."]
 texture = ExtResource("1_5fruw")
 
-[node name="RockSlideFactory01" type="Node2D" parent="."]
+[node name="RockSlideFactory" type="Node2D" parent="."]
 position = Vector2(33, 48)
 script = ExtResource("2_7nk3x")
+SpawnDelay = 45.0
 Prefab = ExtResource("3_ogvp4")

@@ -9,11 +9,13 @@
 [node name="LeftBramblesFactory" type="Node2D" parent="."]
 position = Vector2(-30, -32)
 script = ExtResource("1_qwc4q")
+SpawnDelay = 35.0
 Prefab = ExtResource("2_hb6e4")
 
 [node name="RightBramblesFactory" type="Node2D" parent="."]
 position = Vector2(34, -32)
 script = ExtResource("1_qwc4q")
+SpawnDelay = 35.0
 Prefab = ExtResource("2_hb6e4")
 
 [node name="Brambles" type="Sprite2D" parent="."]

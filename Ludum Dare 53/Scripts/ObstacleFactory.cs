@@ -3,9 +3,11 @@ using PurpleCable;
 
 public partial class ObstacleFactory : PrefabFactory<Obstacle>
 {
+    [Export] double SpawnDelay = 15f;
+
     private Obstacle _obstacle;
 
-    private double _timer = 10f;
+    private double _timer = 0f;
 
     public override void _Ready()
     {
@@ -28,7 +30,7 @@ public partial class ObstacleFactory : PrefabFactory<Obstacle>
         _obstacle = CreateItem();
         _obstacle.Factory = this;
 
-        _timer = 15f;
+        _timer = SpawnDelay;
     }
 
     public void OnObstacleDestroyed(Obstacle obstacle)

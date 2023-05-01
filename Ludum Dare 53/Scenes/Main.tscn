@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://bb8gjqjcmb6r8"]
+[gd_scene load_steps=54 format=3 uid="uid://bb8gjqjcmb6r8"]
 
 [ext_resource type="Script" path="res://Scripts/Map.cs" id="1_ygkfg"]
 [ext_resource type="Texture2D" uid="uid://cgmckhskbnmpu" path="res://Images/Map/path-network.png" id="2_icw2k"]
@@ -34,9 +34,23 @@
 [ext_resource type="Texture2D" uid="uid://61es4li86bqb" path="res://Images/Sidebar/sidebar-background.png" id="32_40u5h"]
 [ext_resource type="PackedScene" uid="uid://06bn8mxhwolv" path="res://Prefabs/Cursor.tscn" id="33_hrcy5"]
 [ext_resource type="Texture2D" uid="uid://dhhmhuqkcx0rv" path="res://Images/Sidebar/sidebar-icon-gnomes-plus-one-active.png" id="33_tgc8d"]
+[ext_resource type="Script" path="res://PurpleCable/Core/Scripts/ScoreDisplay.cs" id="33_unxcc"]
+[ext_resource type="Script" path="res://Scripts/CurrencyDisplay.cs" id="34_oagmy"]
+[ext_resource type="PackedScene" uid="uid://hb4lij4isiij" path="res://Prefabs/ShopButton.tscn" id="35_u0jqq"]
+[ext_resource type="Texture2D" uid="uid://chchtr4xkhg3b" path="res://Images/Sidebar/sidebar-icon-gnomes-plus-one-inactive.png" id="36_iktfn"]
+[ext_resource type="Texture2D" uid="uid://dcs21crg4xknq" path="res://Images/Sidebar/sidebar-icon-gnomes-speed-up-active.png" id="38_n8653"]
+[ext_resource type="Texture2D" uid="uid://bxalmyxfcqmrl" path="res://Images/Sidebar/sidebar-icon-gnomes-speed-up-inactive.png" id="39_jmbg8"]
+[ext_resource type="Texture2D" uid="uid://btyos1s1e7arq" path="res://Images/Sidebar/sidebar-icon-gnomes-shielded-active.png" id="40_6kg5q"]
+[ext_resource type="Texture2D" uid="uid://cv5vsx2toks7c" path="res://Images/Sidebar/sidebar-icon-gnomes-shielded-inactive.png" id="41_0qh8s"]
+[ext_resource type="Texture2D" uid="uid://cenftqqlq2uqm" path="res://Images/Sidebar/sidebar-icon-projectiles-plus-one-active.png" id="42_3efkc"]
+[ext_resource type="Texture2D" uid="uid://160tbn2wv1gk" path="res://Images/Sidebar/sidebar-icon-projectiles-plus-one-inactive.png" id="43_rb3as"]
+[ext_resource type="Texture2D" uid="uid://qr0njyd6n73" path="res://Images/Sidebar/sidebar-icon-projectiles-speed-up-active.png" id="44_xi8e5"]
+[ext_resource type="Texture2D" uid="uid://dpdhiirhbugeh" path="res://Images/Sidebar/sidebar-icon-projectiles-speed-up-inactive.png" id="45_y8ymi"]
+[ext_resource type="Texture2D" uid="uid://co77u3hfge2pr" path="res://Images/Sidebar/sidebar-icon-aoe-increase-active.png" id="46_uwsup"]
+[ext_resource type="Texture2D" uid="uid://c20lit2wd5tyn" path="res://Images/Sidebar/sidebar-icon-aoe-increase-inactive.png" id="47_h676c"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s5a6x"]
-size = Vector2(1600, 1080)
+size = Vector2(1541, 1080)
 
 [sub_resource type="Theme" id="Theme_88x2r"]
 
@@ -54,18 +68,13 @@ font_size = 36
 shadow_size = 3
 shadow_color = Color(0, 0, 0, 0.737255)
 
-[sub_resource type="LabelSettings" id="LabelSettings_dinba"]
-font_size = 20
-shadow_size = 2
-shadow_color = Color(0, 0, 0, 0.568627)
-shadow_offset = Vector2(0, 1)
-
 [node name="Main" type="Node2D"]
 
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
 autoplay = true
 
 [node name="Map" type="Node2D" parent="."]
+position = Vector2(-64, 0)
 script = ExtResource("1_ygkfg")
 
 [node name="Background-meadow" type="Sprite2D" parent="Map"]
@@ -82,10 +91,60 @@ centered = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Area2D"]
 visible = false
-position = Vector2(800, 540)
+position = Vector2(770.5, 540)
 shape = SubResource("RectangleShape2D_s5a6x")
 
+[node name="Trees" type="Node2D" parent="Map"]
+
+[node name="Foliage02" parent="Map/Trees" instance=ExtResource("17_dtmw5")]
+position = Vector2(364, -64)
+
+[node name="Foliage01" parent="Map/Trees" instance=ExtResource("17_dtmw5")]
+position = Vector2(-64, 0)
+
+[node name="Foliage03" parent="Map/Trees" instance=ExtResource("17_dtmw5")]
+position = Vector2(728, -64)
+
+[node name="Foliage04" parent="Map/Trees" instance=ExtResource("17_dtmw5")]
+position = Vector2(941, -64)
+
+[node name="Trees-1" type="Sprite2D" parent="Map/Trees"]
+z_index = 2
+position = Vector2(512, 368)
+texture = ExtResource("17_hthee")
+
+[node name="Trees-4" type="Sprite2D" parent="Map/Trees"]
+z_index = 5
+position = Vector2(1546, 182)
+texture = ExtResource("17_hthee")
+
+[node name="Trees-7" type="Sprite2D" parent="Map/Trees"]
+z_index = 2
+position = Vector2(831, 244)
+texture = ExtResource("17_hthee")
+
+[node name="Trees-5" type="Sprite2D" parent="Map/Trees"]
+z_index = 2
+position = Vector2(186, 578)
+texture = ExtResource("17_hthee")
+
+[node name="Trees-2" type="Sprite2D" parent="Map/Trees"]
+z_index = 2
+position = Vector2(1277, 763)
+texture = ExtResource("17_hthee")
+
+[node name="Trees-3" type="Sprite2D" parent="Map/Trees"]
+z_index = 2
+position = Vector2(437, 892)
+texture = ExtResource("17_hthee")
+
+[node name="Trees-6" type="Sprite2D" parent="Map/Trees"]
+z_index = 2
+position = Vector2(777, 1012)
+texture = ExtResource("17_hthee")
+
 [node name="GameManager" type="Node2D" parent="."]
+position = Vector2(-64, 0)
 script = ExtResource("7")
 
 [node name="TileFactory" type="Node2D" parent="GameManager"]
@@ -104,7 +163,7 @@ position = Vector2(729, 79)
 scale = Vector2(34.76, 1)
 
 [node name="Path03" parent="GameManager/Paths" instance=ExtResource("3_sn6x6")]
-position = Vector2(914, 152)
+position = Vector2(915, 212)
 scale = Vector2(4.4, 1)
 
 [node name="Path04" parent="GameManager/Paths" instance=ExtResource("3_sn6x6")]
@@ -121,7 +180,7 @@ scale = Vector2(15.76, 1)
 
 [node name="Path07" parent="GameManager/Paths" instance=ExtResource("3_sn6x6")]
 position = Vector2(1431, 277)
-scale = Vector2(8.12, 1)
+scale = Vector2(9.72, 1)
 
 [node name="Path08" parent="GameManager/Paths" instance=ExtResource("3_sn6x6")]
 position = Vector2(727, 341)
@@ -165,7 +224,7 @@ scale = Vector2(9.84, 1)
 
 [node name="Path18" parent="GameManager/Paths" instance=ExtResource("3_sn6x6")]
 position = Vector2(599, 857)
-scale = Vector2(7.92, 1)
+scale = Vector2(7.4, 1)
 
 [node name="Path19" parent="GameManager/Paths" instance=ExtResource("3_sn6x6")]
 position = Vector2(1047, 857)
@@ -188,8 +247,8 @@ position = Vector2(85, 478)
 scale = Vector2(1, 9.32)
 
 [node name="Path24" parent="GameManager/Paths" instance=ExtResource("3_sn6x6")]
-position = Vector2(156, 683)
-scale = Vector2(1, 18.96)
+position = Vector2(151, 683)
+scale = Vector2(1, 21.2)
 
 [node name="Path25" parent="GameManager/Paths" instance=ExtResource("3_sn6x6")]
 position = Vector2(209, 230)
@@ -225,15 +284,15 @@ scale = Vector2(1, 11.92)
 
 [node name="Path33" parent="GameManager/Paths" instance=ExtResource("3_sn6x6")]
 position = Vector2(922, 100)
-scale = Vector2(1, 3.44)
+scale = Vector2(1, 6.52)
 
 [node name="Path34" parent="GameManager/Paths" instance=ExtResource("3_sn6x6")]
 position = Vector2(926, 731)
 scale = Vector2(1, 10.44)
 
 [node name="Path35" parent="GameManager/Paths" instance=ExtResource("3_sn6x6")]
-position = Vector2(987, 168)
-scale = Vector2(1, 6.04)
+position = Vector2(985, 216)
+scale = Vector2(1, 4.2)
 
 [node name="Path36" parent="GameManager/Paths" instance=ExtResource("3_sn6x6")]
 position = Vector2(1046, 869)
@@ -304,7 +363,7 @@ texture = ExtResource("15_w8esa")
 position = Vector2(1472, 960)
 
 [node name="Sprite2D" parent="GameManager/Destinations/Windmill" index="1"]
-position = Vector2(8, -1)
+position = Vector2(26, -1)
 texture = ExtResource("8_jiok6")
 
 [node name="BubbleSprite" parent="GameManager/Destinations/Windmill" index="2"]
@@ -341,8 +400,9 @@ position = Vector2(959, 432)
 position = Vector2(35.5, 0)
 scale = Vector2(0.858553, 1)
 
-[node name="RockSlideFactory01" parent="GameManager/Obstacles/RockFormation02" index="1"]
+[node name="RockSlideFactory" parent="GameManager/Obstacles/RockFormation02" index="1"]
 position = Vector2(97, 48)
+SpawnDelay = 50.0
 
 [node name="BramblesRoot01" parent="GameManager/Obstacles" instance=ExtResource("18_rd4t1")]
 position = Vector2(1214, 320)
@@ -363,13 +423,13 @@ script = ExtResource("21_etc72")
 Prefab = ExtResource("21_18ahh")
 
 [node name="SpawnPoint01" type="Node2D" parent="GameManager/LeftDragonFactory"]
-position = Vector2(-180, 119)
+position = Vector2(-131, 119)
 
 [node name="SpawnPoint02" type="Node2D" parent="GameManager/LeftDragonFactory"]
-position = Vector2(-180, 570)
+position = Vector2(-131, 570)
 
 [node name="SpawnPoint03" type="Node2D" parent="GameManager/LeftDragonFactory"]
-position = Vector2(-180, 764)
+position = Vector2(-131, 764)
 
 [node name="RightDragonFactory" type="Node2D" parent="GameManager"]
 script = ExtResource("21_etc72")
@@ -385,52 +445,8 @@ position = Vector2(1800, 368)
 [node name="SpawnPoint03" type="Node2D" parent="GameManager/RightDragonFactory"]
 position = Vector2(1800, 629)
 
-[node name="Trees" type="Node2D" parent="."]
-
-[node name="Foliage02" parent="Trees" instance=ExtResource("17_dtmw5")]
-position = Vector2(364, -64)
-
-[node name="Foliage01" parent="Trees" instance=ExtResource("17_dtmw5")]
-position = Vector2(-64, 0)
-
-[node name="Foliage03" parent="Trees" instance=ExtResource("17_dtmw5")]
-position = Vector2(728, -64)
-
-[node name="Foliage04" parent="Trees" instance=ExtResource("17_dtmw5")]
-position = Vector2(941, -64)
-
-[node name="Trees-1" type="Sprite2D" parent="Trees"]
-z_index = 2
-position = Vector2(512, 368)
-texture = ExtResource("17_hthee")
-
-[node name="Trees-7" type="Sprite2D" parent="Trees"]
-z_index = 2
-position = Vector2(831, 244)
-texture = ExtResource("17_hthee")
-
-[node name="Trees-5" type="Sprite2D" parent="Trees"]
-z_index = 2
-position = Vector2(186, 578)
-texture = ExtResource("17_hthee")
-
-[node name="Trees-2" type="Sprite2D" parent="Trees"]
-z_index = 2
-position = Vector2(1277, 763)
-texture = ExtResource("17_hthee")
-
-[node name="Trees-3" type="Sprite2D" parent="Trees"]
-z_index = 2
-position = Vector2(437, 892)
-texture = ExtResource("17_hthee")
-
-[node name="Trees-6" type="Sprite2D" parent="Trees"]
-z_index = 2
-position = Vector2(777, 1012)
-texture = ExtResource("17_hthee")
-
 [node name="HUD" type="Control" parent="."]
-z_index = 10
+z_index = 100
 layout_mode = 3
 anchors_preset = 0
 offset_left = 1602.0
@@ -479,6 +495,8 @@ text = "000"
 label_settings = SubResource("LabelSettings_kf4sh")
 horizontal_alignment = 1
 vertical_alignment = 1
+script = ExtResource("33_unxcc")
+IsHighScore = true
 
 [node name="ScoreLabel" type="Label" parent="HUD/Panel"]
 layout_mode = 1
@@ -507,6 +525,7 @@ text = "000"
 label_settings = SubResource("LabelSettings_0u7cl")
 horizontal_alignment = 1
 vertical_alignment = 1
+script = ExtResource("33_unxcc")
 
 [node name="CurrencyLabel" type="Label" parent="HUD/Panel"]
 layout_mode = 1
@@ -535,6 +554,7 @@ text = "000"
 label_settings = SubResource("LabelSettings_0u7cl")
 horizontal_alignment = 1
 vertical_alignment = 1
+script = ExtResource("34_oagmy")
 
 [node name="ShopLabel" type="Label" parent="HUD/Panel"]
 layout_mode = 1
@@ -550,29 +570,78 @@ label_settings = SubResource("LabelSettings_r6sff")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Sidebar-icon-gnomes-plus-one-active" type="Sprite2D" parent="HUD/Panel"]
-position = Vector2(101, 440)
-texture = ExtResource("33_tgc8d")
+[node name="AgentPlusOneButton" parent="HUD/Panel" instance=ExtResource("35_u0jqq")]
+layout_mode = 0
+offset_left = 38.0
+offset_top = 430.0
+offset_right = 167.0
+offset_bottom = 577.0
+disabled = true
+texture_normal = ExtResource("33_tgc8d")
+texture_disabled = ExtResource("36_iktfn")
 
-[node name="PriceText" type="Label" parent="HUD/Panel/Sidebar-icon-gnomes-plus-one-active"]
-anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 0.348
-offset_left = -55.0
-offset_top = -59.0
-offset_right = -74.0
-offset_bottom = -79.156
-theme = ExtResource("31_n6vr5")
-text = "150"
-label_settings = SubResource("LabelSettings_dinba")
-horizontal_alignment = 1
-vertical_alignment = 1
+[node name="AgentSpeedUpButton" parent="HUD/Panel" instance=ExtResource("35_u0jqq")]
+layout_mode = 0
+offset_left = 38.0
+offset_top = 620.0
+offset_right = 167.0
+offset_bottom = 767.0
+disabled = true
+texture_normal = ExtResource("38_n8653")
+texture_disabled = ExtResource("39_jmbg8")
+Price = 250
+
+[node name="AgentShieldButton2" parent="HUD/Panel" instance=ExtResource("35_u0jqq")]
+layout_mode = 0
+offset_left = 38.0
+offset_top = 810.0
+offset_right = 167.0
+offset_bottom = 957.0
+disabled = true
+texture_normal = ExtResource("40_6kg5q")
+texture_disabled = ExtResource("41_0qh8s")
+Price = 400
+
+[node name="BulletPlusOneButton2" parent="HUD/Panel" instance=ExtResource("35_u0jqq")]
+layout_mode = 0
+offset_left = 210.0
+offset_top = 430.0
+offset_right = 339.0
+offset_bottom = 577.0
+disabled = true
+texture_normal = ExtResource("42_3efkc")
+texture_disabled = ExtResource("43_rb3as")
+Price = 200
+
+[node name="BulletSpeedUpButton2" parent="HUD/Panel" instance=ExtResource("35_u0jqq")]
+layout_mode = 0
+offset_left = 210.0
+offset_top = 620.0
+offset_right = 339.0
+offset_bottom = 767.0
+disabled = true
+texture_normal = ExtResource("44_xi8e5")
+texture_disabled = ExtResource("45_y8ymi")
+Price = 300
+
+[node name="BulletAOEButton3" parent="HUD/Panel" instance=ExtResource("35_u0jqq")]
+layout_mode = 0
+offset_left = 210.0
+offset_top = 810.0
+offset_right = 339.0
+offset_bottom = 957.0
+disabled = true
+texture_normal = ExtResource("46_uwsup")
+texture_disabled = ExtResource("47_h676c")
+Price = 500
 
 [node name="Cursor" parent="." instance=ExtResource("33_hrcy5")]
 
 [connection signal="input_event" from="Map/Area2D" to="Map" method="OnInputEvent"]
 [connection signal="mouse_entered" from="Map/Area2D" to="Map" method="OnMouseEntered"]
 [connection signal="mouse_exited" from="Map/Area2D" to="Map" method="OnMouseExited"]
+[connection signal="pressed" from="HUD/Panel/AgentPlusOneButton" to="GameManager/HQ" method="HireAgent"]
+[connection signal="pressed" from="HUD/Panel/AgentSpeedUpButton" to="GameManager/HQ" method="BoostAgentSpeed"]
 
 [editable path="GameManager/Warehouses/Warehouse"]
 [editable path="GameManager/Destinations/House"]
