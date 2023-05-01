@@ -40,7 +40,7 @@ public partial class GameManager : Node2D
 
     private AStar _aStar;
 
-    private double _deliveryTimer = 2f;
+    private double _deliveryTimer = 0.5f;
 
     private double _dragonTimer = 20f;
 
@@ -63,12 +63,20 @@ public partial class GameManager : Node2D
         _RightDragonFactory = GetNode<DragonFactory>("RightDragonFactory");
 
         ScoreManager.ResetScore();
+
+        HQ.ResetStats();
         Agent.ResetStats();
+        Projectile.ResetStats();
+
+        Stats.OnStatsChanged();
 
         CreateTileGrid();
 
         HQ.HireAgent();
         HQ.NewDelivery();
+
+        if (DebugHelper.RichMode)
+            _Currency = 999999;
     }
 
     public override void _PhysicsProcess(double delta)
@@ -86,7 +94,7 @@ public partial class GameManager : Node2D
         {
             HQ.NewDelivery();
 
-            _deliveryTimer = 2f;
+            _deliveryTimer = 0.5f;
         }
     }
 
@@ -96,7 +104,7 @@ public partial class GameManager : Node2D
 
         if (_dragonTimer <= 0)
         {
-            if (GD.Randf() > 0.5)
+            if (GD.Randf() > 0.5f)
                 LeftDragonFactory.SendOffDragon();
             else
                 RightDragonFactory.SendOffDragon();

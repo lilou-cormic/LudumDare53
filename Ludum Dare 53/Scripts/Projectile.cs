@@ -9,7 +9,11 @@ public partial class Projectile : Node2D
 
     public const float BaseSpeed = 200f;
 
-    public float CurrentSpeed = BaseSpeed;
+    private static float _currentSpeed = BaseSpeed;
+
+    public static int SpeedCounter = 1;
+
+    public static int ActiveBulletCount { get; private set; }
 
     private Vector2 _target;
 
@@ -32,6 +36,8 @@ public partial class Projectile : Node2D
 
         _collisionLayer = _aoe.CollisionLayer;
         _aoe.CollisionLayer = 0;
+
+        ActiveBulletCount++;
     }
 
     public override void _PhysicsProcess(double delta)
@@ -48,7 +54,7 @@ public partial class Projectile : Node2D
 
         Vector2 dir = GlobalPosition.DirectionTo(_target);
 
-        GlobalPosition += dir * Mathf.Min(CurrentSpeed * (float)delta, distance);
+        GlobalPosition += dir * Mathf.Min(_currentSpeed * (float)delta, distance);
 
         if (GlobalPosition.DistanceTo(_target) < (GameUI.TileSize * 0.01f))
         {
@@ -70,6 +76,24 @@ public partial class Projectile : Node2D
     {
         _hasExploded = true;
 
+        ActiveBulletCount--;
+
         _aoe.CollisionLayer = _collisionLayer;
+    }
+
+    public static void IncreaseSpeed()
+    {
+        SpeedCounter++;
+        _currentSpeed += BaseSpeed;
+
+        Stats.OnStatsChanged();
+    }
+
+    public static void ResetStats()
+    {
+        SpeedCounter = 1;
+        _currentSpeed = BaseSpeed;
+
+        ActiveBulletCount = 0;
     }
 }
