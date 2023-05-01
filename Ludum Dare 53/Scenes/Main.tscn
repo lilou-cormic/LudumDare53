@@ -68,6 +68,7 @@ shadow_offset = Vector2(0, 1)
 autoplay = true
 
 [node name="Map" type="Node2D" parent="."]
+position = Vector2(-64, 0)
 script = ExtResource("1_ygkfg")
 
 [node name="Background-meadow" type="Sprite2D" parent="Map"]
@@ -87,7 +88,57 @@ visible = false
 position = Vector2(770.5, 540)
 shape = SubResource("RectangleShape2D_s5a6x")
 
+[node name="Trees" type="Node2D" parent="Map"]
+
+[node name="Foliage02" parent="Map/Trees" instance=ExtResource("17_dtmw5")]
+position = Vector2(364, -64)
+
+[node name="Foliage01" parent="Map/Trees" instance=ExtResource("17_dtmw5")]
+position = Vector2(-64, 0)
+
+[node name="Foliage03" parent="Map/Trees" instance=ExtResource("17_dtmw5")]
+position = Vector2(728, -64)
+
+[node name="Foliage04" parent="Map/Trees" instance=ExtResource("17_dtmw5")]
+position = Vector2(941, -64)
+
+[node name="Trees-1" type="Sprite2D" parent="Map/Trees"]
+z_index = 2
+position = Vector2(512, 368)
+texture = ExtResource("17_hthee")
+
+[node name="Trees-4" type="Sprite2D" parent="Map/Trees"]
+z_index = 5
+position = Vector2(1546, 182)
+texture = ExtResource("17_hthee")
+
+[node name="Trees-7" type="Sprite2D" parent="Map/Trees"]
+z_index = 2
+position = Vector2(831, 244)
+texture = ExtResource("17_hthee")
+
+[node name="Trees-5" type="Sprite2D" parent="Map/Trees"]
+z_index = 2
+position = Vector2(186, 578)
+texture = ExtResource("17_hthee")
+
+[node name="Trees-2" type="Sprite2D" parent="Map/Trees"]
+z_index = 2
+position = Vector2(1277, 763)
+texture = ExtResource("17_hthee")
+
+[node name="Trees-3" type="Sprite2D" parent="Map/Trees"]
+z_index = 2
+position = Vector2(437, 892)
+texture = ExtResource("17_hthee")
+
+[node name="Trees-6" type="Sprite2D" parent="Map/Trees"]
+z_index = 2
+position = Vector2(777, 1012)
+texture = ExtResource("17_hthee")
+
 [node name="GameManager" type="Node2D" parent="."]
+position = Vector2(-64, 0)
 script = ExtResource("7")
 
 [node name="TileFactory" type="Node2D" parent="GameManager"]
@@ -106,7 +157,7 @@ position = Vector2(729, 79)
 scale = Vector2(34.76, 1)
 
 [node name="Path03" parent="GameManager/Paths" instance=ExtResource("3_sn6x6")]
-position = Vector2(914, 152)
+position = Vector2(915, 212)
 scale = Vector2(4.4, 1)
 
 [node name="Path04" parent="GameManager/Paths" instance=ExtResource("3_sn6x6")]
@@ -123,7 +174,7 @@ scale = Vector2(15.76, 1)
 
 [node name="Path07" parent="GameManager/Paths" instance=ExtResource("3_sn6x6")]
 position = Vector2(1431, 277)
-scale = Vector2(8.12, 1)
+scale = Vector2(9.72, 1)
 
 [node name="Path08" parent="GameManager/Paths" instance=ExtResource("3_sn6x6")]
 position = Vector2(727, 341)
@@ -167,7 +218,7 @@ scale = Vector2(9.84, 1)
 
 [node name="Path18" parent="GameManager/Paths" instance=ExtResource("3_sn6x6")]
 position = Vector2(599, 857)
-scale = Vector2(7.92, 1)
+scale = Vector2(7.4, 1)
 
 [node name="Path19" parent="GameManager/Paths" instance=ExtResource("3_sn6x6")]
 position = Vector2(1047, 857)
@@ -190,8 +241,8 @@ position = Vector2(85, 478)
 scale = Vector2(1, 9.32)
 
 [node name="Path24" parent="GameManager/Paths" instance=ExtResource("3_sn6x6")]
-position = Vector2(156, 683)
-scale = Vector2(1, 18.96)
+position = Vector2(151, 683)
+scale = Vector2(1, 21.2)
 
 [node name="Path25" parent="GameManager/Paths" instance=ExtResource("3_sn6x6")]
 position = Vector2(209, 230)
@@ -227,15 +278,15 @@ scale = Vector2(1, 11.92)
 
 [node name="Path33" parent="GameManager/Paths" instance=ExtResource("3_sn6x6")]
 position = Vector2(922, 100)
-scale = Vector2(1, 3.44)
+scale = Vector2(1, 6.52)
 
 [node name="Path34" parent="GameManager/Paths" instance=ExtResource("3_sn6x6")]
 position = Vector2(926, 731)
 scale = Vector2(1, 10.44)
 
 [node name="Path35" parent="GameManager/Paths" instance=ExtResource("3_sn6x6")]
-position = Vector2(987, 168)
-scale = Vector2(1, 6.04)
+position = Vector2(985, 216)
+scale = Vector2(1, 4.2)
 
 [node name="Path36" parent="GameManager/Paths" instance=ExtResource("3_sn6x6")]
 position = Vector2(1046, 869)
@@ -306,7 +357,7 @@ texture = ExtResource("15_w8esa")
 position = Vector2(1472, 960)
 
 [node name="Sprite2D" parent="GameManager/Destinations/Windmill" index="1"]
-position = Vector2(5, -1)
+position = Vector2(26, -1)
 texture = ExtResource("8_jiok6")
 
 [node name="BubbleSprite" parent="GameManager/Destinations/Windmill" index="2"]
@@ -343,8 +394,9 @@ position = Vector2(959, 432)
 position = Vector2(35.5, 0)
 scale = Vector2(0.858553, 1)
 
-[node name="RockSlideFactory01" parent="GameManager/Obstacles/RockFormation02" index="1"]
+[node name="RockSlideFactory" parent="GameManager/Obstacles/RockFormation02" index="1"]
 position = Vector2(97, 48)
+SpawnDelay = 50.0
 
 [node name="BramblesRoot01" parent="GameManager/Obstacles" instance=ExtResource("18_rd4t1")]
 position = Vector2(1214, 320)
@@ -365,13 +417,13 @@ script = ExtResource("21_etc72")
 Prefab = ExtResource("21_18ahh")
 
 [node name="SpawnPoint01" type="Node2D" parent="GameManager/LeftDragonFactory"]
-position = Vector2(-180, 119)
+position = Vector2(-131, 119)
 
 [node name="SpawnPoint02" type="Node2D" parent="GameManager/LeftDragonFactory"]
-position = Vector2(-180, 570)
+position = Vector2(-131, 570)
 
 [node name="SpawnPoint03" type="Node2D" parent="GameManager/LeftDragonFactory"]
-position = Vector2(-180, 764)
+position = Vector2(-131, 764)
 
 [node name="RightDragonFactory" type="Node2D" parent="GameManager"]
 script = ExtResource("21_etc72")
@@ -386,50 +438,6 @@ position = Vector2(1800, 368)
 
 [node name="SpawnPoint03" type="Node2D" parent="GameManager/RightDragonFactory"]
 position = Vector2(1800, 629)
-
-[node name="Trees" type="Node2D" parent="."]
-
-[node name="Foliage02" parent="Trees" instance=ExtResource("17_dtmw5")]
-position = Vector2(364, -64)
-
-[node name="Foliage01" parent="Trees" instance=ExtResource("17_dtmw5")]
-position = Vector2(-64, 0)
-
-[node name="Foliage03" parent="Trees" instance=ExtResource("17_dtmw5")]
-position = Vector2(728, -64)
-
-[node name="Foliage04" parent="Trees" instance=ExtResource("17_dtmw5")]
-position = Vector2(941, -64)
-
-[node name="Trees-1" type="Sprite2D" parent="Trees"]
-z_index = 2
-position = Vector2(512, 368)
-texture = ExtResource("17_hthee")
-
-[node name="Trees-7" type="Sprite2D" parent="Trees"]
-z_index = 2
-position = Vector2(831, 244)
-texture = ExtResource("17_hthee")
-
-[node name="Trees-5" type="Sprite2D" parent="Trees"]
-z_index = 2
-position = Vector2(186, 578)
-texture = ExtResource("17_hthee")
-
-[node name="Trees-2" type="Sprite2D" parent="Trees"]
-z_index = 2
-position = Vector2(1277, 763)
-texture = ExtResource("17_hthee")
-
-[node name="Trees-3" type="Sprite2D" parent="Trees"]
-z_index = 2
-position = Vector2(437, 892)
-texture = ExtResource("17_hthee")
-
-[node name="Trees-6" type="Sprite2D" parent="Trees"]
-z_index = 2
-position = Vector2(777, 1012)
-texture = ExtResource("17_hthee")
 
 [node name="HUD" type="Control" parent="."]
 z_index = 100
