@@ -49,6 +49,8 @@ public partial class GameManager : Node2D
     private double _dragonTimer = 20f;
     private double _dragonDelay = 20f;
 
+    private double _dragonFrequencyIncreaseTimer = 60f;
+
     public static event Action CurrencyChanged;
 
     public GameManager()
@@ -108,6 +110,19 @@ public partial class GameManager : Node2D
 
     private void ProcessDragon(double delta)
     {
+        if (_dragonDelay > 1)
+        {
+            if (_dragonFrequencyIncreaseTimer <= 0)
+            {
+                _dragonFrequencyIncreaseTimer = 60f;
+                _dragonDelay -= 1;
+            }
+            else
+            {
+                _dragonFrequencyIncreaseTimer -= delta;
+            }
+        }
+
         _dragonTimer -= delta;
 
         if (_dragonTimer <= 0)

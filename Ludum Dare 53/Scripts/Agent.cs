@@ -9,8 +9,6 @@ public partial class Agent : Node2D
 
     [Export] AudioStream BackToHQSound;
 
-    [Export] AudioStream DeathSound;
-
     private const float BaseSpeed = 1f;
 
     public const float SpeedBump = 1f;
@@ -137,9 +135,8 @@ public partial class Agent : Node2D
         if (DebugHelper.GodMode)
             return;
 
-        SoundPlayer.Play(DeathSound);
-
         GameManager.HQ.OnAgentDied(this);
+
         QueueFree();
     }
 
