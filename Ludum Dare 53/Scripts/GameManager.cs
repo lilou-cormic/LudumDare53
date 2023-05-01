@@ -46,8 +46,8 @@ public partial class GameManager : Node2D
     private double _deliveryTimer = 0.5f;
     private double _deliveryDelay = 0.5f;
 
-    private double _dragonTimer = 2f;
-    private double _dragonDelay = 2f;
+    private double _dragonTimer = 20f;
+    private double _dragonDelay = 20f;
 
     public static event Action CurrencyChanged;
 
@@ -82,8 +82,6 @@ public partial class GameManager : Node2D
 
         HQ.HireAgent();
         HQ.NewDelivery();
-
-        DebugHelper.RichMode = true;
 
         if (DebugHelper.RichMode)
             _Currency = 999999;
