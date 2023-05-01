@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cxbtaj2sem1ca"]
+[gd_scene load_steps=9 format=3 uid="uid://cxbtaj2sem1ca"]
 
 [ext_resource type="Script" path="res://Scripts/HQ.cs" id="1_oriai"]
 [ext_resource type="Texture2D" uid="uid://b5sxp6iunjlp4" path="res://Images/HQ/headquarter-layer-bg.png" id="2_14t8o"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bhcrc732hqqin" path="res://Prefabs/AgentFactory.tscn" id="3_rgn8p"]
 [ext_resource type="PackedScene" uid="uid://rl15xcg4e41u" path="res://Prefabs/Agent.tscn" id="4_fs85p"]
 [ext_resource type="Texture2D" uid="uid://7lumu4outfyu" path="res://Images/UI/AgentBubbles/agent-bubble-dest-hq.png" id="6_q3aug"]
+[ext_resource type="Texture2D" uid="uid://d344pc86mvrpw" path="res://Images/UI/Cursors/aoe-preview-01.png" id="7_henae"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2morg"]
 
@@ -34,5 +35,11 @@ Prefab = ExtResource("4_fs85p")
 [node name="BubbleSprite" type="Sprite2D" parent="."]
 visible = false
 texture = ExtResource("6_q3aug")
+
+[node name="AOEGraphic" type="Sprite2D" parent="."]
+visible = false
+z_index = 100
+position = Vector2(-318, 9)
+texture = ExtResource("7_henae")
 
 [connection signal="area_entered" from="." to="." method="OnAreaEntered"]

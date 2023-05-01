@@ -3,10 +3,11 @@
 [ext_resource type="Script" path="res://Scripts/Obstacle.cs" id="1_5p78k"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ksl0p"]
+size = Vector2(62, 62)
 
 [node name="Obstacle" type="Area2D"]
 collision_layer = 32
-collision_mask = 144
+collision_mask = 1152
 script = ExtResource("1_5p78k")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

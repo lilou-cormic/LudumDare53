@@ -9,7 +9,7 @@ public static class Stats
     //public static bool AgentShield => Agent.IsShieldOn;
     public static int BulletCounter => GameManager.HQ.BulletCounter;
     public static int BulletSpeed => Projectile.SpeedCounter;
-    //public static bool BulletAOE => Projectile.HasLargerAOE;
+    public static bool BulletAOE => Projectile.HasLargerAOE;
 
     public static void OnStatsChanged()
     {

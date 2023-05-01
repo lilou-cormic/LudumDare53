@@ -9,11 +9,15 @@ public partial class Projectile : Node2D
 
     public const float BaseSpeed = 200f;
 
+    public const float SpeedBump = 75f;
+
     private static float _currentSpeed = BaseSpeed;
 
     public static int SpeedCounter = 1;
 
     public static int ActiveBulletCount { get; private set; }
+
+    public static bool HasLargerAOE { get; private set; }
 
     private Vector2 _target;
 
@@ -27,17 +31,16 @@ public partial class Projectile : Node2D
 
     private bool _hasExploded = false;
 
-    private uint _collisionLayer;
-
     public override void _Ready()
     {
-        _aoe = GetNode<Area2D>("AOE");
         _graphic = GetNode<Sprite2D>("Graphic");
 
-        _collisionLayer = _aoe.CollisionLayer;
-        _aoe.CollisionLayer = 0;
-
         ActiveBulletCount++;
+    }
+
+    public override void _ExitTree()
+    {
+        ActiveBulletCount--;
     }
 
     public override void _PhysicsProcess(double delta)
@@ -59,7 +62,7 @@ public partial class Projectile : Node2D
         if (GlobalPosition.DistanceTo(_target) < (GameUI.TileSize * 0.01f))
         {
             GlobalPosition = _target;
-            Explode();
+            Explode(GlobalPosition);
         }
     }
 
@@ -72,19 +75,27 @@ public partial class Projectile : Node2D
         _trajectory = new Trajectory(new Vector3(), Vector3.Right * _fullDistance, 150);
     }
 
-    public void Explode()
+    public void Explode(Vector2 globalPosition)
     {
+        if (_hasExploded)
+            return;
+
         _hasExploded = true;
 
-        ActiveBulletCount--;
-
-        _aoe.CollisionLayer = _collisionLayer;
+        GameManager.ExplosionFactory.GetAnimation(globalPosition);
     }
 
     public static void IncreaseSpeed()
     {
         SpeedCounter++;
-        _currentSpeed += BaseSpeed;
+        _currentSpeed += SpeedBump;
+
+        Stats.OnStatsChanged();
+    }
+
+    public static void IncreaseAOE()
+    {
+        HasLargerAOE = true;
 
         Stats.OnStatsChanged();
     }
@@ -95,5 +106,7 @@ public partial class Projectile : Node2D
         _currentSpeed = BaseSpeed;
 
         ActiveBulletCount = 0;
+
+        HasLargerAOE = false;
     }
 }

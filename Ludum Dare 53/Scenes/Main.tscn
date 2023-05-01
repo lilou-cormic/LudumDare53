@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=3 uid="uid://bb8gjqjcmb6r8"]
+[gd_scene load_steps=56 format=3 uid="uid://bb8gjqjcmb6r8"]
 
 [ext_resource type="Script" path="res://Scripts/Map.cs" id="1_ygkfg"]
 [ext_resource type="Texture2D" uid="uid://cgmckhskbnmpu" path="res://Images/Map/path-network.png" id="2_icw2k"]
@@ -31,7 +31,9 @@
 [ext_resource type="Texture2D" uid="uid://bx3lbus8hv153" path="res://Images/UI/AgentBubbles/agent-bubble-dest-church.png" id="21_auets"]
 [ext_resource type="Script" path="res://Scripts/DragonFactory.cs" id="21_etc72"]
 [ext_resource type="Theme" uid="uid://f1ss2majff58" path="res://Styles/Theme.tres" id="31_n6vr5"]
+[ext_resource type="Script" path="res://Scripts/AnimationFactory.cs" id="31_oj60i"]
 [ext_resource type="Texture2D" uid="uid://61es4li86bqb" path="res://Images/Sidebar/sidebar-background.png" id="32_40u5h"]
+[ext_resource type="PackedScene" uid="uid://d0ihcyx7lmexb" path="res://Prefabs/Explosion.tscn" id="32_w3hpl"]
 [ext_resource type="PackedScene" uid="uid://06bn8mxhwolv" path="res://Prefabs/Cursor.tscn" id="33_hrcy5"]
 [ext_resource type="Texture2D" uid="uid://dhhmhuqkcx0rv" path="res://Images/Sidebar/sidebar-icon-gnomes-plus-one-active.png" id="33_tgc8d"]
 [ext_resource type="Script" path="res://PurpleCable/Core/Scripts/ScoreDisplay.cs" id="33_unxcc"]
@@ -91,7 +93,7 @@ centered = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Area2D"]
 visible = false
-position = Vector2(770.5, 540)
+position = Vector2(834.5, 540)
 shape = SubResource("RectangleShape2D_s5a6x")
 
 [node name="Trees" type="Node2D" parent="Map"]
@@ -393,6 +395,9 @@ texture = ExtResource("21_auets")
 
 [node name="RockFormation01" parent="GameManager/Obstacles" instance=ExtResource("16_2ihmk")]
 
+[node name="RockSlideFactory" parent="GameManager/Obstacles/RockFormation01" index="1"]
+position = Vector2(33, 37)
+
 [node name="RockFormation02" parent="GameManager/Obstacles" instance=ExtResource("16_2ihmk")]
 position = Vector2(959, 432)
 
@@ -405,10 +410,10 @@ position = Vector2(97, 48)
 SpawnDelay = 50.0
 
 [node name="BramblesRoot01" parent="GameManager/Obstacles" instance=ExtResource("18_rd4t1")]
-position = Vector2(1214, 320)
+position = Vector2(1216, 320)
 
 [node name="BramblesRoot02" parent="GameManager/Obstacles" instance=ExtResource("18_rd4t1")]
-position = Vector2(960.5, 959)
+position = Vector2(959.5, 960)
 
 [node name="HQ" parent="GameManager" instance=ExtResource("2_p2rb2")]
 position = Vector2(768, 512)
@@ -445,8 +450,12 @@ position = Vector2(1800, 368)
 [node name="SpawnPoint03" type="Node2D" parent="GameManager/RightDragonFactory"]
 position = Vector2(1800, 629)
 
+[node name="ExplosionFactory" type="Node2D" parent="GameManager"]
+script = ExtResource("31_oj60i")
+Prefab = ExtResource("32_w3hpl")
+
 [node name="HUD" type="Control" parent="."]
-z_index = 100
+z_index = 500
 layout_mode = 3
 anchors_preset = 0
 offset_left = 1602.0
@@ -601,6 +610,7 @@ disabled = true
 texture_normal = ExtResource("40_6kg5q")
 texture_disabled = ExtResource("41_0qh8s")
 Price = 400
+NumberOfUses = 1
 
 [node name="BulletPlusOneButton" parent="HUD/Panel" instance=ExtResource("35_u0jqq")]
 layout_mode = 0
@@ -634,6 +644,7 @@ disabled = true
 texture_normal = ExtResource("46_uwsup")
 texture_disabled = ExtResource("47_h676c")
 Price = 500
+NumberOfUses = 1
 
 [node name="Cursor" parent="." instance=ExtResource("33_hrcy5")]
 
@@ -644,10 +655,12 @@ Price = 500
 [connection signal="pressed" from="HUD/Panel/AgentSpeedUpButton" to="GameManager/HQ" method="BoostAgentSpeed"]
 [connection signal="pressed" from="HUD/Panel/BulletPlusOneButton" to="GameManager/HQ" method="AddBullet"]
 [connection signal="pressed" from="HUD/Panel/BulletSpeedUpButton" to="GameManager/HQ" method="BoostBulletSpeed"]
+[connection signal="pressed" from="HUD/Panel/BulletAOEButton" to="GameManager/HQ" method="BoostBulletAOE"]
 
 [editable path="GameManager/Warehouses/Warehouse"]
 [editable path="GameManager/Destinations/House"]
 [editable path="GameManager/Destinations/Windmill"]
 [editable path="GameManager/Destinations/Tower"]
 [editable path="GameManager/Destinations/Church"]
+[editable path="GameManager/Obstacles/RockFormation01"]
 [editable path="GameManager/Obstacles/RockFormation02"]

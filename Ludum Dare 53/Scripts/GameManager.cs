@@ -35,14 +35,19 @@ public partial class GameManager : Node2D
     private DragonFactory _RightDragonFactory;
     public static DragonFactory RightDragonFactory => _instance._RightDragonFactory;
 
+    private AnimationFactory _ExplosionFactory;
+    public static AnimationFactory ExplosionFactory => _instance._ExplosionFactory;
+
     private int _Currency = 0;
     public static int Currency => _instance._Currency;
 
     private AStar _aStar;
 
     private double _deliveryTimer = 0.5f;
+    private double _deliveryDelay = 0.5f;
 
-    private double _dragonTimer = 20f;
+    private double _dragonTimer = 2f;
+    private double _dragonDelay = 20f;
 
     public static event Action CurrencyChanged;
 
@@ -61,6 +66,7 @@ public partial class GameManager : Node2D
         _ProjectileFactory = GetNode<ProjectileFactory>("ProjectileFactory");
         _LeftDragonFactory = GetNode<DragonFactory>("LeftDragonFactory");
         _RightDragonFactory = GetNode<DragonFactory>("RightDragonFactory");
+        _ExplosionFactory = GetNode<AnimationFactory>("ExplosionFactory");
 
         ScoreManager.ResetScore();
 
@@ -74,6 +80,8 @@ public partial class GameManager : Node2D
 
         HQ.HireAgent();
         HQ.NewDelivery();
+
+        DebugHelper.RichMode = true;
 
         if (DebugHelper.RichMode)
             _Currency = 999999;
@@ -94,7 +102,7 @@ public partial class GameManager : Node2D
         {
             HQ.NewDelivery();
 
-            _deliveryTimer = 0.5f;
+            _deliveryTimer = _deliveryDelay;
         }
     }
 
@@ -109,7 +117,7 @@ public partial class GameManager : Node2D
             else
                 RightDragonFactory.SendOffDragon();
 
-            _dragonTimer = 20f;
+            _dragonTimer = _dragonDelay;
         }
     }
 

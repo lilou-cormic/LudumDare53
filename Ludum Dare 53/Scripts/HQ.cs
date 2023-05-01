@@ -12,6 +12,8 @@ public partial class HQ : Area2D, IDestination
 
     public Texture2D BubbleImage { get; private set; }
 
+    public Node2D _aoeGraphic;
+
     public int AgentCounter => _agents.Count;
 
     private const int BulletBaseCount = 3;
@@ -29,6 +31,13 @@ public partial class HQ : Area2D, IDestination
     {
         AgentFactory = GetNode<AgentFactory>("AgentFactory");
         BubbleImage = GetNode<Sprite2D>("BubbleSprite").Texture;
+
+        _aoeGraphic = GetNode<Node2D>("AOEGraphic");
+    }
+
+    public override void _Process(double delta)
+    {
+        _aoeGraphic.GlobalPosition = GetGlobalMousePosition();
     }
 
     public void NewDelivery()
@@ -90,6 +99,13 @@ public partial class HQ : Area2D, IDestination
     public void BoostBulletSpeed()
     {
         Projectile.IncreaseSpeed();
+    }
+
+    public void BoostBulletAOE()
+    {
+        _aoeGraphic.Visible = true;
+
+        Projectile.IncreaseAOE();
     }
 
     public static void ResetStats()

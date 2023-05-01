@@ -4,18 +4,18 @@
 [ext_resource type="Texture2D" uid="uid://cr30pgpvnsqfa" path="res://Images/Projectile/projectile-1.png" id="2_7p5fe"]
 [ext_resource type="Texture2D" uid="uid://cxa7m6qutxugm" path="res://Images/Projectile/projectile-1-shadow.png" id="3_q71cv"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_ayldn"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_lrwvt"]
+radius = 27.0185
 
 [node name="Projectile" type="Node2D"]
 script = ExtResource("1_x1i7o")
 
-[node name="AOE" type="Area2D" parent="."]
-z_index = 7
+[node name="Area2D" type="Area2D" parent="."]
 collision_layer = 16
-collision_mask = 288
+collision_mask = 256
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AOE"]
-shape = SubResource("CircleShape2D_ayldn")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_lrwvt")
 
 [node name="Projectile-1-shadow" type="Sprite2D" parent="."]
 z_index = 19

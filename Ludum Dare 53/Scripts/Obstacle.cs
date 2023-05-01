@@ -17,7 +17,7 @@ public partial class Obstacle : Area2D
                 _tile.HasObstacle = true;
                 break;
 
-            case Projectile:
+            case Explosion:
                 if (_tile != null)
                     _tile.HasObstacle = false;
 

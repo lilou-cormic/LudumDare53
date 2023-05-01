@@ -5,6 +5,8 @@ public partial class Agent : Node2D
 {
     private const float BaseSpeed = 1f;
 
+    public const float SpeedBump = 1f;
+
     private static float _currentSpeed = BaseSpeed;
 
     public static int SpeedCounter = 1;
@@ -52,7 +54,6 @@ public partial class Agent : Node2D
             default:
                 return;
         }
-
 
         _bubble.Texture = ((IDestination)destination).BubbleImage;
 
@@ -115,7 +116,7 @@ public partial class Agent : Node2D
     public static void IncreaseSpeed()
     {
         SpeedCounter++;
-        _currentSpeed += BaseSpeed;
+        _currentSpeed += SpeedBump;
 
         Stats.OnStatsChanged();
     }

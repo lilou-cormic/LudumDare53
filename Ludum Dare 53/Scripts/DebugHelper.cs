@@ -4,5 +4,5 @@
 
     public static bool GodMode = false;
 
-    public static bool RichMode = true;
+    public static bool RichMode = false;
 }

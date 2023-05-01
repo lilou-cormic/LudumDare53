@@ -28,4 +28,12 @@ public partial class Dragon : Enemy
         if (direction.X < 0)
             Scale = new Vector2(-Scale.X, Scale.Y);
     }
+
+    protected override void OnBodyAreaEnteredInternal(Node parent)
+    {
+        base.OnBodyAreaEnteredInternal(parent);
+
+        if (parent is Explosion)
+            Die();
+    }
 }

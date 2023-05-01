@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://d0ihcyx7lmexb"]
+
+[ext_resource type="Script" path="res://Scripts/Explosion.cs" id="1_61xdc"]
+[ext_resource type="Texture2D" uid="uid://bybg3ybaw8sfw" path="res://Images/Effects/impact-fx-plume.png" id="1_pn86a"]
+[ext_resource type="Texture2D" uid="uid://bpynqdlq8r7lr" path="res://Images/Effects/impact-fx-fragments.png" id="2_yjhvl"]
+[ext_resource type="Texture2D" uid="uid://de1lc7ic8x5ej" path="res://Images/Effects/impact-fx-debris.png" id="3_bs3lt"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_altyd"]
+radius = 49.5025
+
+[node name="Explosion" type="Node2D"]
+z_index = 25
+script = ExtResource("1_61xdc")
+
+[node name="Area2D" type="Area2D" parent="."]
+z_index = 7
+collision_layer = 1024
+collision_mask = 800
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_altyd")
+
+[node name="Impact-fx-plume" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_pn86a")
+
+[node name="Impact-fx-fragments" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_yjhvl")
+
+[node name="Impact-fx-debris" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_bs3lt")

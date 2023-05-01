@@ -39,7 +39,9 @@ project/assembly_name="Ludum Dare 53"
 2d_physics/layer_6="Obstacle"
 2d_physics/layer_7="Path"
 2d_physics/layer_8="Tile"
-2d_physics/layer_9="Enemy"
+2d_physics/layer_9="FlyingEnemy"
+2d_physics/layer_10="LandEnemy"
+2d_physics/layer_11="Explosion"
 
 [rendering]
 
