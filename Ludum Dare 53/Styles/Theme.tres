@@ -1,0 +1,23 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://f1ss2majff58"]
+
+[ext_resource type="FontFile" uid="uid://b7ca4aoa01im1" path="res://Fonts/Friz Quadrata Bold (1965).otf" id="1_u4ti2"]
+[ext_resource type="StyleBox" uid="uid://bafqludp6sdlf" path="res://Styles/button_style_box_texture.tres" id="2_aebnt"]
+
+[resource]
+Button/colors/font_focus_color = Color(1, 0.866667, 0, 1)
+Button/colors/font_hover_color = Color(1, 0.866667, 0, 1)
+Button/colors/font_hover_pressed_color = Color(1, 0.866667, 0, 1)
+Button/colors/font_pressed_color = Color(0.0862745, 0.670588, 0.0862745, 1)
+Button/constants/h_separation = 4
+Button/font_sizes/font_size = 25
+Button/font_sizes/font_spacing = 16
+Button/fonts/font = ExtResource("1_u4ti2")
+Button/styles/disabled = ExtResource("2_aebnt")
+Button/styles/focus = ExtResource("2_aebnt")
+Button/styles/hover = ExtResource("2_aebnt")
+Button/styles/normal = ExtResource("2_aebnt")
+Button/styles/pressed = ExtResource("2_aebnt")
+Label/font_sizes/font_size = 20
+Label/fonts/font = ExtResource("1_u4ti2")
+MarginContainer/constants/margin_left = 50
+MarginContainer/constants/margin_right = 24

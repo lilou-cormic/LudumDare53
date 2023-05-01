@@ -12,7 +12,7 @@ config_version=5
 
 config/name="Ludum Dare 53"
 run/main_scene="res://Scenes/Menu.tscn"
-config/features=PackedStringArray("4.0", "C#", "GL Compatibility")
+config/features=PackedStringArray("4.0", "GL Compatibility")
 boot_splash/bg_color=Color(0, 0, 0, 1)
 boot_splash/image="res://Images/SplashScreen/splash-screen-purple-cable-pixel-prophecy.png"
 config/icon="res://icon.svg"

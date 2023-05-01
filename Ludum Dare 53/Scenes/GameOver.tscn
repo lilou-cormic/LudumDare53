@@ -1,11 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://dkv3hg02427hx"]
+[gd_scene load_steps=7 format=3]
 
-[ext_resource type="Theme" uid="uid://f1ss2majff58" path="res://Theme.tres" id="1"]
-[ext_resource type="FontFile" path="res://Fonts/Kenney Bold Large.tres" id="2"]
+[ext_resource type="Theme" uid="uid://f1ss2majff58" path="res://Styles/Theme.tres" id="1"]
 [ext_resource type="Script" path="res://Scripts/GameOver.cs" id="3"]
+[ext_resource type="FontFile" uid="uid://b7ca4aoa01im1" path="res://Fonts/Friz Quadrata Bold (1965).otf" id="3_544xq"]
 [ext_resource type="Script" path="res://PurpleCable/Core/Scripts/ScoreDisplay.cs" id="4"]
-[ext_resource type="Texture2D" uid="uid://dqbv1isy1eomr" path="res://Images/UI/Buttons/button-wide-default.png" id="5_aim3a"]
 [ext_resource type="PackedScene" uid="uid://06bn8mxhwolv" path="res://Prefabs/Cursor.tscn" id="6_bplpa"]
+
+[sub_resource type="Theme" id="Theme_mveen"]
 
 [node name="GameOver" type="Control"]
 layout_mode = 3
@@ -18,12 +19,18 @@ theme = ExtResource("1")
 script = ExtResource("3")
 
 [node name="GameOverLabel" type="Label" parent="."]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = -1
 anchor_top = 0.079
 anchor_right = 1.0
 anchor_bottom = 0.249
-theme_override_fonts/font = ExtResource("2")
-theme_override_font_sizes/font_size = 40
+offset_top = 4.67999
+offset_bottom = 53.468
+theme = SubResource("Theme_mveen")
+theme_type_variation = &"HeaderLarge"
+theme_override_colors/font_color = Color(0.992157, 0.784314, 0.129412, 1)
+theme_override_fonts/font = ExtResource("3_544xq")
+theme_override_font_sizes/font_size = 58
 text = "Game Over"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -71,17 +78,12 @@ layout_mode = 0
 anchor_top = 0.675
 anchor_right = 0.5
 anchor_bottom = 1.0
+theme = ExtResource("1")
 
 [node name="RetryButton" type="Button" parent="CenterContainer"]
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 text = "Retry"
-flat = true
-
-[node name="Button-wide-default" type="Sprite2D" parent="CenterContainer/RetryButton"]
-z_index = -1
-position = Vector2(40, 20)
-scale = Vector2(0.4, 0.4)
-texture = ExtResource("5_aim3a")
 
 [node name="CenterContainer2" type="CenterContainer" parent="."]
 layout_mode = 0
@@ -91,15 +93,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="QuitButton" type="Button" parent="CenterContainer2"]
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 text = "Quit"
-flat = true
-
-[node name="Button-wide-default" type="Sprite2D" parent="CenterContainer2/QuitButton"]
-z_index = -1
-position = Vector2(34, 20)
-scale = Vector2(0.4, 0.4)
-texture = ExtResource("5_aim3a")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 autoplay = true
