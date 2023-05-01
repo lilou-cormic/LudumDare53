@@ -55,7 +55,8 @@ namespace PurpleCable
         {
             SetText();
 
-            Pop();
+            if (!IsHighScore)
+                Pop();
         }
 
         private void SetText()

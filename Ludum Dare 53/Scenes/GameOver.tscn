@@ -32,7 +32,7 @@ layout_mode = 0
 anchor_top = 0.35
 anchor_right = 0.5
 anchor_bottom = 0.475
-text = "Score "
+text = "SCORE "
 horizontal_alignment = 2
 vertical_alignment = 2
 
@@ -52,7 +52,7 @@ layout_mode = 0
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.675
-text = "Best "
+text = "HI-SCORE "
 horizontal_alignment = 2
 
 [node name="HiScoreText" type="Label" parent="."]

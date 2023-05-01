@@ -1,4 +1,5 @@
 ﻿using Godot;
+using PurpleCable;
 
 public partial class Projectile : Node2D
 {
@@ -17,6 +18,8 @@ public partial class Projectile : Node2D
     private bool _goingDown = false;
 
     private Vector2 _positionVelocity = Vector2.Zero;
+
+    private Trajectory _trajectory;
 
     private bool _hasExploded = false;
 
@@ -41,7 +44,7 @@ public partial class Projectile : Node2D
 
         float distance = GlobalPosition.DistanceTo(_target);
 
-        _graphic.Position = new Vector2(_graphic.Position.X, -trajectory.Point(_fullDistance - distance).Y);
+        _graphic.Position = new Vector2(_graphic.Position.X, -_trajectory.Point(_fullDistance - distance).Y);
 
         Vector2 dir = GlobalPosition.DirectionTo(_target);
 
@@ -54,15 +57,13 @@ public partial class Projectile : Node2D
         }
     }
 
-    Trajectory trajectory;
-
     public void SetTarget(Vector2 target)
     {
         _target = target;
 
         _fullDistance = GlobalPosition.DistanceTo(_target);
 
-        trajectory = new Trajectory(new Vector3(), Vector3.Right * _fullDistance, 150);
+        _trajectory = new Trajectory(new Vector3(), Vector3.Right * _fullDistance, 150);
     }
 
     public void Explode()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://bg4tnbic1mwki"]
+[gd_scene load_steps=29 format=3 uid="uid://bg4tnbic1mwki"]
 
 [ext_resource type="Script" path="res://Scripts/Map.cs" id="1_ygkfg"]
 [ext_resource type="Texture2D" uid="uid://cgmckhskbnmpu" path="res://Images/Map/path-network.png" id="2_icw2k"]
@@ -23,6 +23,10 @@
 [ext_resource type="Texture2D" uid="uid://dfjo6d084uw7l" path="res://Images/Obstacle/rockface-1.png" id="18_dfeyx"]
 [ext_resource type="Script" path="res://Scripts/ProjectileFactory.cs" id="19_ss65q"]
 [ext_resource type="PackedScene" uid="uid://b8bxjqomf83vv" path="res://Prefabs/Projectile.tscn" id="20_p5tle"]
+[ext_resource type="PackedScene" uid="uid://t2g0hatnufgu" path="res://Prefabs/Dragon.tscn" id="21_18ahh"]
+[ext_resource type="Script" path="res://Scripts/DragonFactory.cs" id="21_etc72"]
+[ext_resource type="Theme" uid="uid://f1ss2majff58" path="res://Theme.tres" id="24_4cgvg"]
+[ext_resource type="Script" path="res://PurpleCable/Core/Scripts/ScoreDisplay.cs" id="25_01pja"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s5a6x"]
 size = Vector2(1600, 1080)
@@ -300,6 +304,33 @@ position = Vector2(798, 482)
 script = ExtResource("19_ss65q")
 Prefab = ExtResource("20_p5tle")
 
+[node name="LeftDragonFactory" type="Node2D" parent="GameManager"]
+script = ExtResource("21_etc72")
+Prefab = ExtResource("21_18ahh")
+
+[node name="SpawnPoint01" type="Node2D" parent="GameManager/LeftDragonFactory"]
+position = Vector2(-180, 119)
+
+[node name="SpawnPoint02" type="Node2D" parent="GameManager/LeftDragonFactory"]
+position = Vector2(-180, 570)
+
+[node name="SpawnPoint03" type="Node2D" parent="GameManager/LeftDragonFactory"]
+position = Vector2(-180, 764)
+
+[node name="RightDragonFactory" type="Node2D" parent="GameManager"]
+script = ExtResource("21_etc72")
+GoingLeft = true
+Prefab = ExtResource("21_18ahh")
+
+[node name="SpawnPoint01" type="Node2D" parent="GameManager/RightDragonFactory"]
+position = Vector2(1800, 184)
+
+[node name="SpawnPoint02" type="Node2D" parent="GameManager/RightDragonFactory"]
+position = Vector2(1800, 368)
+
+[node name="SpawnPoint03" type="Node2D" parent="GameManager/RightDragonFactory"]
+position = Vector2(1800, 629)
+
 [node name="Foliages" type="Node2D" parent="."]
 
 [node name="Foliage02" parent="Foliages" instance=ExtResource("17_dtmw5")]
@@ -312,7 +343,7 @@ position = Vector2(-64, 0)
 position = Vector2(780, -64)
 
 [node name="Foliage04" parent="Foliages" instance=ExtResource("17_dtmw5")]
-position = Vector2(1137, -64)
+position = Vector2(1133, -64)
 
 [node name="Trees-1" type="Sprite2D" parent="."]
 z_index = 2
@@ -336,6 +367,61 @@ texture = ExtResource("18_dfeyx")
 [node name="Brambles" type="Sprite2D" parent="."]
 position = Vector2(1022, 320)
 texture = ExtResource("16_cxjv2")
+
+[node name="HUD" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 1602.0
+offset_right = 1920.0
+offset_bottom = 1080.0
+theme = ExtResource("24_4cgvg")
+
+[node name="Panel" type="Panel" parent="HUD"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ScoreLabel" type="Label" parent="HUD/Panel"]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 10.0
+offset_top = 10.0
+text = "SCORE"
+
+[node name="ScoreText" type="Label" parent="HUD/Panel"]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 10.0
+offset_top = 40.0
+text = "000"
+script = ExtResource("25_01pja")
+
+[node name="HiScoreLabel" type="Label" parent="HUD/Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_top = 10.0
+offset_right = -10.0
+grow_horizontal = 0
+text = "HI-SCORE"
+horizontal_alignment = 2
+
+[node name="HiScoreText" type="Label" parent="HUD/Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_top = 40.0
+offset_right = -10.0
+grow_horizontal = 0
+text = "000"
+horizontal_alignment = 2
+script = ExtResource("25_01pja")
+IsHighScore = true
 
 [connection signal="input_event" from="Map/Area2D" to="Map" method="OnInputEvent"]
 

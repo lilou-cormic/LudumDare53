@@ -28,9 +28,17 @@ public partial class GameManager : Node2D
     private ProjectileFactory _ProjectileFactory;
     public static ProjectileFactory ProjectileFactory => _instance._ProjectileFactory;
 
+    private DragonFactory _LeftDragonFactory;
+    public static DragonFactory LeftDragonFactory => _instance._LeftDragonFactory;
+
+    private DragonFactory _RightDragonFactory;
+    public static DragonFactory RightDragonFactory => _instance._RightDragonFactory;
+
     private AStar _aStar;
 
     private double _deliveryTimer = 2f;
+
+    private double _dragonTimer = 7f;
 
     public GameManager()
     {
@@ -45,6 +53,8 @@ public partial class GameManager : Node2D
         _Destinations = GetNode<Destinations>("Destinations");
         _Paths = GetNode<Paths>("Paths");
         _ProjectileFactory = GetNode<ProjectileFactory>("ProjectileFactory");
+        _LeftDragonFactory = GetNode<DragonFactory>("LeftDragonFactory");
+        _RightDragonFactory = GetNode<DragonFactory>("RightDragonFactory");
 
         ScoreManager.ResetScore();
 
@@ -56,6 +66,13 @@ public partial class GameManager : Node2D
 
     public override void _PhysicsProcess(double delta)
     {
+        ProcessDelivery(delta);
+
+        ProcessDragon(delta);
+    }
+
+    private void ProcessDelivery(double delta)
+    {
         _deliveryTimer -= delta;
 
         if (_deliveryTimer <= 0)
@@ -63,6 +80,21 @@ public partial class GameManager : Node2D
             HQ.NewDelivery();
 
             _deliveryTimer = 2f;
+        }
+    }
+
+    private void ProcessDragon(double delta)
+    {
+        _dragonTimer -= delta;
+
+        if (_dragonTimer <= 0)
+        {
+            if (GD.Randf() > 0.5)
+                LeftDragonFactory.SendOffDragon();
+            else
+                RightDragonFactory.SendOffDragon();
+
+            _dragonTimer = 2f;
         }
     }
 
@@ -100,6 +132,8 @@ public partial class GameManager : Node2D
 
     public static void GameOver()
     {
+        ScoreManager.SetHighScore();
+
         _instance.GetTree().ChangeSceneToFile(@"res://Scenes/GameOver.tscn");
     }
 }
