@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://dmeyu787t5bog"]
+[gd_scene load_steps=7 format=3 uid="uid://dmeyu787t5bog"]
 
 [ext_resource type="Theme" uid="uid://f1ss2majff58" path="res://Theme.tres" id="1"]
 [ext_resource type="Script" path="res://PurpleCable/Core/Scripts/MainMenu.cs" id="3"]
 [ext_resource type="FontFile" path="res://Fonts/Bauhaus 93 Normal.tres" id="3_3erjh"]
 [ext_resource type="Texture2D" uid="uid://dqbv1isy1eomr" path="res://Images/UI/Buttons/button-wide-default.png" id="4_4jpwh"]
 [ext_resource type="Script" path="res://Scripts/MusicPlayer.cs" id="6"]
+[ext_resource type="PackedScene" uid="uid://06bn8mxhwolv" path="res://Prefabs/Cursor.tscn" id="6_8kl5j"]
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -94,6 +95,8 @@ texture = ExtResource("4_4jpwh")
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
 autoplay = true
 script = ExtResource("6")
+
+[node name="Cursor" parent="." instance=ExtResource("6_8kl5j")]
 
 [connection signal="pressed" from="CenterContainer/VBoxContainer/PlayButton" to="." method="StartGame"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/OptionsButton" to="." method="ShowOptions"]

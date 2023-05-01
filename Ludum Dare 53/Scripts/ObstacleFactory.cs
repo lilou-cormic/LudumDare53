@@ -18,8 +18,6 @@ public partial class ObstacleFactory : PrefabFactory<Obstacle>
         {
             _timer -= delta;
 
-            GD.Print(_timer);
-
             if (_timer <= 0)
                 Spawn();
         }
