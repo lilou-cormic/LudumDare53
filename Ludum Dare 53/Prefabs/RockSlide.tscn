@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://c46xm3sflvyy6"]
+
+[ext_resource type="PackedScene" uid="uid://c8lpwi8w6qkq4" path="res://Prefabs/Obstacle.tscn" id="1_3hxc5"]
+[ext_resource type="Texture2D" uid="uid://d001tthhkak0h" path="res://Images/Obstacle/rockslide-1.png" id="2_s11xy"]
+
+[node name="RockSlide" instance=ExtResource("1_3hxc5")]
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("2_s11xy")

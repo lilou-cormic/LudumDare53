@@ -12,15 +12,15 @@
 [ext_resource type="Script" path="res://Scripts/Destinations.cs" id="5_4dy1h"]
 [ext_resource type="PackedScene" uid="uid://d23tkieuerlq1" path="res://Prefabs/Warehouse.tscn" id="5_6sixh"]
 [ext_resource type="Script" path="res://Scripts/GameManager.cs" id="7"]
-[ext_resource type="PackedScene" uid="uid://c8lpwi8w6qkq4" path="res://Prefabs/Obstacle.tscn" id="8_8kvoi"]
 [ext_resource type="Texture2D" uid="uid://0v10s33bi2gt" path="res://Images/Destination/destination-windmill.png" id="8_jiok6"]
 [ext_resource type="Texture2D" uid="uid://b22y58uo8prmn" path="res://Images/Map/background-meadow.png" id="10_rrg00"]
 [ext_resource type="Texture2D" uid="uid://da0ohp8asgc5q" path="res://Images/Destination/destination-house-1.png" id="10_yhf70"]
 [ext_resource type="Texture2D" uid="uid://b5scdowl2in73" path="res://Images/Destination/destination-tower.png" id="14_ttfuv"]
-[ext_resource type="Texture2D" uid="uid://cqbplcaerdcu" path="res://Images/Obstacle/brambles.png" id="16_cxjv2"]
+[ext_resource type="PackedScene" uid="uid://csep56cjpi8vy" path="res://Prefabs/RockFormation.tscn" id="16_2ihmk"]
+[ext_resource type="Texture2D" uid="uid://qnb6vbvrtowu" path="res://Images/Destination/destination-church-1.png" id="16_mhjfl"]
 [ext_resource type="PackedScene" uid="uid://dbcbud8lj7mrw" path="res://Prefabs/Foliage.tscn" id="17_dtmw5"]
 [ext_resource type="Texture2D" uid="uid://bqgilulf5makk" path="res://Images/Obstacle/trees-1.png" id="17_hthee"]
-[ext_resource type="Texture2D" uid="uid://dfjo6d084uw7l" path="res://Images/Obstacle/rockface-1.png" id="18_dfeyx"]
+[ext_resource type="PackedScene" uid="uid://fi5lrdfcjmp2" path="res://Prefabs/BramblesRoot.tscn" id="18_rd4t1"]
 [ext_resource type="Script" path="res://Scripts/ProjectileFactory.cs" id="19_ss65q"]
 [ext_resource type="PackedScene" uid="uid://b8bxjqomf83vv" path="res://Prefabs/Projectile.tscn" id="20_p5tle"]
 [ext_resource type="PackedScene" uid="uid://t2g0hatnufgu" path="res://Prefabs/Dragon.tscn" id="21_18ahh"]
@@ -250,7 +250,7 @@ scale = Vector2(1, 6.04)
 script = ExtResource("3_qpb6p")
 
 [node name="Warehouse" parent="GameManager/Warehouses" instance=ExtResource("5_6sixh")]
-position = Vector2(1216, 384)
+position = Vector2(1088, 192)
 
 [node name="Sprite2D" parent="GameManager/Warehouses/Warehouse" index="1"]
 position = Vector2(34.04, 10)
@@ -273,28 +273,40 @@ position = Vector2(26, -1)
 texture = ExtResource("8_jiok6")
 
 [node name="Destination03" parent="GameManager/Destinations" instance=ExtResource("4_eawbt")]
-position = Vector2(192, 768)
+position = Vector2(1408, 64)
 
 [node name="Sprite2D" parent="GameManager/Destinations/Destination03" index="1"]
-position = Vector2(42, 9)
+position = Vector2(36, 19)
 texture = ExtResource("14_ttfuv")
+
+[node name="Tile" parent="GameManager/Destinations/Destination03" instance=ExtResource("3_cky3d")]
+
+[node name="Destination04" parent="GameManager/Destinations" instance=ExtResource("4_eawbt")]
+position = Vector2(192, 768)
+
+[node name="Sprite2D" parent="GameManager/Destinations/Destination04" index="1"]
+position = Vector2(42, 9)
+texture = ExtResource("16_mhjfl")
 
 [node name="Obstacles" type="Node2D" parent="GameManager"]
 
-[node name="Obstacle01" parent="GameManager/Obstacles" instance=ExtResource("8_8kvoi")]
-position = Vector2(608, 683)
+[node name="RockFormation01" parent="GameManager/Obstacles" instance=ExtResource("16_2ihmk")]
 
-[node name="Obstacle02" parent="GameManager/Obstacles" instance=ExtResource("8_8kvoi")]
-position = Vector2(1056, 288)
+[node name="RockFormation02" parent="GameManager/Obstacles" instance=ExtResource("16_2ihmk")]
+position = Vector2(959, 432)
 
-[node name="Sprite2D" parent="GameManager/Obstacles/Obstacle02" index="1"]
-texture = ExtResource("16_cxjv2")
+[node name="Rockface-1" parent="GameManager/Obstacles/RockFormation02" index="0"]
+position = Vector2(35.5, 0)
+scale = Vector2(0.858553, 1)
 
-[node name="Obstacle03" parent="GameManager/Obstacles" instance=ExtResource("8_8kvoi")]
-position = Vector2(992, 288)
+[node name="RockSlideFactory01" parent="GameManager/Obstacles/RockFormation02" index="1"]
+position = Vector2(97, 48)
 
-[node name="Sprite2D" parent="GameManager/Obstacles/Obstacle03" index="1"]
-texture = ExtResource("16_cxjv2")
+[node name="BramblesRoot01" parent="GameManager/Obstacles" instance=ExtResource("18_rd4t1")]
+position = Vector2(1214, 320)
+
+[node name="BramblesRoot02" parent="GameManager/Obstacles" instance=ExtResource("18_rd4t1")]
+position = Vector2(960.5, 959)
 
 [node name="HQ" parent="GameManager" instance=ExtResource("2_p2rb2")]
 position = Vector2(768, 512)
@@ -340,14 +352,24 @@ position = Vector2(364, -64)
 position = Vector2(-64, 0)
 
 [node name="Foliage03" parent="Foliages" instance=ExtResource("17_dtmw5")]
-position = Vector2(780, -64)
+position = Vector2(728, -64)
 
 [node name="Foliage04" parent="Foliages" instance=ExtResource("17_dtmw5")]
-position = Vector2(1133, -64)
+position = Vector2(941, -64)
 
 [node name="Trees-1" type="Sprite2D" parent="."]
 z_index = 2
 position = Vector2(512, 368)
+texture = ExtResource("17_hthee")
+
+[node name="Trees-7" type="Sprite2D" parent="."]
+z_index = 2
+position = Vector2(831, 244)
+texture = ExtResource("17_hthee")
+
+[node name="Trees-5" type="Sprite2D" parent="."]
+z_index = 2
+position = Vector2(186, 578)
 texture = ExtResource("17_hthee")
 
 [node name="Trees-2" type="Sprite2D" parent="."]
@@ -360,13 +382,15 @@ z_index = 2
 position = Vector2(437, 892)
 texture = ExtResource("17_hthee")
 
-[node name="Rockface-1" type="Sprite2D" parent="."]
-position = Vector2(575, 635)
-texture = ExtResource("18_dfeyx")
+[node name="Trees-6" type="Sprite2D" parent="."]
+z_index = 2
+position = Vector2(777, 1012)
+texture = ExtResource("17_hthee")
 
-[node name="Brambles" type="Sprite2D" parent="."]
-position = Vector2(1022, 320)
-texture = ExtResource("16_cxjv2")
+[node name="Trees-4" type="Sprite2D" parent="."]
+z_index = 3
+position = Vector2(1534, 182)
+texture = ExtResource("17_hthee")
 
 [node name="HUD" type="Control" parent="."]
 layout_mode = 3
@@ -429,5 +453,5 @@ IsHighScore = true
 [editable path="GameManager/Destinations/Destination01"]
 [editable path="GameManager/Destinations/Destination02"]
 [editable path="GameManager/Destinations/Destination03"]
-[editable path="GameManager/Obstacles/Obstacle02"]
-[editable path="GameManager/Obstacles/Obstacle03"]
+[editable path="GameManager/Destinations/Destination04"]
+[editable path="GameManager/Obstacles/RockFormation02"]

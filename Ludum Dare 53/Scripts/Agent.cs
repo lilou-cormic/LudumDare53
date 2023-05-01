@@ -96,6 +96,9 @@ public partial class Agent : Node2D
 
     public void Damage()
     {
+        if (DebugHelper.GodMode)
+            return;
+        
         GameManager.HQ.OnAgentDied(this);
         QueueFree();
     }

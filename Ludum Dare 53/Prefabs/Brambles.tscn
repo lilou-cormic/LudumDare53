@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://vu1q7u3dud42"]
+
+[ext_resource type="PackedScene" uid="uid://c8lpwi8w6qkq4" path="res://Prefabs/Obstacle.tscn" id="1_hpny7"]
+[ext_resource type="Texture2D" uid="uid://cqbplcaerdcu" path="res://Images/Obstacle/brambles.png" id="2_1a05r"]
+
+[node name="Brambles" instance=ExtResource("1_hpny7")]
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("2_1a05r")

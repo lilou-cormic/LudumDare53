@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://csep56cjpi8vy"]
+
+[ext_resource type="Texture2D" uid="uid://dfjo6d084uw7l" path="res://Images/Obstacle/rockface-1.png" id="1_5fruw"]
+[ext_resource type="Script" path="res://Scripts/ObstacleFactory.cs" id="2_7nk3x"]
+[ext_resource type="PackedScene" uid="uid://c46xm3sflvyy6" path="res://Prefabs/RockSlide.tscn" id="3_ogvp4"]
+
+[node name="RockFormation" type="Node2D"]
+position = Vector2(575, 635)
+
+[node name="Rockface-1" type="Sprite2D" parent="."]
+texture = ExtResource("1_5fruw")
+
+[node name="RockSlideFactory01" type="Node2D" parent="."]
+position = Vector2(33, 48)
+script = ExtResource("2_7nk3x")
+Prefab = ExtResource("3_ogvp4")

@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://fi5lrdfcjmp2"]
+
+[ext_resource type="Script" path="res://Scripts/ObstacleFactory.cs" id="1_qwc4q"]
+[ext_resource type="PackedScene" uid="uid://vu1q7u3dud42" path="res://Prefabs/Brambles.tscn" id="2_hb6e4"]
+[ext_resource type="Texture2D" uid="uid://cqbplcaerdcu" path="res://Images/Obstacle/brambles.png" id="3_5y2ek"]
+
+[node name="BramblesRoot" type="Node2D"]
+
+[node name="LeftBramblesFactory" type="Node2D" parent="."]
+position = Vector2(-30, -32)
+script = ExtResource("1_qwc4q")
+Prefab = ExtResource("2_hb6e4")
+
+[node name="RightBramblesFactory" type="Node2D" parent="."]
+position = Vector2(34, -32)
+script = ExtResource("1_qwc4q")
+Prefab = ExtResource("2_hb6e4")
+
+[node name="Brambles" type="Sprite2D" parent="."]
+texture = ExtResource("3_5y2ek")
