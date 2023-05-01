@@ -1,5 +1,6 @@
 using Godot;
 using PurpleCable;
+using System;
 using System.Collections.Generic;
 
 public partial class GameManager : Node2D
@@ -34,11 +35,16 @@ public partial class GameManager : Node2D
     private DragonFactory _RightDragonFactory;
     public static DragonFactory RightDragonFactory => _instance._RightDragonFactory;
 
+    private int _Currency = 0;
+    public static int Currency => _instance._Currency;
+
     private AStar _aStar;
 
     private double _deliveryTimer = 2f;
 
     private double _dragonTimer = 20f;
+
+    public static event Action CurrencyChanged;
 
     public GameManager()
     {
@@ -128,6 +134,19 @@ public partial class GameManager : Node2D
     public static Vector2? GetNextPosition(Node2D start, Node2D end)
     {
         return _instance._aStar.FindPath(start.GlobalPosition, end.GlobalPosition)?.Pop().Position * GameUI.TileSize;
+    }
+
+    public static void ChangeCurrency(int amount)
+    {
+        if (amount > 0)
+            ScoreManager.AddPoints(amount);
+
+        _instance._Currency += amount;
+
+        if (_instance._Currency < 0)
+            _instance._Currency = 0;
+
+        CurrencyChanged?.Invoke();
     }
 
     public static void GameOver()

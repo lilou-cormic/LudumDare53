@@ -37,7 +37,7 @@ namespace PurpleCable
                     if (_scale > _maxScale)
                         _scale = _maxScale;
 
-                    Scale = new Vector2(_scale, _scale);
+                    Scale = new Vector2(1, _scale);
                 }
                 else
                 {
