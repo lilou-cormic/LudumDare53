@@ -10,8 +10,6 @@ public partial class HQ : Area2D, IDestination
 
     private AgentFactory AgentFactory { get; set; }
 
-    public int MaxAgents { get; private set; } = 10;
-
     public Texture2D BubbleImage { get; private set; }
 
     public HQ()
@@ -50,19 +48,14 @@ public partial class HQ : Area2D, IDestination
             _agents.FirstOrDefault(agent => agent.DeliveryState == DeliveryState.StandBy)?.SendOut(optimalWarehouse, destination);
     }
 
-    public void IncreaseHiringCapacity()
-    {
-        MaxAgents += 5;
-    }
-
-    public bool CanHireAgent()
-    {
-        return _agents.Count < MaxAgents;
-    }
-
     public void HireAgent()
     {
         _agents.Add(AgentFactory.GetAgent());
+    }
+
+    public void BoostAgentSpeed()
+    {
+        Agent.IncreaseSpeed();
     }
 
     public void OnAreaEntered(Area2D area)

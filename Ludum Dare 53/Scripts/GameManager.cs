@@ -63,6 +63,7 @@ public partial class GameManager : Node2D
         _RightDragonFactory = GetNode<DragonFactory>("RightDragonFactory");
 
         ScoreManager.ResetScore();
+        Agent.ResetStats();
 
         CreateTileGrid();
 

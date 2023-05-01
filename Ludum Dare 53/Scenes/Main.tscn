@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://bb8gjqjcmb6r8"]
+[gd_scene load_steps=54 format=3 uid="uid://bb8gjqjcmb6r8"]
 
 [ext_resource type="Script" path="res://Scripts/Map.cs" id="1_ygkfg"]
 [ext_resource type="Texture2D" uid="uid://cgmckhskbnmpu" path="res://Images/Map/path-network.png" id="2_icw2k"]
@@ -36,6 +36,18 @@
 [ext_resource type="Texture2D" uid="uid://dhhmhuqkcx0rv" path="res://Images/Sidebar/sidebar-icon-gnomes-plus-one-active.png" id="33_tgc8d"]
 [ext_resource type="Script" path="res://PurpleCable/Core/Scripts/ScoreDisplay.cs" id="33_unxcc"]
 [ext_resource type="Script" path="res://Scripts/CurrencyDisplay.cs" id="34_oagmy"]
+[ext_resource type="PackedScene" uid="uid://hb4lij4isiij" path="res://Prefabs/ShopButton.tscn" id="35_u0jqq"]
+[ext_resource type="Texture2D" uid="uid://chchtr4xkhg3b" path="res://Images/Sidebar/sidebar-icon-gnomes-plus-one-inactive.png" id="36_iktfn"]
+[ext_resource type="Texture2D" uid="uid://dcs21crg4xknq" path="res://Images/Sidebar/sidebar-icon-gnomes-speed-up-active.png" id="38_n8653"]
+[ext_resource type="Texture2D" uid="uid://bxalmyxfcqmrl" path="res://Images/Sidebar/sidebar-icon-gnomes-speed-up-inactive.png" id="39_jmbg8"]
+[ext_resource type="Texture2D" uid="uid://btyos1s1e7arq" path="res://Images/Sidebar/sidebar-icon-gnomes-shielded-active.png" id="40_6kg5q"]
+[ext_resource type="Texture2D" uid="uid://cv5vsx2toks7c" path="res://Images/Sidebar/sidebar-icon-gnomes-shielded-inactive.png" id="41_0qh8s"]
+[ext_resource type="Texture2D" uid="uid://cenftqqlq2uqm" path="res://Images/Sidebar/sidebar-icon-projectiles-plus-one-active.png" id="42_3efkc"]
+[ext_resource type="Texture2D" uid="uid://160tbn2wv1gk" path="res://Images/Sidebar/sidebar-icon-projectiles-plus-one-inactive.png" id="43_rb3as"]
+[ext_resource type="Texture2D" uid="uid://qr0njyd6n73" path="res://Images/Sidebar/sidebar-icon-projectiles-speed-up-active.png" id="44_xi8e5"]
+[ext_resource type="Texture2D" uid="uid://dpdhiirhbugeh" path="res://Images/Sidebar/sidebar-icon-projectiles-speed-up-inactive.png" id="45_y8ymi"]
+[ext_resource type="Texture2D" uid="uid://co77u3hfge2pr" path="res://Images/Sidebar/sidebar-icon-aoe-increase-active.png" id="46_uwsup"]
+[ext_resource type="Texture2D" uid="uid://c20lit2wd5tyn" path="res://Images/Sidebar/sidebar-icon-aoe-increase-inactive.png" id="47_h676c"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s5a6x"]
 size = Vector2(1541, 1080)
@@ -55,12 +67,6 @@ shadow_color = Color(0, 0, 0, 0.705882)
 font_size = 36
 shadow_size = 3
 shadow_color = Color(0, 0, 0, 0.737255)
-
-[sub_resource type="LabelSettings" id="LabelSettings_dinba"]
-font_size = 20
-shadow_size = 2
-shadow_color = Color(0, 0, 0, 0.568627)
-shadow_offset = Vector2(0, 1)
 
 [node name="Main" type="Node2D"]
 
@@ -564,29 +570,78 @@ label_settings = SubResource("LabelSettings_r6sff")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Sidebar-icon-gnomes-plus-one-active" type="Sprite2D" parent="HUD/Panel"]
-position = Vector2(101, 440)
-texture = ExtResource("33_tgc8d")
+[node name="AgentPlusOneButton" parent="HUD/Panel" instance=ExtResource("35_u0jqq")]
+layout_mode = 0
+offset_left = 38.0
+offset_top = 430.0
+offset_right = 167.0
+offset_bottom = 577.0
+disabled = true
+texture_normal = ExtResource("33_tgc8d")
+texture_disabled = ExtResource("36_iktfn")
 
-[node name="PriceText" type="Label" parent="HUD/Panel/Sidebar-icon-gnomes-plus-one-active"]
-anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 0.348
-offset_left = -55.0
-offset_top = -59.0
-offset_right = -74.0
-offset_bottom = -79.156
-theme = ExtResource("31_n6vr5")
-text = "150"
-label_settings = SubResource("LabelSettings_dinba")
-horizontal_alignment = 1
-vertical_alignment = 1
+[node name="AgentSpeedUpButton" parent="HUD/Panel" instance=ExtResource("35_u0jqq")]
+layout_mode = 0
+offset_left = 38.0
+offset_top = 620.0
+offset_right = 167.0
+offset_bottom = 767.0
+disabled = true
+texture_normal = ExtResource("38_n8653")
+texture_disabled = ExtResource("39_jmbg8")
+Price = 250
+
+[node name="AgentShieldButton2" parent="HUD/Panel" instance=ExtResource("35_u0jqq")]
+layout_mode = 0
+offset_left = 38.0
+offset_top = 810.0
+offset_right = 167.0
+offset_bottom = 957.0
+disabled = true
+texture_normal = ExtResource("40_6kg5q")
+texture_disabled = ExtResource("41_0qh8s")
+Price = 400
+
+[node name="BulletPlusOneButton2" parent="HUD/Panel" instance=ExtResource("35_u0jqq")]
+layout_mode = 0
+offset_left = 210.0
+offset_top = 430.0
+offset_right = 339.0
+offset_bottom = 577.0
+disabled = true
+texture_normal = ExtResource("42_3efkc")
+texture_disabled = ExtResource("43_rb3as")
+Price = 200
+
+[node name="BulletSpeedUpButton2" parent="HUD/Panel" instance=ExtResource("35_u0jqq")]
+layout_mode = 0
+offset_left = 210.0
+offset_top = 620.0
+offset_right = 339.0
+offset_bottom = 767.0
+disabled = true
+texture_normal = ExtResource("44_xi8e5")
+texture_disabled = ExtResource("45_y8ymi")
+Price = 300
+
+[node name="BulletAOEButton3" parent="HUD/Panel" instance=ExtResource("35_u0jqq")]
+layout_mode = 0
+offset_left = 210.0
+offset_top = 810.0
+offset_right = 339.0
+offset_bottom = 957.0
+disabled = true
+texture_normal = ExtResource("46_uwsup")
+texture_disabled = ExtResource("47_h676c")
+Price = 500
 
 [node name="Cursor" parent="." instance=ExtResource("33_hrcy5")]
 
 [connection signal="input_event" from="Map/Area2D" to="Map" method="OnInputEvent"]
 [connection signal="mouse_entered" from="Map/Area2D" to="Map" method="OnMouseEntered"]
 [connection signal="mouse_exited" from="Map/Area2D" to="Map" method="OnMouseExited"]
+[connection signal="pressed" from="HUD/Panel/AgentPlusOneButton" to="GameManager/HQ" method="HireAgent"]
+[connection signal="pressed" from="HUD/Panel/AgentSpeedUpButton" to="GameManager/HQ" method="BoostAgentSpeed"]
 
 [editable path="GameManager/Warehouses/Warehouse"]
 [editable path="GameManager/Destinations/House"]

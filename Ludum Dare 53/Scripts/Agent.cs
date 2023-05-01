@@ -3,9 +3,9 @@ using PurpleCable;
 
 public partial class Agent : Node2D
 {
-    public const float BaseSpeed = 1f;
+    private const float BaseSpeed = 1f;
 
-    public float CurrentSpeed = BaseSpeed;
+    private static float _currentSpeed = BaseSpeed;
 
     public Warehouse Warehouse { get; private set; }
 
@@ -76,7 +76,7 @@ public partial class Agent : Node2D
                 if (dir.X != 0)
                     _graphic.FlipH = dir.X < 0;
 
-                MoveAnimation = new MoveAnimation(this) { EndGlobalPosition = nextPosition.Value, IsLine = true, Duration = 1 / CurrentSpeed };
+                MoveAnimation = new MoveAnimation(this) { EndGlobalPosition = nextPosition.Value, IsLine = true, Duration = 1 / _currentSpeed };
                 MoveAnimation.Start();
             }
         }
@@ -108,5 +108,15 @@ public partial class Agent : Node2D
 
         GameManager.HQ.OnAgentDied(this);
         QueueFree();
+    }
+
+    public static void ResetStats()
+    {
+        _currentSpeed = BaseSpeed;
+    }
+
+    public static void IncreaseSpeed()
+    {
+        _currentSpeed += BaseSpeed;
     }
 }
