@@ -7,6 +7,8 @@ public partial class Agent : Node2D
 
     private static float _currentSpeed = BaseSpeed;
 
+    public static int SpeedCounter = 1;
+
     public Warehouse Warehouse { get; private set; }
 
     public Destination Destination { get; private set; }
@@ -110,13 +112,17 @@ public partial class Agent : Node2D
         QueueFree();
     }
 
-    public static void ResetStats()
-    {
-        _currentSpeed = BaseSpeed;
-    }
-
     public static void IncreaseSpeed()
     {
+        SpeedCounter++;
         _currentSpeed += BaseSpeed;
+
+        Stats.OnStatsChanged();
+    }
+
+    public static void ResetStats()
+    {
+        SpeedCounter = 1;
+        _currentSpeed = BaseSpeed;
     }
 }

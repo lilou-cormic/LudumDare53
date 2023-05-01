@@ -591,7 +591,7 @@ texture_normal = ExtResource("38_n8653")
 texture_disabled = ExtResource("39_jmbg8")
 Price = 250
 
-[node name="AgentShieldButton2" parent="HUD/Panel" instance=ExtResource("35_u0jqq")]
+[node name="AgentShieldButton" parent="HUD/Panel" instance=ExtResource("35_u0jqq")]
 layout_mode = 0
 offset_left = 38.0
 offset_top = 810.0
@@ -602,7 +602,7 @@ texture_normal = ExtResource("40_6kg5q")
 texture_disabled = ExtResource("41_0qh8s")
 Price = 400
 
-[node name="BulletPlusOneButton2" parent="HUD/Panel" instance=ExtResource("35_u0jqq")]
+[node name="BulletPlusOneButton" parent="HUD/Panel" instance=ExtResource("35_u0jqq")]
 layout_mode = 0
 offset_left = 210.0
 offset_top = 430.0
@@ -613,7 +613,7 @@ texture_normal = ExtResource("42_3efkc")
 texture_disabled = ExtResource("43_rb3as")
 Price = 200
 
-[node name="BulletSpeedUpButton2" parent="HUD/Panel" instance=ExtResource("35_u0jqq")]
+[node name="BulletSpeedUpButton" parent="HUD/Panel" instance=ExtResource("35_u0jqq")]
 layout_mode = 0
 offset_left = 210.0
 offset_top = 620.0
@@ -624,7 +624,7 @@ texture_normal = ExtResource("44_xi8e5")
 texture_disabled = ExtResource("45_y8ymi")
 Price = 300
 
-[node name="BulletAOEButton3" parent="HUD/Panel" instance=ExtResource("35_u0jqq")]
+[node name="BulletAOEButton" parent="HUD/Panel" instance=ExtResource("35_u0jqq")]
 layout_mode = 0
 offset_left = 210.0
 offset_top = 810.0
@@ -642,6 +642,8 @@ Price = 500
 [connection signal="mouse_exited" from="Map/Area2D" to="Map" method="OnMouseExited"]
 [connection signal="pressed" from="HUD/Panel/AgentPlusOneButton" to="GameManager/HQ" method="HireAgent"]
 [connection signal="pressed" from="HUD/Panel/AgentSpeedUpButton" to="GameManager/HQ" method="BoostAgentSpeed"]
+[connection signal="pressed" from="HUD/Panel/BulletPlusOneButton" to="GameManager/HQ" method="AddBullet"]
+[connection signal="pressed" from="HUD/Panel/BulletSpeedUpButton" to="GameManager/HQ" method="BoostBulletSpeed"]
 
 [editable path="GameManager/Warehouses/Warehouse"]
 [editable path="GameManager/Destinations/House"]

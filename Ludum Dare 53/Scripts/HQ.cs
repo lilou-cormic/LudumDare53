@@ -12,6 +12,12 @@ public partial class HQ : Area2D, IDestination
 
     public Texture2D BubbleImage { get; private set; }
 
+    public int AgentCounter => _agents.Count;
+
+    private const int BulletBaseCount = 3;
+
+    public int BulletCounter { get; private set; }
+
     public HQ()
     {
         Instance = this;
@@ -51,11 +57,44 @@ public partial class HQ : Area2D, IDestination
     public void HireAgent()
     {
         _agents.Add(AgentFactory.GetAgent());
+
+        Stats.OnStatsChanged();
     }
 
     public void BoostAgentSpeed()
     {
         Agent.IncreaseSpeed();
+    }
+
+    public void OnAgentDied(Agent agent)
+    {
+        _agents.Remove(agent);
+
+        if (_agents.Count == 0)
+            GameManager.GameOver();
+
+        Stats.OnStatsChanged();
+    }
+
+    public void Shoot(Vector2 target)
+    {
+        if (Projectile.ActiveBulletCount < BulletCounter)
+            GameManager.ProjectileFactory.ShootProjectile(target);
+    }
+
+    public void AddBullet()
+    {
+        BulletCounter++;
+    }
+
+    public void BoostBulletSpeed()
+    {
+        Projectile.IncreaseSpeed();
+    }
+
+    public static void ResetStats()
+    {
+        Instance.BulletCounter = BulletBaseCount;
     }
 
     public void OnAreaEntered(Area2D area)
@@ -66,18 +105,5 @@ public partial class HQ : Area2D, IDestination
         {
             tile.IsOnPath = true;
         }
-    }
-
-    public void Shoot(Vector2 target)
-    {
-        GameManager.ProjectileFactory.ShootProjectile(target);
-    }
-
-    public void OnAgentDied(Agent agent)
-    {
-        _agents.Remove(agent);
-
-        if (_agents.Count == 0)
-            GameManager.GameOver();
     }
 }
