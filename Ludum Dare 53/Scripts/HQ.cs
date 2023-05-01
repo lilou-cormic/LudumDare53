@@ -16,6 +16,8 @@ public partial class HQ : Area2D, IDestination
 
     public int AgentCounter => _agents.Count;
 
+    private AnimationFactory _agentFriedFactory;
+
     private const int BulletBaseCount = 3;
 
     public int BulletCounter { get; private set; }
@@ -31,6 +33,8 @@ public partial class HQ : Area2D, IDestination
     {
         AgentFactory = GetNode<AgentFactory>("AgentFactory");
         BubbleImage = GetNode<Sprite2D>("BubbleSprite").Texture;
+
+        _agentFriedFactory = GetNode<AnimationFactory>("AgentFriedFactory");
 
         _aoeGraphic = GetNode<Node2D>("AOEGraphic");
     }
@@ -77,6 +81,9 @@ public partial class HQ : Area2D, IDestination
 
     public void OnAgentDied(Agent agent)
     {
+        Node2D agentFried = _agentFriedFactory.GetAnimation<Node2D>(agent.GlobalPosition);
+        agentFried.GetNode<AnimatedSprite2D>("Graphic").FlipH = agent.GetNode<AnimatedSprite2D>("Graphic").FlipH;
+
         _agents.Remove(agent);
 
         if (_agents.Count == 0)

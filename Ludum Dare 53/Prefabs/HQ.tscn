@@ -1,12 +1,14 @@
-[gd_scene load_steps=9 format=3 uid="uid://cxbtaj2sem1ca"]
+[gd_scene load_steps=11 format=3 uid="uid://cxbtaj2sem1ca"]
 
 [ext_resource type="Script" path="res://Scripts/HQ.cs" id="1_oriai"]
 [ext_resource type="Texture2D" uid="uid://b5sxp6iunjlp4" path="res://Images/HQ/headquarter-layer-bg.png" id="2_14t8o"]
 [ext_resource type="Texture2D" uid="uid://bvfmd324yxxvx" path="res://Images/HQ/headquarter-layer-fg.png" id="2_d6i06"]
 [ext_resource type="PackedScene" uid="uid://bhcrc732hqqin" path="res://Prefabs/AgentFactory.tscn" id="3_rgn8p"]
 [ext_resource type="PackedScene" uid="uid://rl15xcg4e41u" path="res://Prefabs/Agent.tscn" id="4_fs85p"]
+[ext_resource type="Script" path="res://Scripts/AnimationFactory.cs" id="6_8tl4i"]
 [ext_resource type="Texture2D" uid="uid://7lumu4outfyu" path="res://Images/UI/AgentBubbles/agent-bubble-dest-hq.png" id="6_q3aug"]
 [ext_resource type="Texture2D" uid="uid://d344pc86mvrpw" path="res://Images/UI/Cursors/aoe-preview-01.png" id="7_henae"]
+[ext_resource type="PackedScene" uid="uid://gpeih5l4xis8" path="res://Prefabs/AgentFried.tscn" id="7_s5otl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2morg"]
 
@@ -31,6 +33,10 @@ texture = ExtResource("2_d6i06")
 
 [node name="AgentFactory" parent="." instance=ExtResource("3_rgn8p")]
 Prefab = ExtResource("4_fs85p")
+
+[node name="AgentFriedFactory" type="Node2D" parent="."]
+script = ExtResource("6_8tl4i")
+Prefab = ExtResource("7_s5otl")
 
 [node name="BubbleSprite" type="Sprite2D" parent="."]
 visible = false
