@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://dkbmd3mknqbi7"]
+[gd_scene load_steps=8 format=3 uid="uid://dkbmd3mknqbi7"]
 
 [ext_resource type="Theme" uid="uid://f1ss2majff58" path="res://Styles/Theme.tres" id="1_2ibrd"]
 [ext_resource type="Script" path="res://Scripts/Credits.cs" id="3"]
 [ext_resource type="FontFile" uid="uid://b7ca4aoa01im1" path="res://Fonts/Friz Quadrata Bold (1965).otf" id="3_u1eex"]
+[ext_resource type="Texture2D" uid="uid://c147v7nqajhex" path="res://Images/UI/BackgroundPlates/options-screen-background.png" id="3_uls2r"]
 [ext_resource type="PackedScene" path="res://Prefabs/VolumeControl.tscn" id="4"]
 [ext_resource type="PackedScene" uid="uid://06bn8mxhwolv" path="res://Prefabs/Cursor.tscn" id="6_y3tw2"]
 
@@ -18,11 +19,19 @@ grow_vertical = 2
 theme = ExtResource("1_2ibrd")
 script = ExtResource("3")
 
+[node name="SpriteBG" type="Sprite2D" parent="."]
+z_index = -2
+position = Vector2(960, 540)
+texture = ExtResource("3_uls2r")
+
 [node name="OptionsLabel" type="Label" parent="."]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = -1
 anchor_top = 0.079
 anchor_right = 1.0
 anchor_bottom = 0.249
+offset_top = 148.68
+offset_bottom = 148.68
 theme = SubResource("Theme_tohyv")
 theme_type_variation = &"HeaderLarge"
 theme_override_colors/font_color = Color(0.992157, 0.784314, 0.129412, 1)
@@ -33,19 +42,24 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="CenterContainer2" type="CenterContainer" parent="."]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = -1
 anchor_top = 0.33
 anchor_right = 1.0
 anchor_bottom = 0.67
+offset_top = -0.400024
+offset_bottom = -1.60004
 
 [node name="VolumeControl" parent="CenterContainer2" instance=ExtResource("4")]
 layout_mode = 2
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = -1
 anchor_top = 0.675
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_bottom = -128.0
 
 [node name="BackButton" type="Button" parent="CenterContainer"]
 layout_mode = 2

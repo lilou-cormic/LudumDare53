@@ -1,12 +1,32 @@
-[gd_scene load_steps=7 format=3]
+[gd_scene load_steps=13 format=3 uid="uid://00p282a28k8s"]
 
 [ext_resource type="Theme" uid="uid://f1ss2majff58" path="res://Styles/Theme.tres" id="1"]
 [ext_resource type="Script" path="res://Scripts/Credits.cs" id="3"]
+[ext_resource type="Texture2D" uid="uid://c147v7nqajhex" path="res://Images/UI/BackgroundPlates/options-screen-background.png" id="3_3lipl"]
 [ext_resource type="FontFile" uid="uid://b7ca4aoa01im1" path="res://Fonts/Friz Quadrata Bold (1965).otf" id="3_a10r3"]
 [ext_resource type="StyleBox" uid="uid://bafqludp6sdlf" path="res://Styles/button_style_box_texture.tres" id="4_t28f6"]
 [ext_resource type="PackedScene" uid="uid://06bn8mxhwolv" path="res://Prefabs/Cursor.tscn" id="5_fvomb"]
 
 [sub_resource type="Theme" id="Theme_b85py"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_f3goa"]
+font_size = 28
+shadow_size = 3
+shadow_color = Color(0, 0, 0, 0.568627)
+
+[sub_resource type="LabelSettings" id="LabelSettings_rkquu"]
+font_size = 28
+font_color = Color(0.992157, 0.784314, 0.129412, 1)
+shadow_size = 3
+shadow_color = Color(0, 0, 0, 0.568627)
+
+[sub_resource type="LabelSettings" id="LabelSettings_yxjjc"]
+font_size = 23
+
+[sub_resource type="LabelSettings" id="LabelSettings_mjwbf"]
+font_size = 23
+
+[sub_resource type="LabelSettings" id="LabelSettings_8a7k3"]
 
 [node name="Credits" type="Control"]
 layout_mode = 3
@@ -18,42 +38,36 @@ grow_vertical = 2
 theme = ExtResource("1")
 script = ExtResource("3")
 
-[node name="OptionsLabel" type="Label" parent="."]
+[node name="SpriteBG" type="Sprite2D" parent="."]
+z_index = -2
+position = Vector2(960, 540)
+texture = ExtResource("3_3lipl")
+
+[node name="CreditsLabel" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.079
 anchor_right = 1.0
 anchor_bottom = 0.249
-offset_top = 35.68
-offset_bottom = 84.468
+offset_top = 138.68
+offset_bottom = 98.08
 theme = SubResource("Theme_b85py")
 theme_override_colors/font_color = Color(0.992157, 0.784314, 0.129412, 1)
 theme_override_fonts/font = ExtResource("3_a10r3")
 theme_override_font_sizes/font_size = 58
-text = "Credits"
+text = "Deliveries & Dragons"
 horizontal_alignment = 1
 vertical_alignment = 1
+uppercase = true
 
-[node name="CreditsText" type="Label" parent="."]
-layout_mode = 0
-anchor_left = 0.05
-anchor_top = 0.262
-anchor_right = 0.95
-anchor_bottom = 0.673
-text = "Game created for Ludum Dare 53 (Apr. 2023)
-
-
-
-
-
-
-
-
-
-
-lilou_cormic - Coding
-Pixel Prophecy - Everything else
-"
+[node name="CreditsText_1" type="Label" parent="."]
+layout_mode = 2
+offset_top = 339.0
+offset_right = 1920.0
+offset_bottom = 399.0
+text = "created for Ludum Dare 53 (Apr. 2023)"
+label_settings = SubResource("LabelSettings_f3goa")
+horizontal_alignment = 1
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 layout_mode = 0
@@ -67,6 +81,85 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = ExtResource("4_t28f6")
 text = "Back"
+
+[node name="CenterContainer2" type="CenterContainer" parent="."]
+layout_mode = 0
+offset_top = 402.0
+offset_right = 1920.0
+offset_bottom = 522.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 60
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer2/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = -3
+
+[node name="CrLilou" type="Label" parent="CenterContainer2/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "lilou_cormic"
+label_settings = SubResource("LabelSettings_rkquu")
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="LabelPP" type="Label" parent="CenterContainer2/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Programming & Design"
+label_settings = SubResource("LabelSettings_yxjjc")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="CenterContainer2/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = -3
+
+[node name="CrPP" type="Label" parent="CenterContainer2/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+text = "Pixel Prophecy"
+label_settings = SubResource("LabelSettings_rkquu")
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="LabelPP" type="Label" parent="CenterContainer2/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+text = "Visuals, Audio, & Design"
+label_settings = SubResource("LabelSettings_yxjjc")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainerAdditions" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -811.0
+offset_top = 24.0
+offset_right = 822.0
+offset_bottom = 135.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AddAssetsHeader" type="Label" parent="VBoxContainerAdditions"]
+layout_mode = 2
+text = "Additional assets"
+label_settings = SubResource("LabelSettings_mjwbf")
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="AddAssets" type="Label" parent="VBoxContainerAdditions"]
+layout_mode = 2
+text = "Sheep sound by milkotz - https://freesound.org/s/618865
+Johann Herbaut \"Von Hertzen Dein\"  (1503)
+"
+label_settings = SubResource("LabelSettings_8a7k3")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Cursor" parent="." instance=ExtResource("5_fvomb")]
 
