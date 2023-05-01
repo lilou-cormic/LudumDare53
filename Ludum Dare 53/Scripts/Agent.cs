@@ -3,127 +3,157 @@ using PurpleCable;
 
 public partial class Agent : Node2D
 {
-	private const float BaseSpeed = 1f;
+    [Export] AudioStream GetPackageSound;
 
-	public const float SpeedBump = 1f;
+    [Export] AudioStream DeliverySound;
 
-	private static float _currentSpeed = BaseSpeed;
+    [Export] AudioStream BackToHQSound;
 
-	public static int SpeedCounter = 1;
+    [Export] AudioStream DeathSound;
 
-	public Warehouse Warehouse { get; private set; }
+    private const float BaseSpeed = 1f;
 
-	public Destination Destination { get; private set; }
+    public const float SpeedBump = 1f;
 
-	public DeliveryState DeliveryState { get; private set; }
+    private static float _currentSpeed = BaseSpeed;
 
-	private MoveAnimation MoveAnimation;
+    public static int SpeedCounter = 1;
 
-	private AnimatedSprite2D _graphic;
+    public Warehouse Warehouse { get; private set; }
 
-	private Sprite2D _bubble;
+    public Destination Destination { get; private set; }
 
-	public override void _Ready()
-	{
-		_graphic = GetNode<AnimatedSprite2D>("Graphic");
-		_bubble = GetNode<Sprite2D>("Bubble");
-	}
+    public DeliveryState DeliveryState { get; private set; }
 
-	public override void _Process(double delta)
-	{
-		Node2D destination;
+    private MoveAnimation MoveAnimation;
 
-		switch (DeliveryState)
-		{
-			case DeliveryState.StandBy:
-				_bubble.Texture = null;
-				return;
+    private AnimatedSprite2D _graphic;
 
-			case DeliveryState.HeadingToWarehouse:
-				destination = Warehouse;
-				break;
+    private Sprite2D _bubble;
 
-			case DeliveryState.HeadingToDestination:
-				destination = Destination;
-				break;
+    private SoundPlayerBehaviour _soundPlayer;
 
-			case DeliveryState.HeadingToHQ:
-				destination = GameManager.HQ;
-				break;
+    public override void _Ready()
+    {
+        _graphic = GetNode<AnimatedSprite2D>("Graphic");
+        _bubble = GetNode<Sprite2D>("Bubble");
+        _soundPlayer = GetNode<SoundPlayerBehaviour>("SoundPlayer");
+    }
 
-			default:
-				return;
-		}
+    public override void _Process(double delta)
+    {
+        Node2D destination;
 
-		_bubble.Texture = ((IDestination)destination).BubbleImage;
+        switch (DeliveryState)
+        {
+            case DeliveryState.StandBy:
+                _bubble.Texture = null;
+                return;
 
-		if (MoveAnimation == null || MoveAnimation.IsDoneAnimating)
-		{
-			if (MoveAnimation?.IsDoneAnimating == true && GlobalPosition.DistanceTo(destination.GlobalPosition) <= 0.01f)
-			{
-				MoveAnimation = null;
+            case DeliveryState.HeadingToWarehouse:
+                destination = Warehouse;
+                break;
 
-				DeliveryState = (DeliveryState)(((int)DeliveryState + 1) % 4);
+            case DeliveryState.HeadingToDestination:
+                destination = Destination;
+                break;
 
-				if (DeliveryState == DeliveryState.StandBy)
-					GameManager.ChangeCurrency(100);
+            case DeliveryState.HeadingToHQ:
+                destination = GameManager.HQ;
+                break;
 
-				return;
-			}
+            default:
+                return;
+        }
 
-			Vector2? nextPosition = GameManager.GetNextPosition(this, destination);
+        _bubble.Texture = ((IDestination)destination).BubbleImage;
 
-			if (nextPosition.HasValue)
-			{
-				Vector2 dir = GlobalPosition.DirectionTo(nextPosition.Value);
-				if (dir.X != 0)
-					_graphic.FlipH = dir.X < 0;
+        if (MoveAnimation == null || MoveAnimation.IsDoneAnimating)
+        {
+            if (MoveAnimation?.IsDoneAnimating == true && GlobalPosition.DistanceTo(destination.GlobalPosition) <= 0.01f)
+            {
+                MoveAnimation = null;
 
-				MoveAnimation = new MoveAnimation(this) { EndGlobalPosition = nextPosition.Value, IsLine = true, Duration = 1 / _currentSpeed };
-				MoveAnimation.Start();
-			}
-		}
-	}
+                switch (DeliveryState)
+                {
+                    case DeliveryState.StandBy:
+                        break;
+                    case DeliveryState.HeadingToWarehouse:
+                        _soundPlayer.Play(GetPackageSound);
+                        break;
+                    case DeliveryState.HeadingToDestination:
+                        _soundPlayer.Play(DeliverySound);
+                        break;
+                    case DeliveryState.HeadingToHQ:
+                        _soundPlayer.Play(BackToHQSound);
+                        break;
+                    default:
+                        break;
+                }
 
-	public override void _PhysicsProcess(double delta)
-	{
-		if (MoveAnimation != null)
-		{
-			if (GlobalPosition.DistanceTo(MoveAnimation.EndGlobalPosition) <= 0.01f)
-				MoveAnimation.End();
+                DeliveryState = (DeliveryState)(((int)DeliveryState + 1) % 4);
 
-			MoveAnimation.PhysicsProcess(delta);
-		}
-	}
+                if (DeliveryState == DeliveryState.StandBy)
+                    GameManager.ChangeCurrency(100);
 
-	public void SendOut(Warehouse warehouse, Destination destination)
-	{
-		Warehouse = warehouse;
-		Destination = destination;
+                return;
+            }
 
-		DeliveryState = DeliveryState.HeadingToWarehouse;
-	}
+            Vector2? nextPosition = GameManager.GetNextPosition(this, destination);
 
-	public void Damage()
-	{
-		if (DebugHelper.GodMode)
-			return;
+            if (nextPosition.HasValue)
+            {
+                Vector2 dir = GlobalPosition.DirectionTo(nextPosition.Value);
+                if (dir.X != 0)
+                    _graphic.FlipH = dir.X < 0;
 
-		GameManager.HQ.OnAgentDied(this);
-		QueueFree();
-	}
+                MoveAnimation = new MoveAnimation(this) { EndGlobalPosition = nextPosition.Value, IsLine = true, Duration = 1 / _currentSpeed };
+                MoveAnimation.Start();
+            }
+        }
+    }
 
-	public static void IncreaseSpeed()
-	{
-		SpeedCounter++;
-		_currentSpeed += SpeedBump;
+    public override void _PhysicsProcess(double delta)
+    {
+        if (MoveAnimation != null)
+        {
+            if (GlobalPosition.DistanceTo(MoveAnimation.EndGlobalPosition) <= 0.01f)
+                MoveAnimation.End();
 
-		Stats.OnStatsChanged();
-	}
+            MoveAnimation.PhysicsProcess(delta);
+        }
+    }
 
-	public static void ResetStats()
-	{
-		SpeedCounter = 1;
-		_currentSpeed = BaseSpeed;
-	}
+    public void SendOut(Warehouse warehouse, Destination destination)
+    {
+        Warehouse = warehouse;
+        Destination = destination;
+
+        DeliveryState = DeliveryState.HeadingToWarehouse;
+    }
+
+    public void Damage()
+    {
+        if (DebugHelper.GodMode)
+            return;
+
+        SoundPlayer.Play(DeathSound);
+
+        GameManager.HQ.OnAgentDied(this);
+        QueueFree();
+    }
+
+    public static void IncreaseSpeed()
+    {
+        SpeedCounter++;
+        _currentSpeed += SpeedBump;
+
+        Stats.OnStatsChanged();
+    }
+
+    public static void ResetStats()
+    {
+        SpeedCounter = 1;
+        _currentSpeed = BaseSpeed;
+    }
 }

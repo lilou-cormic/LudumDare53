@@ -1,10 +1,10 @@
-[gd_scene load_steps=5 format=3]
+[gd_scene load_steps=6 format=3 uid="uid://cqb3qvwqr878o"]
 
 [ext_resource type="Theme" uid="uid://f1ss2majff58" path="res://Styles/Theme.tres" id="1"]
 [ext_resource type="Script" path="res://Scripts/SfxVolumeSlider.cs" id="2"]
 [ext_resource type="Script" path="res://Scripts/MusicVolumeSlider.cs" id="3"]
 [ext_resource type="Script" path="res://Scripts/MusicPlayer.cs" id="5"]
-
+[ext_resource type="AudioStream" uid="uid://c7cc8dhwuf1xu" path="res://Sounds/Gnomes/gnome-delivery-success.ogg" id="5_6owwd"]
 
 [node name="VolumeControl" type="Control"]
 layout_mode = 3
@@ -60,6 +60,7 @@ max_value = 24.0
 script = ExtResource("2")
 
 [node name="SoundPlayer" type="AudioStreamPlayer" parent="SfxVolume/HSlider"]
+stream = ExtResource("5_6owwd")
 
 [connection signal="value_changed" from="MusicVolume/HSlider" to="MusicVolume/HSlider" method="OnValueChanged"]
 [connection signal="value_changed" from="SfxVolume/HSlider" to="SfxVolume/HSlider" method="OnValueChanged"]

@@ -1,7 +1,12 @@
 using Godot;
+using PurpleCable;
 
 public partial class Enemy : Node2D
 {
+    [Export] AudioStream DeathSound;
+
+    [Export] AudioStream DamageSound;
+
     private bool _isDead = false;
 
     public void OnDamagingAreaEntered(Area2D area)
@@ -13,6 +18,8 @@ public partial class Enemy : Node2D
 
         if (parent is Agent agent)
         {
+            SoundPlayer.Play(DamageSound);
+
             agent.Damage();
         }
     }
@@ -42,6 +49,8 @@ public partial class Enemy : Node2D
             return;
 
         _isDead = true;
+
+        SoundPlayer.Play(DeathSound);
 
         DieInternal();
     }

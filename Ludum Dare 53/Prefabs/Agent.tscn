@@ -1,10 +1,16 @@
-[gd_scene load_steps=8 format=3 uid="uid://rl15xcg4e41u"]
+[gd_scene load_steps=14 format=3 uid="uid://rl15xcg4e41u"]
 
 [ext_resource type="Script" path="res://Scripts/Agent.cs" id="1_qudb1"]
+[ext_resource type="AudioStream" uid="uid://cm4km2ymmbe6q" path="res://Sounds/Gameplay/warehouse-fetch.ogg" id="2_ftqrk"]
 [ext_resource type="Texture2D" uid="uid://inm1lo8ibj8c" path="res://Images/Agent/agent-walk-right-02.png" id="2_q6ahv"]
 [ext_resource type="Texture2D" uid="uid://jvnt1eh7yyld" path="res://Images/Agent/agent-walk-right-01.png" id="2_q06jl"]
+[ext_resource type="AudioStream" uid="uid://crjadi4cvidh3" path="res://Sounds/Gameplay/delivery-success.ogg" id="3_pdj24"]
 [ext_resource type="Texture2D" uid="uid://cwlc3ptxup5ba" path="res://Images/Agent/agent-walk-right-03.png" id="4_gx4ya"]
+[ext_resource type="AudioStream" uid="uid://c7cc8dhwuf1xu" path="res://Sounds/Gnomes/gnome-delivery-success.ogg" id="4_pt3ns"]
 [ext_resource type="Texture2D" uid="uid://b20bkeealx87t" path="res://Images/UI/AgentBubbles/agent-bubble-blank.png" id="5_h6pp5"]
+[ext_resource type="AudioStream" uid="uid://diql3esocn1ak" path="res://Sounds/Gnomes/gnome-death.ogg" id="5_u0f8r"]
+[ext_resource type="PackedScene" uid="uid://b182txn4ve0o1" path="res://Prefabs/SoundPlayer.tscn" id="6_1xgh2"]
+[ext_resource type="AudioStream" uid="uid://cun6obkno7725" path="res://Sounds/Gameplay/hq-pass.ogg" id="10_pv5ln"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_da8cf"]
 radius = 12.0
@@ -28,6 +34,10 @@ animations = [{
 
 [node name="Agent" type="Node2D"]
 script = ExtResource("1_qudb1")
+GetPackageSound = ExtResource("2_ftqrk")
+DeliverySound = ExtResource("3_pdj24")
+BackToHQSound = ExtResource("4_pt3ns")
+DeathSound = ExtResource("5_u0f8r")
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 2
@@ -49,3 +59,6 @@ frame_progress = 0.612796
 z_index = 6
 position = Vector2(39, -53)
 texture = ExtResource("5_h6pp5")
+
+[node name="SoundPlayer" parent="." instance=ExtResource("6_1xgh2")]
+stream = ExtResource("10_pv5ln")

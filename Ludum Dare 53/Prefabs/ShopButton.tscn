@@ -1,8 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://hb4lij4isiij"]
+[gd_scene load_steps=7 format=3 uid="uid://hb4lij4isiij"]
 
 [ext_resource type="Texture2D" uid="uid://csdk3rihjknlx" path="res://Images/Sidebar/sidebar-icon-blank.png" id="1_lio5q"]
 [ext_resource type="Script" path="res://Scripts/ShopButton.cs" id="2_ftoy6"]
 [ext_resource type="Theme" uid="uid://f1ss2majff58" path="res://Styles/Theme.tres" id="2_uj6fr"]
+[ext_resource type="PackedScene" uid="uid://b182txn4ve0o1" path="res://Prefabs/SoundPlayer.tscn" id="4_p7rrc"]
+[ext_resource type="AudioStream" uid="uid://cyc3juhy54ir6" path="res://Sounds/UI/upgrade-purchase.ogg" id="5_5ym21"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_dinba"]
 font_size = 20
@@ -31,5 +33,9 @@ text = "150"
 label_settings = SubResource("LabelSettings_dinba")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="SoundPlayer" parent="." instance=ExtResource("4_p7rrc")]
+stream = ExtResource("5_5ym21")
+autoplay = false
 
 [connection signal="pressed" from="." to="." method="OnPressed"]
