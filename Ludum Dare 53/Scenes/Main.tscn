@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=3 uid="uid://bb8gjqjcmb6r8"]
+[gd_scene load_steps=61 format=3 uid="uid://bb8gjqjcmb6r8"]
 
 [ext_resource type="PackedScene" uid="uid://db5tcwnuk7qel" path="res://Prefabs/MusicPlayer.tscn" id="1_j8ig3"]
 [ext_resource type="PackedScene" uid="uid://b182txn4ve0o1" path="res://Prefabs/SoundPlayer.tscn" id="1_oj6li"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://c6trhdlx7klpm" path="res://Prefabs/Destination.tscn" id="4_eawbt"]
 [ext_resource type="Script" path="res://Scripts/Destinations.cs" id="5_4dy1h"]
 [ext_resource type="PackedScene" uid="uid://d23tkieuerlq1" path="res://Prefabs/Warehouse.tscn" id="5_6sixh"]
+[ext_resource type="Texture2D" uid="uid://dfovv55ubyyd7" path="res://Images/Map/map-foliage-top-overlay.png" id="5_k78yk"]
 [ext_resource type="Script" path="res://Scripts/GameManager.cs" id="7"]
 [ext_resource type="Texture2D" uid="uid://5my8bv7qad27" path="res://Images/Warehouse/warehouse-1-locked.png" id="8_5ptvp"]
 [ext_resource type="Texture2D" uid="uid://0v10s33bi2gt" path="res://Images/Destination/destination-windmill.png" id="8_jiok6"]
@@ -84,12 +85,19 @@ script = ExtResource("1_ygkfg")
 
 [node name="Background-meadow" type="Sprite2D" parent="Map"]
 z_index = -10
+position = Vector2(64, 0)
 texture = ExtResource("10_rrg00")
 centered = false
 
 [node name="Path-network" type="Sprite2D" parent="Map"]
 z_index = -5
 texture = ExtResource("2_icw2k")
+centered = false
+
+[node name="Map-foliage-top-overlay" type="Sprite2D" parent="Map"]
+z_index = 2
+position = Vector2(64, 0)
+texture = ExtResource("5_k78yk")
 centered = false
 
 [node name="Area2D" type="Area2D" parent="Map"]
@@ -135,7 +143,7 @@ texture = ExtResource("17_hthee")
 
 [node name="Trees-2" type="Sprite2D" parent="Map/Trees"]
 z_index = 2
-position = Vector2(1277, 763)
+position = Vector2(1289, 763)
 texture = ExtResource("17_hthee")
 
 [node name="Trees-3" type="Sprite2D" parent="Map/Trees"]
@@ -410,6 +418,9 @@ texture = ExtResource("21_auets")
 [node name="Obstacles" type="Node2D" parent="GameManager"]
 
 [node name="RockFormation01" parent="GameManager/Obstacles" instance=ExtResource("16_2ihmk")]
+
+[node name="Rockface-1" parent="GameManager/Obstacles/RockFormation01" index="0"]
+z_index = 3
 
 [node name="RockSlideFactory" parent="GameManager/Obstacles/RockFormation01" index="1"]
 position = Vector2(33, 37)

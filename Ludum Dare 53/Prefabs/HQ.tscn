@@ -1,8 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://cxbtaj2sem1ca"]
+[gd_scene load_steps=10 format=3 uid="uid://cxbtaj2sem1ca"]
 
 [ext_resource type="Script" path="res://Scripts/HQ.cs" id="1_oriai"]
-[ext_resource type="Texture2D" uid="uid://b5sxp6iunjlp4" path="res://Images/HQ/headquarter-layer-bg.png" id="2_14t8o"]
-[ext_resource type="Texture2D" uid="uid://bvfmd324yxxvx" path="res://Images/HQ/headquarter-layer-fg.png" id="2_d6i06"]
+[ext_resource type="Texture2D" uid="uid://7siopa4kltb4" path="res://Images/HQ/headquarter-combined.png" id="2_0dlu5"]
 [ext_resource type="PackedScene" uid="uid://bhcrc732hqqin" path="res://Prefabs/AgentFactory.tscn" id="3_rgn8p"]
 [ext_resource type="PackedScene" uid="uid://rl15xcg4e41u" path="res://Prefabs/Agent.tscn" id="4_fs85p"]
 [ext_resource type="Script" path="res://Scripts/AnimationFactory.cs" id="6_8tl4i"]
@@ -21,15 +20,10 @@ position = Vector2(32, 32)
 shape = SubResource("RectangleShape2D_2morg")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-z_index = 3
+z_index = 5
+y_sort_enabled = true
 position = Vector2(32, 16)
-texture = ExtResource("2_14t8o")
-
-[node name="Headquarter-layer-fg" type="Sprite2D" parent="."]
-visibility_layer = 64
-z_index = 3
-position = Vector2(32, 16)
-texture = ExtResource("2_d6i06")
+texture = ExtResource("2_0dlu5")
 
 [node name="AgentFactory" parent="." instance=ExtResource("3_rgn8p")]
 Prefab = ExtResource("4_fs85p")
