@@ -48,10 +48,10 @@ public partial class GameManager : Node2D
     private double _deliveryTimer = 0.5f;
     private double _deliveryDelay = 0.5f;
 
-    private double _dragonTimer = 20f;
-    private double _dragonDelay = 20f;
+    private double _dragonTimer = 10f;
+    private double _dragonDelay = 10f;
 
-    private double _dragonFrequencyIncreaseTimer = 60f;
+    private double _dragonFrequencyIncreaseTimer = 30f;
 
     public static event Action CurrencyChanged;
 
