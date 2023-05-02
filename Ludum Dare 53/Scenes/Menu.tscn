@@ -82,7 +82,7 @@ offset_left = 751.0
 offset_top = 147.08
 offset_right = -449.0
 offset_bottom = 147.08
-text = "a Ludum Dare #53 compo game
+text = "a Ludum Dare #53 jam game
 by lilou_cormic and Pixel Prophecy"
 label_settings = SubResource("LabelSettings_loi87")
 horizontal_alignment = 1
