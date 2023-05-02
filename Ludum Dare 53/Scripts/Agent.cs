@@ -145,7 +145,7 @@ public partial class Agent : Node2D
         SpeedCounter++;
         _currentSpeed += SpeedBump;
 
-        Stats.OnStatsChanged();
+        Stats.OnStatsChanged(StatsType.AgentSpeed);
     }
 
     public static void ResetStats()

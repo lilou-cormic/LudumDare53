@@ -71,7 +71,7 @@ public partial class HQ : Area2D, IDestination
     {
         _agents.Add(AgentFactory.GetAgent());
 
-        Stats.OnStatsChanged();
+        Stats.OnStatsChanged(StatsType.AgentCounter);
     }
 
     public void BoostAgentSpeed()
@@ -89,7 +89,7 @@ public partial class HQ : Area2D, IDestination
         if (_agents.Count == 0)
             GameManager.GameOver();
 
-        Stats.OnStatsChanged();
+        Stats.OnStatsChanged(StatsType.AgentCounter);
     }
 
     public void Shoot(Vector2 target)
@@ -101,6 +101,8 @@ public partial class HQ : Area2D, IDestination
     public void AddBullet()
     {
         BulletCounter++;
+
+        Stats.OnStatsChanged(StatsType.BulletCounter);
     }
 
     public void BoostBulletSpeed()

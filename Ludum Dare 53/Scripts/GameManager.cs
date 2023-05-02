@@ -81,7 +81,7 @@ public partial class GameManager : Node2D
         Agent.ResetStats();
         Projectile.ResetStats();
 
-        Stats.OnStatsChanged();
+        Stats.OnStatsChanged(StatsType.Unknown);
 
         CreateTileGrid();
 

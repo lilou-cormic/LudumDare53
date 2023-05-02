@@ -90,14 +90,12 @@ public partial class Projectile : Node2D
         SpeedCounter++;
         _currentSpeed += SpeedBump;
 
-        Stats.OnStatsChanged();
+        Stats.OnStatsChanged(StatsType.BulletSpeed);
     }
 
     public static void IncreaseAOE()
     {
         HasLargerAOE = true;
-
-        Stats.OnStatsChanged();
     }
 
     public static void ResetStats()
