@@ -10,12 +10,12 @@ config_version=5
 
 [application]
 
-config/name="Ludum Dare 53"
+config/name="DeliveriesAndDragons"
 run/main_scene="res://Scenes/Menu.tscn"
-config/features=PackedStringArray("4.0", "C#", "GL Compatibility")
+config/features=PackedStringArray("4.0", "GL Compatibility")
 boot_splash/bg_color=Color(0, 0, 0, 1)
 boot_splash/image="res://Images/SplashScreen/splash-screen-purple-cable-pixel-prophecy.png"
-config/icon="res://icon.svg"
+config/icon="res://icon.png"
 
 [display]
 
