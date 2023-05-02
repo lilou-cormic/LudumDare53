@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=3 uid="uid://bb8gjqjcmb6r8"]
+[gd_scene load_steps=62 format=3 uid="uid://bb8gjqjcmb6r8"]
 
 [ext_resource type="PackedScene" uid="uid://db5tcwnuk7qel" path="res://Prefabs/MusicPlayer.tscn" id="1_j8ig3"]
 [ext_resource type="PackedScene" uid="uid://b182txn4ve0o1" path="res://Prefabs/SoundPlayer.tscn" id="1_oj6li"]
@@ -55,6 +55,7 @@
 [ext_resource type="Texture2D" uid="uid://b0i7b41nrqkoa" path="res://Images/Sidebar/sidebar-icon-unlock-warehouse-1-inactive.png" id="46_ckrjs"]
 [ext_resource type="Texture2D" uid="uid://co77u3hfge2pr" path="res://Images/Sidebar/sidebar-icon-aoe-increase-active.png" id="46_uwsup"]
 [ext_resource type="Texture2D" uid="uid://c20lit2wd5tyn" path="res://Images/Sidebar/sidebar-icon-aoe-increase-inactive.png" id="47_h676c"]
+[ext_resource type="Texture2D" uid="uid://bpcvd251rfc0g" path="res://Images/Remy/enemy-remy-running-05.png" id="56_ybrdx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s5a6x"]
 size = Vector2(1541, 1080)
@@ -751,6 +752,13 @@ Price = 500
 NumberOfUses = 1
 
 [node name="Cursor" parent="." instance=ExtResource("33_hrcy5")]
+
+[node name="Enemy-remy-running-05" type="Sprite2D" parent="."]
+z_index = 2
+position = Vector2(243, 299)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("56_ybrdx")
+flip_h = true
 
 [connection signal="input_event" from="Map/Area2D" to="Map" method="OnInputEvent"]
 [connection signal="mouse_entered" from="Map/Area2D" to="Map" method="OnMouseEntered"]
