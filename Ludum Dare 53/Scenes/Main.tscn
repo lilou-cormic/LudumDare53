@@ -1,7 +1,7 @@
 [gd_scene load_steps=59 format=3 uid="uid://bb8gjqjcmb6r8"]
 
+[ext_resource type="PackedScene" uid="uid://db5tcwnuk7qel" path="res://Prefabs/MusicPlayer.tscn" id="1_j8ig3"]
 [ext_resource type="PackedScene" uid="uid://b182txn4ve0o1" path="res://Prefabs/SoundPlayer.tscn" id="1_oj6li"]
-[ext_resource type="AudioStream" uid="uid://de5im35r2vl4s" path="res://Music/main-game-loop.ogg" id="1_rstgu"]
 [ext_resource type="Script" path="res://Scripts/Map.cs" id="1_ygkfg"]
 [ext_resource type="Texture2D" uid="uid://cgmckhskbnmpu" path="res://Images/Map/path-network.png" id="2_icw2k"]
 [ext_resource type="PackedScene" uid="uid://cxbtaj2sem1ca" path="res://Prefabs/HQ.tscn" id="2_p2rb2"]
@@ -75,9 +75,7 @@ shadow_color = Color(0, 0, 0, 0.737255)
 
 [node name="Main" type="Node2D"]
 
-[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("1_rstgu")
-autoplay = true
+[node name="MusicPlayer" parent="." instance=ExtResource("1_j8ig3")]
 
 [node name="Map" type="Node2D" parent="."]
 position = Vector2(-64, 0)

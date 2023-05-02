@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://chhpxn7fxs866"]
+[gd_scene load_steps=9 format=3 uid="uid://chhpxn7fxs866"]
 
 [ext_resource type="Theme" uid="uid://f1ss2majff58" path="res://Styles/Theme.tres" id="1_qs8e7"]
 [ext_resource type="Script" path="res://PurpleCable/Core/Scripts/MainMenu.cs" id="3"]
-[ext_resource type="Script" path="res://Scripts/MusicPlayer.cs" id="6"]
+[ext_resource type="PackedScene" uid="uid://db5tcwnuk7qel" path="res://Prefabs/MusicPlayer.tscn" id="3_rqyyj"]
+[ext_resource type="AudioStream" uid="uid://dtawd2qvwgx87" path="res://Music/title-music.ogg" id="4_trggc"]
 [ext_resource type="PackedScene" uid="uid://06bn8mxhwolv" path="res://Prefabs/Cursor.tscn" id="6_8kl5j"]
 [ext_resource type="Texture2D" uid="uid://cdtbdc66sew2c" path="res://Images/UI/BackgroundPlates/title-plate.png" id="6_lops8"]
 [ext_resource type="Texture2D" uid="uid://c147v7nqajhex" path="res://Images/UI/BackgroundPlates/options-screen-background.png" id="7_rv4kb"]
@@ -21,6 +22,9 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_qs8e7")
 script = ExtResource("3")
+
+[node name="MusicPlayer" parent="." instance=ExtResource("3_rqyyj")]
+stream = ExtResource("4_trggc")
 
 [node name="SpriteBG" type="Sprite2D" parent="."]
 z_index = -2
@@ -65,10 +69,6 @@ text = "Credits"
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 text = "Quit"
-
-[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
-autoplay = true
-script = ExtResource("6")
 
 [node name="Cursor" parent="." instance=ExtResource("6_8kl5j")]
 

@@ -1,9 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://cu4jkfbiv3h73"]
+[gd_scene load_steps=13 format=3 uid="uid://cu4jkfbiv3h73"]
 
 [ext_resource type="Theme" uid="uid://f1ss2majff58" path="res://Styles/Theme.tres" id="1"]
 [ext_resource type="Script" path="res://Scripts/GameOver.cs" id="3"]
 [ext_resource type="FontFile" uid="uid://b7ca4aoa01im1" path="res://Fonts/Friz Quadrata Bold (1965).otf" id="3_544xq"]
 [ext_resource type="Texture2D" uid="uid://di0cumvq7forh" path="res://Images/UI/BackgroundPlates/game-over-screen-background.png" id="3_bvtnx"]
+[ext_resource type="PackedScene" uid="uid://db5tcwnuk7qel" path="res://Prefabs/MusicPlayer.tscn" id="3_k3jmn"]
+[ext_resource type="AudioStream" uid="uid://cro5djqfn3gkw" path="res://Music/game-over-music.ogg" id="4_f680u"]
 [ext_resource type="Texture2D" uid="uid://bh44ep0rcke7q" path="res://Images/UI/BackgroundPlates/wood-panel.png" id="4_t2y3f"]
 [ext_resource type="PackedScene" uid="uid://06bn8mxhwolv" path="res://Prefabs/Cursor.tscn" id="6_bplpa"]
 
@@ -29,6 +31,9 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1")
 script = ExtResource("3")
+
+[node name="MusicPlayer" parent="." instance=ExtResource("3_k3jmn")]
+stream = ExtResource("4_f680u")
 
 [node name="SpriteBG" type="Sprite2D" parent="."]
 z_index = -2
@@ -148,9 +153,6 @@ grow_vertical = 0
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 text = "Quit"
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-autoplay = true
 
 [node name="Cursor" parent="." instance=ExtResource("6_bplpa")]
 

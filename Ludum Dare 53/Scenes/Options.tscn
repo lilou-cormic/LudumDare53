@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://Scripts/Credits.cs" id="3"]
 [ext_resource type="FontFile" uid="uid://b7ca4aoa01im1" path="res://Fonts/Friz Quadrata Bold (1965).otf" id="3_u1eex"]
 [ext_resource type="Texture2D" uid="uid://c147v7nqajhex" path="res://Images/UI/BackgroundPlates/options-screen-background.png" id="3_uls2r"]
-[ext_resource type="PackedScene" path="res://Prefabs/VolumeControl.tscn" id="4"]
+[ext_resource type="PackedScene" uid="uid://cqb3qvwqr878o" path="res://Prefabs/VolumeControl.tscn" id="4"]
 [ext_resource type="PackedScene" uid="uid://06bn8mxhwolv" path="res://Prefabs/Cursor.tscn" id="6_y3tw2"]
 
 [sub_resource type="Theme" id="Theme_tohyv"]

@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://cqb3qvwqr878o"]
+[gd_scene load_steps=7 format=3 uid="uid://cqb3qvwqr878o"]
 
 [ext_resource type="Theme" uid="uid://f1ss2majff58" path="res://Styles/Theme.tres" id="1"]
 [ext_resource type="Script" path="res://Scripts/SfxVolumeSlider.cs" id="2"]
 [ext_resource type="Script" path="res://Scripts/MusicVolumeSlider.cs" id="3"]
+[ext_resource type="AudioStream" uid="uid://de5im35r2vl4s" path="res://Music/main-game-loop.ogg" id="3_krb4o"]
 [ext_resource type="Script" path="res://Scripts/MusicPlayer.cs" id="5"]
 [ext_resource type="AudioStream" uid="uid://c7cc8dhwuf1xu" path="res://Sounds/Gnomes/gnome-delivery-success.ogg" id="5_6owwd"]
 
@@ -35,6 +36,7 @@ max_value = 24.0
 script = ExtResource("3")
 
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="MusicVolume/HSlider"]
+stream = ExtResource("3_krb4o")
 autoplay = true
 script = ExtResource("5")
 

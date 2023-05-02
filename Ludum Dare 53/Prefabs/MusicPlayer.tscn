@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://db5tcwnuk7qel"]
+
+[ext_resource type="AudioStream" uid="uid://de5im35r2vl4s" path="res://Music/main-game-loop.ogg" id="1_tojap"]
+
+[node name="MusicPlayer" type="AudioStreamPlayer"]
+stream = ExtResource("1_tojap")
+autoplay = true
