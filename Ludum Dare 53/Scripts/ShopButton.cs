@@ -6,6 +6,8 @@ public partial class ShopButton : TextureButton
 
     [Export] int NumberOfUses = 0; // 0 for infinite
 
+    [Export] private int PriceIncreasePercentage = 0;
+
     private int _NumberOfUsesLeft = 0;
 
     public override void _Ready()
@@ -39,6 +41,10 @@ public partial class ShopButton : TextureButton
 
     public void OnPressed()
     {
+        Price += (Price * PriceIncreasePercentage) / 100;
+        Price -= Price % 5;
+        GetNode<Label>("PriceText").Text = Price.ToString();
+
         if (NumberOfUses > 0 && _NumberOfUsesLeft > 0)
         {
             _NumberOfUsesLeft--;

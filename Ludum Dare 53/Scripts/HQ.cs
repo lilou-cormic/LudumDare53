@@ -18,7 +18,7 @@ public partial class HQ : Area2D, IDestination
 
     private AnimationFactory _agentFriedFactory;
 
-    private const int BulletBaseCount = 3;
+    private const int BulletBaseCount = 1;
 
     public int BulletCounter { get; private set; }
 

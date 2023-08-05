@@ -693,6 +693,7 @@ offset_bottom = 656.0
 disabled = true
 texture_normal = ExtResource("33_tgc8d")
 texture_disabled = ExtResource("36_iktfn")
+PriceIncreasePercentage = 10
 
 [node name="AgentSpeedUpButton" parent="HUD/Panel" instance=ExtResource("35_u0jqq")]
 layout_mode = 0
@@ -704,6 +705,8 @@ disabled = true
 texture_normal = ExtResource("38_n8653")
 texture_disabled = ExtResource("39_jmbg8")
 Price = 250
+NumberOfUses = 9
+PriceIncreasePercentage = 25
 
 [node name="UnlockWarehouseButton" parent="HUD/Panel" instance=ExtResource("35_u0jqq")]
 layout_mode = 0
@@ -727,6 +730,8 @@ disabled = true
 texture_normal = ExtResource("42_3efkc")
 texture_disabled = ExtResource("43_rb3as")
 Price = 200
+NumberOfUses = 4
+PriceIncreasePercentage = 100
 
 [node name="BulletSpeedUpButton" parent="HUD/Panel" instance=ExtResource("35_u0jqq")]
 layout_mode = 0
@@ -738,6 +743,8 @@ disabled = true
 texture_normal = ExtResource("44_xi8e5")
 texture_disabled = ExtResource("45_y8ymi")
 Price = 300
+NumberOfUses = 5
+PriceIncreasePercentage = 25
 
 [node name="BulletAOEButton" parent="HUD/Panel" instance=ExtResource("35_u0jqq")]
 layout_mode = 0
